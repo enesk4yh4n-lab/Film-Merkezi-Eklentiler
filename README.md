@@ -9,7 +9,7 @@ Film Merkezi 2.0.0 için kullanıcı seçimine bağlı site ve çözümleyici pa
 | P003 | 1.0.0 | R003 | 1.0.0 |
 | P004 | 1.0.0 | R004 | 1.0.0 |
 | P005 | 1.0.0 | R005 | 1.0.0 |
-| P006 | 1.0.0 | R006 | 1.0.0 |
+| P006 | 1.0.0 | R006 | 1.0.1 |
 | P007 | 1.0.0 | R007 | 1.0.0 |
 
 GitHub depo aramasında **Film-Merkezi-Eklentiler** yazın veya bu deponun adresini ekleyin. Kurulu depoda **Güncellemeleri kontrol et → Eklentilere gözat** yolundan P001 seçildiğinde R001 birlikte sunulur. Depo eklemek paketleri otomatik kurmaz.

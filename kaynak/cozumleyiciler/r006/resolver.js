@@ -66,7 +66,7 @@
     var d = I.doc(body), frame = d.querySelector('iframe[data-frame-src*="youtube.com/embed/"],iframe[data-frame-src*="youtube-nocookie.com/embed/"]'), link = d.querySelector('a.div[href]'), yt;
     if (frame) { yt = youtube(U.url(frame.getAttribute('data-frame-src'), page), page); if (yt) return yt; throw fail('Geçersiz YouTube bağlantısı.'); }
     if (link && /Diziyi izlemek i\S*in t\S*klay\S*n/i.test(U.clean(link.textContent))) { yt = youtube(U.url(link.getAttribute('href'), page), page); if (yt) return yt; throw fail('Desteklenmeyen dış oynatıcı.', 'unsupported'); }
-    if (/<title[^>]*>\s*(?:Just a moment|Attention Required|Access Denied)|cf-mitigated/i.test(body)) throw fail('Oynatıcı erişim engeli.', 'access');
+    if (/<title[^>]*>\s*(?:Just a moment|Attention Required|Access Denied)|cf[-]mitigated/i.test(body)) throw fail('Oynatıcı erişim engeli.', 'access');
     if (/<title[^>]*>\s*404\s+Not Found|<h1[^>]*>\s*404\s*<\/h1>/i.test(body)) throw fail('Oynatıcı sayfası bulunamadı.', 'http');
     var setup = /\bjwplayer\(\s*['"]player['"]\s*\)[\s\S]{0,100}?\.setup\(\s*\{|\bplayer\.setup\(\s*\{/.exec(body);
     if (!setup) throw fail('Aktif JW medya ayarları bulunamadı.');
