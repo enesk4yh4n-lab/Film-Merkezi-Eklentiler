@@ -1,0 +1,25 @@
+{
+  "id": "r007",
+  "name": "R007",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.0",
+  "minCoreVersion": "2.0.0",
+  "type": "resolver",
+  "description": "Active player metadata, HLS, audio and subtitle adapter",
+  "dependencies": [],
+  "modules": [
+    "resolver.js"
+  ],
+  "files": [
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://diziboxum.com",
+    "https://ksdpictures.site",
+    "https://yabancidizim.com",
+    "https://pictures.spordunyasi.site",
+    "https://pictures.izmirgezisi.site",
+    "https://video.twimg.com"
+  ]
+}

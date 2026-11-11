@@ -1,0 +1,33 @@
+{
+  "id": "p007",
+  "name": "P007",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.0",
+  "minCoreVersion": "2.0.0",
+  "type": "site",
+  "description": "Series catalog, search, seasons and episodes",
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r007",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://diziboxum.com"
+  ],
+  "site": {
+    "id": "p007",
+    "prefix": "p007:",
+    "name": "P007",
+    "base": "https://diziboxum.com"
+  }
+}
