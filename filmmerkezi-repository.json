@@ -3,7 +3,7 @@
   "id": "film-merkezi-eklentiler",
   "name": "Film Merkezi Eklentiler",
   "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5asyOWYkiWXZNeUMmYocbH2+VxPU+BkA/Yk22PhuRpWMo/h1nw/LfWL7ZrPcxo8loJ2VPwbeo05KAtE1H1LUieNRHgMMBMwJaeuV2JvyS8+JNMqrGDhkywDMNNZT4H32uOpQlfZmkNf+tE5EKfFKBNuj5dwlPN0E5/y1B0230WlcIb6JsE40ZmZqzfSuGtprwrNSc0Mx4MQhD56NBmQZUyfrUCYuh27x0ozzUjNLx3JJKpXeS2xWuZv69gFjO+R/Pkl1su0B/cgF2vPqMPKqMWTDUU0SHkUk320Xdv7YbMbAyKkuOYPAi7wZzCVZggU6NBr9nMwhcjWZeUWyFyy/2wIDAQAB",
-  "revision": 16,
+  "revision": 18,
   "plugins": [
     {
       "id": "r001",
@@ -94,6 +94,24 @@
       "description": "Series catalog and full episodes",
       "manifest": "packages/p005/1.0.0/manifest.json",
       "manifestSha256": "b571405cd166557af96d58c1c55646cfff9a6a1340d176352dd328abc2a596bf"
+    },
+    {
+      "id": "r006",
+      "type": "resolver",
+      "name": "R006",
+      "version": "1.0.0",
+      "description": "Multiple media sources and language alternatives for P006",
+      "manifest": "packages/r006/1.0.0/manifest.json",
+      "manifestSha256": "f234719e80d1e552b0088d79862c597c0e3c92c9bf9b0797ca46368602f5eca3"
+    },
+    {
+      "id": "p006",
+      "type": "site",
+      "name": "P006",
+      "version": "1.0.0",
+      "description": "Series catalog, seasons and episode adapter",
+      "manifest": "packages/p006/1.0.0/manifest.json",
+      "manifestSha256": "25a7abd072a4c3dd606752cea80d3f234b395a768bd918f84b108cbd636230e5"
     }
   ]
 }

@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "minAppVersion": "2.0.0",
+  "minCoreVersion": "2.0.0",
+  "id": "r006",
+  "name": "R006",
+  "description": "Multiple media sources and language alternatives for P006",
+  "type": "resolver",
+  "dependencies": [],
+  "modules": [
+    "resolver.js"
+  ],
+  "files": [
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.ddizi.tel",
+    "https://www.ddizi.re",
+    "https://streambox.xyz",
+    "https://video.twimg.com",
+    "https://*.googlevideo.com",
+    "https://eu1.tabii.com",
+    "https://puhu-p3.mncdn.com",
+    "https://rtuk-p.mncdn.com",
+    "https://vmcdn.ciner.com.tr",
+    "https://downloader.disk.yandex.ru",
+    "https://downloader.disk.yandex.com.tr",
+    "https://www.youtube.com",
+    "https://streambox1.xyz",
+    "https://streambox3.xyz",
+    "https://streambox4.xyz",
+    "https://streambox5.xyz",
+    "https://streambox6.xyz",
+    "https://streambox7.xyz",
+    "https://streambox8.xyz",
+    "https://streambox9.xyz",
+    "https://streambox10.xyz",
+    "https://streambox11.xyz",
+    "https://streambox12.xyz",
+    "https://streambox13.xyz",
+    "https://streambox14.xyz",
+    "https://streambox15.xyz",
+    "https://streambox16.xyz",
+    "https://streambox17.xyz",
+    "https://streambox18.xyz",
+    "https://streambox19.xyz",
+    "https://streambox20.xyz"
+  ]
+}

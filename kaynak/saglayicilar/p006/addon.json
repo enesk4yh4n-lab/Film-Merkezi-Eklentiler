@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "minAppVersion": "2.0.0",
+  "minCoreVersion": "2.0.0",
+  "id": "p006",
+  "name": "P006",
+  "description": "Series catalog, seasons and episode adapter",
+  "type": "site",
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r006",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "site": {
+    "id": "p006",
+    "prefix": "p006:",
+    "name": "P006",
+    "base": "https://www.ddizi.tel"
+  },
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.ddizi.tel"
+  ]
+}
