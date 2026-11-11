@@ -16,3 +16,7 @@ P002/R002 ana depoda da sunulur. Bir depodan kurduğunuz aynı paketi tekrar kur
 İndeks: [filmmerkezi-repository.json](filmmerkezi-repository.json). Paketler ilgili sitelerle resmî bağlantı veya entegrasyon onayı iddia etmez. Kaynakların erişim koşulları değişebilir; uygulama içerik veya erişim hakkı sağlamaz. [Lisanslar ve kaynak bildirimleri](THIRD_PARTY_NOTICES.md).
 
 <!-- film-merkezi-repository: filmmerkezi-repository.json -->
+
+## Eklenti geliştirme SDK’sı
+
+[Film Merkezi SDK 2.0.0](SDK/README.md) ile bağımsız site ve çözümleyici paketleri hazırlayabilirsiniz. SDK güncellemeleri bu depoda paylaşılır. [İndir](Film-Merkezi-SDK-2.0.0.zip) · [SHA-256](SDK-SHA256SUMS.txt). Uygulama ve çekirdek güncellemeleri ana uygulama deposunda kalır.
