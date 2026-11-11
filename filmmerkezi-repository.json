@@ -3,16 +3,16 @@
   "id": "film-merkezi-eklentiler",
   "name": "Film Merkezi Eklentiler",
   "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5asyOWYkiWXZNeUMmYocbH2+VxPU+BkA/Yk22PhuRpWMo/h1nw/LfWL7ZrPcxo8loJ2VPwbeo05KAtE1H1LUieNRHgMMBMwJaeuV2JvyS8+JNMqrGDhkywDMNNZT4H32uOpQlfZmkNf+tE5EKfFKBNuj5dwlPN0E5/y1B0230WlcIb6JsE40ZmZqzfSuGtprwrNSc0Mx4MQhD56NBmQZUyfrUCYuh27x0ozzUjNLx3JJKpXeS2xWuZv69gFjO+R/Pkl1su0B/cgF2vPqMPKqMWTDUU0SHkUk320Xdv7YbMbAyKkuOYPAi7wZzCVZggU6NBr9nMwhcjWZeUWyFyy/2wIDAQAB",
-  "revision": 12,
+  "revision": 16,
   "plugins": [
     {
       "id": "r001",
       "type": "resolver",
       "name": "R001",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Media source resolver for P001",
-      "manifest": "packages/r001/1.0.1/manifest.json",
-      "manifestSha256": "599939194c53b07f2a4165aa5057f78415e99fc184c7047f0a1bc7959debfa62"
+      "manifest": "packages/r001/1.0.2/manifest.json",
+      "manifestSha256": "8ff2b4bcfd6016183c67f938828d011a37435c4f66f7c98b8daf785220db8636"
     },
     {
       "id": "p001",
@@ -76,6 +76,24 @@
       "description": "Hotstream media resolver for P004",
       "manifest": "packages/r004/1.0.0/manifest.json",
       "manifestSha256": "e07f4654f1ed8f652f87d211bf942c69c18e8a33d317add5168d01d8a781a7a5"
+    },
+    {
+      "id": "r005",
+      "type": "resolver",
+      "name": "R005",
+      "version": "1.0.0",
+      "description": "Public full-episode HLS resolver for P005",
+      "manifest": "packages/r005/1.0.0/manifest.json",
+      "manifestSha256": "c43d238a1b717539f60da3aa3a986e32cc2648c4d22ae98a7f16af55fff622fa"
+    },
+    {
+      "id": "p005",
+      "type": "site",
+      "name": "P005",
+      "version": "1.0.0",
+      "description": "Series catalog and full episodes",
+      "manifest": "packages/p005/1.0.0/manifest.json",
+      "manifestSha256": "b571405cd166557af96d58c1c55646cfff9a6a1340d176352dd328abc2a596bf"
     }
   ]
 }

@@ -3,7 +3,7 @@
     "name":  "R001",
     "description":  "Media source resolver for P001",
     "type":  "resolver",
-    "version":  "1.0.1",
+    "version":  "1.0.2",
     "minAppVersion":  "2.0.0",
     "minCoreVersion":  "2.0.0",
     "dependencies":  [
@@ -20,6 +20,7 @@
                     "https://www.hdfilmcehennemi.nl",
                     "https://hdfilmcehennemi.mobi",
                     "https://*.cdnimages{n}.cyou",
+                    "https://*.cdnimages{n}.shop",
                     "https://srv10.cdnimages1845.cyou",
                     "https://srv10.cdnimages2328.cyou",
                     "https://srv10.cdnimages304.cyou",

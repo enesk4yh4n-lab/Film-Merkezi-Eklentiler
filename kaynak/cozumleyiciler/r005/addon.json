@@ -1,0 +1,25 @@
+{
+  "id": "r005",
+  "name": "R005",
+  "description": "Public full-episode HLS resolver for P005",
+  "type": "resolver",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.0",
+  "minCoreVersion": "2.0.0",
+  "dependencies": [],
+  "modules": [
+    "resolver.js"
+  ],
+  "files": [
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.startv.com.tr",
+    "https://player-assets.dygdigital.com",
+    "https://dygvideo.dygdigital.com",
+    "https://startv-p3.mncdn.com",
+    "https://startv-p2.mncdn.com",
+    "https://rtuk-p.mncdn.com"
+  ]
+}

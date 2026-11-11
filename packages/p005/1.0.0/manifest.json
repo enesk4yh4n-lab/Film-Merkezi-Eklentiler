@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "apiVersion": 2,
+  "type": "site",
+  "dependencies": [
+    {
+      "publisher": "247fdf077b7d36c0d2ab3a909024308abda39adf9f5b34f1b66b5fe55cdf6ac4",
+      "id": "r005",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "minCoreVersion": "2.0.0",
+  "id": "p005",
+  "name": "P005",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.0",
+  "site": {
+    "id": "p005",
+    "prefix": "p005:",
+    "name": "P005",
+    "base": "https://www.startv.com.tr"
+  },
+  "modules": [
+    "site.js"
+  ],
+  "networkPolicy": {
+    "file": "network-policy.txt",
+    "signature": "network-policy.signature.txt"
+  },
+  "files": [
+    {
+      "path": "site.js",
+      "size": 13597,
+      "sha256": "098e6f848f676718efa0c6a1e654a54b1a3ed68700ae97261bc5ee5068235493"
+    },
+    {
+      "path": "LICENSE.txt",
+      "size": 1082,
+      "sha256": "13c486e12375d27cc88337a2c70d75b037b1152f1615a5806f3f7656d2bc0251"
+    },
+    {
+      "path": "network-policy.txt",
+      "size": 77,
+      "sha256": "f3983384086debfa41be7d7874a707fa237d998c2831d8a856a385e4fab4f63c"
+    },
+    {
+      "path": "network-policy.signature.txt",
+      "size": 345,
+      "sha256": "9410897e30df9e2ca056cb41c7b33c4e7db772c8cfa7e631bca1fcb40d86dda5"
+    }
+  ]
+}

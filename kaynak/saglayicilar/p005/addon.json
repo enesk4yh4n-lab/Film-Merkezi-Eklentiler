@@ -1,0 +1,34 @@
+{
+  "id": "p005",
+  "name": "P005",
+  "description": "Series catalog and full episodes",
+  "type": "site",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.0",
+  "minCoreVersion": "2.0.0",
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r005",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.startv.com.tr",
+    "https://media.startv.com.tr"
+  ],
+  "site": {
+    "id": "p005",
+    "prefix": "p005:",
+    "name": "P005",
+    "base": "https://www.startv.com.tr"
+  }
+}
