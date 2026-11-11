@@ -1,0 +1,36 @@
+{
+  "id": "p003",
+  "name": "P003",
+  "description": "Series and full episode catalog adapter",
+  "type": "site",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.0",
+  "minCoreVersion": "2.0.0",
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r003",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "site": {
+    "id": "p003",
+    "prefix": "p003:",
+    "name": "P003",
+    "base": "https://www.nowtv.com.tr"
+  },
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.nowtv.com.tr",
+    "https://nqg6bkpsnhen.merlincdn.net",
+    "https://tpsbayxekmes.merlincdn.net",
+    "https://tejedd76pluu.merlincdn.net"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "minAppVersion": "2.0.0",
+  "minCoreVersion": "2.0.0",
+  "id": "r004",
+  "name": "R004",
+  "description": "Hotstream media resolver for P004",
+  "type": "resolver",
+  "dependencies": [],
+  "modules": [
+    "resolver.js"
+  ],
+  "files": [
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://filmizle.ink",
+    "https://hotstream.club",
+    "https://seyret2.store",
+    "https://seyret8.top",
+    "https://seyret2.top",
+    "https://seyret3.top",
+    "https://seyret4.top",
+    "https://seyret5.top",
+    "https://seyret6.top",
+    "https://seyret7.top",
+    "https://seyret9.top",
+    "https://seyret10.top",
+    "https://seyret1.store",
+    "https://seyret4.store",
+    "https://seyret5.store",
+    "https://seyret3.store",
+    "https://seyret6.store",
+    "https://seyret7.store"
+  ]
+}

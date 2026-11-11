@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "minAppVersion": "2.0.0",
+  "minCoreVersion": "2.0.0",
+  "id": "p004",
+  "name": "P004",
+  "description": "Movie and series catalog adapter",
+  "type": "site",
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r004",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "site": {
+    "id": "p004",
+    "prefix": "p004:",
+    "name": "P004",
+    "base": "https://filmizle.ink"
+  },
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://filmizle.ink"
+  ]
+}

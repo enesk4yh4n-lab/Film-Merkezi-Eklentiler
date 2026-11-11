@@ -1,0 +1,22 @@
+{
+  "id": "r003",
+  "name": "R003",
+  "description": "Full episode HLS resolver for P003",
+  "type": "resolver",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.0",
+  "minCoreVersion": "2.0.0",
+  "dependencies": [],
+  "modules": [
+    "resolver.js"
+  ],
+  "files": [
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.nowtv.com.tr",
+    "https://tdywsbbzdx.erbvr.com",
+    "https://tdywsbbzdx.fdc.ercdn.net"
+  ]
+}

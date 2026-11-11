@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "apiVersion": 2,
+  "type": "site",
+  "dependencies": [
+    {
+      "publisher": "247fdf077b7d36c0d2ab3a909024308abda39adf9f5b34f1b66b5fe55cdf6ac4",
+      "id": "r004",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "minCoreVersion": "2.0.0",
+  "id": "p004",
+  "name": "P004",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.0",
+  "site": {
+    "id": "p004",
+    "prefix": "p004:",
+    "name": "P004",
+    "base": "https://filmizle.ink"
+  },
+  "modules": [
+    "site.js"
+  ],
+  "networkPolicy": {
+    "file": "network-policy.txt",
+    "signature": "network-policy.signature.txt"
+  },
+  "files": [
+    {
+      "path": "site.js",
+      "size": 15856,
+      "sha256": "ced12bac27efc1df870065cf66528aeba36da615905f96bf700dc1eb78cdbcee"
+    },
+    {
+      "path": "LICENSE.txt",
+      "size": 1145,
+      "sha256": "40f60e3521ed9bd2a2a49a97431cf87dc607db9b186728d24d9dcea11000eda8"
+    },
+    {
+      "path": "network-policy.txt",
+      "size": 44,
+      "sha256": "ff2fceb6f26ae3863678c18efccfe5ea381aa31c0a81c8d75c24617a71ed0708"
+    },
+    {
+      "path": "network-policy.signature.txt",
+      "size": 345,
+      "sha256": "85749c8217c3aaad3ba96142237f9e299185cb969036aa40f5dce58c3db77f13"
+    }
+  ]
+}

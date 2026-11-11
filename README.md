@@ -6,6 +6,8 @@ Film Merkezi 2.0.0 için kullanıcı seçimine bağlı site ve çözümleyici pa
 |---|---|---|---|
 | P001 | 2.0.2 | R001 | 1.0.1 |
 | P002 (Puhutv) | 2.0.0 | R002 | 1.0.5 |
+| P003 | 1.0.0 | R003 | 1.0.0 |
+| P004 | 1.0.0 | R004 | 1.0.0 |
 
 GitHub depo aramasında **Film-Merkezi-Eklentiler** yazın veya bu deponun adresini ekleyin. Kurulu depoda **Güncellemeleri kontrol et → Eklentilere gözat** yolundan P001 seçildiğinde R001 birlikte sunulur. Depo eklemek paketleri otomatik kurmaz.
 
@@ -20,3 +22,11 @@ P002/R002 ana depoda da sunulur. Bir depodan kurduğunuz aynı paketi tekrar kur
 ## Eklenti geliştirme SDK’sı
 
 [Film Merkezi SDK 2.0.0](SDK/README.md) ile bağımsız site ve çözümleyici paketleri hazırlayabilirsiniz. SDK güncellemeleri bu depoda paylaşılır. [İndir](Film-Merkezi-SDK-2.0.0.zip) · [SHA-256](SDK-SHA256SUMS.txt). Uygulama ve çekirdek güncellemeleri ana uygulama deposunda kalır.
+
+<!-- film-merkezi-discovery:start -->
+## Film Merkezi repository
+
+Repository index: `filmmerkezi-repository.json`. Find this repository in Film Merkezi using its name or GitHub username, or add its HTTPS address.
+
+<!-- film-merkezi-repository: filmmerkezi-repository.json -->
+<!-- film-merkezi-discovery:end -->

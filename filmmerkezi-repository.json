@@ -3,7 +3,7 @@
   "id": "film-merkezi-eklentiler",
   "name": "Film Merkezi Eklentiler",
   "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5asyOWYkiWXZNeUMmYocbH2+VxPU+BkA/Yk22PhuRpWMo/h1nw/LfWL7ZrPcxo8loJ2VPwbeo05KAtE1H1LUieNRHgMMBMwJaeuV2JvyS8+JNMqrGDhkywDMNNZT4H32uOpQlfZmkNf+tE5EKfFKBNuj5dwlPN0E5/y1B0230WlcIb6JsE40ZmZqzfSuGtprwrNSc0Mx4MQhD56NBmQZUyfrUCYuh27x0ozzUjNLx3JJKpXeS2xWuZv69gFjO+R/Pkl1su0B/cgF2vPqMPKqMWTDUU0SHkUk320Xdv7YbMbAyKkuOYPAi7wZzCVZggU6NBr9nMwhcjWZeUWyFyy/2wIDAQAB",
-  "revision": 2,
+  "revision": 12,
   "plugins": [
     {
       "id": "r001",
@@ -40,6 +40,42 @@
       "description": "Public watch-asset resolver for P002",
       "manifest": "packages/r002/1.0.5/manifest.json",
       "manifestSha256": "38c4d20c247d6811b5f79218f050514662301c614bcc9e8d02757340b86eb8b6"
+    },
+    {
+      "id": "r003",
+      "type": "resolver",
+      "name": "R003",
+      "version": "1.0.0",
+      "description": "Full episode HLS resolver for P003",
+      "manifest": "packages/r003/1.0.0/manifest.json",
+      "manifestSha256": "b6cea433652170149fdb4888a24d89c470c3512e7d5646cc97a0180c0b645b68"
+    },
+    {
+      "id": "p004",
+      "type": "site",
+      "name": "P004",
+      "version": "1.0.0",
+      "description": "Movie and series catalog adapter",
+      "manifest": "packages/p004/1.0.0/manifest.json",
+      "manifestSha256": "e8caa11dfe37621240c09df450c60cf9737f64aa536375b5955e8906762501a6"
+    },
+    {
+      "id": "p003",
+      "type": "site",
+      "name": "P003",
+      "version": "1.0.0",
+      "description": "Series and full episode catalog adapter",
+      "manifest": "packages/p003/1.0.0/manifest.json",
+      "manifestSha256": "54c3c085765e2d67e8bbfcd787f32a3a57b4219bea3d61a67ce318fe81bfd32b"
+    },
+    {
+      "id": "r004",
+      "type": "resolver",
+      "name": "R004",
+      "version": "1.0.0",
+      "description": "Hotstream media resolver for P004",
+      "manifest": "packages/r004/1.0.0/manifest.json",
+      "manifestSha256": "e07f4654f1ed8f652f87d211bf942c69c18e8a33d317add5168d01d8a781a7a5"
     }
   ]
 }
