@@ -1,0 +1,30 @@
+{
+    "id":  "r001",
+    "name":  "R001",
+    "description":  "Media source resolver for P001",
+    "type":  "resolver",
+    "version":  "1.0.1",
+    "minAppVersion":  "2.0.0",
+    "minCoreVersion":  "2.0.0",
+    "dependencies":  [
+
+                     ],
+    "modules":  [
+                    "resolver.js"
+                ],
+    "files":  [
+                  "resolver.js",
+                  "LICENSE.txt"
+              ],
+    "origins":  [
+                    "https://www.hdfilmcehennemi.nl",
+                    "https://hdfilmcehennemi.mobi",
+                    "https://*.cdnimages{n}.cyou",
+                    "https://srv10.cdnimages1845.cyou",
+                    "https://srv10.cdnimages2328.cyou",
+                    "https://srv10.cdnimages304.cyou",
+                    "https://srv10.cdnimages3124.cyou",
+                    "https://balancehls{n}.playmix.uno",
+                    "https://s{n}.rapidrame.com"
+                ]
+}

@@ -3,8 +3,26 @@
   "id": "film-merkezi-eklentiler",
   "name": "Film Merkezi Eklentiler",
   "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5asyOWYkiWXZNeUMmYocbH2+VxPU+BkA/Yk22PhuRpWMo/h1nw/LfWL7ZrPcxo8loJ2VPwbeo05KAtE1H1LUieNRHgMMBMwJaeuV2JvyS8+JNMqrGDhkywDMNNZT4H32uOpQlfZmkNf+tE5EKfFKBNuj5dwlPN0E5/y1B0230WlcIb6JsE40ZmZqzfSuGtprwrNSc0Mx4MQhD56NBmQZUyfrUCYuh27x0ozzUjNLx3JJKpXeS2xWuZv69gFjO+R/Pkl1su0B/cgF2vPqMPKqMWTDUU0SHkUk320Xdv7YbMbAyKkuOYPAi7wZzCVZggU6NBr9nMwhcjWZeUWyFyy/2wIDAQAB",
-  "revision": 1,
+  "revision": 2,
   "plugins": [
+    {
+      "id": "r001",
+      "type": "resolver",
+      "name": "R001",
+      "version": "1.0.1",
+      "description": "Media source resolver for P001",
+      "manifest": "packages/r001/1.0.1/manifest.json",
+      "manifestSha256": "599939194c53b07f2a4165aa5057f78415e99fc184c7047f0a1bc7959debfa62"
+    },
+    {
+      "id": "p001",
+      "type": "site",
+      "name": "P001",
+      "version": "2.0.2",
+      "description": "P001 catalog; requires R001 and core 2.0.0",
+      "manifest": "packages/p001/2.0.2/manifest.json",
+      "manifestSha256": "29f6d3cc3af9c148df4092fbe7de28503606649e908190046dbb9dbaa926dabd"
+    },
     {
       "id": "p002",
       "type": "site",

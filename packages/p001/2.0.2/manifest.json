@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "apiVersion": 2,
+  "type": "site",
+  "dependencies": [
+    {
+      "publisher": "247fdf077b7d36c0d2ab3a909024308abda39adf9f5b34f1b66b5fe55cdf6ac4",
+      "id": "r001",
+      "minVersion": "1.0.1",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "minCoreVersion": "2.0.0",
+  "id": "p001",
+  "name": "P001",
+  "version": "2.0.2",
+  "minAppVersion": "2.0.0",
+  "site": {
+    "id": "hdf",
+    "prefix": "hdf:",
+    "name": "P001",
+    "base": "https://www.hdfilmcehennemi.nl"
+  },
+  "modules": [
+    "site.js"
+  ],
+  "networkPolicy": {
+    "file": "network-policy.txt",
+    "signature": "network-policy.signature.txt"
+  },
+  "files": [
+    {
+      "path": "site.js",
+      "size": 33409,
+      "sha256": "7115b1f2f7a01361cb7e106f8b1590a71b6940bc8933507997c2b5e5e5af0d81"
+    },
+    {
+      "path": "LICENSE.txt",
+      "size": 1145,
+      "sha256": "40f60e3521ed9bd2a2a49a97431cf87dc607db9b186728d24d9dcea11000eda8"
+    },
+    {
+      "path": "network-policy.txt",
+      "size": 83,
+      "sha256": "12e653167afead5b8148bdd7f7ccaef1e91e7b5f2de4fbe8ee627f84a47538ae"
+    },
+    {
+      "path": "network-policy.signature.txt",
+      "size": 345,
+      "sha256": "220e0a4f7189fa5cb2824bbb4e0be0a3d3b4fc7fc06e84975c80ed2df7891132"
+    }
+  ]
+}
