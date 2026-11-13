@@ -1,9 +1,9 @@
 {
   "id": "p007",
   "name": "P007",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minAppVersion": "2.0.0",
-  "minCoreVersion": "2.0.0",
+  "minCoreVersion": "2.0.2",
   "type": "site",
   "description": "Series catalog, search, seasons and episodes",
   "dependencies": [

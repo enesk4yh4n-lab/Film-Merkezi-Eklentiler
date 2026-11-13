@@ -144,7 +144,16 @@ Provider.prototype.detail = function (card) {
     return more().then(function () { result.seasons.sort(function (a, b) { return a - b; }); result.episodes.sort(function (a, b) { return a.episode.season - b.episode.season || a.episode.number - b.episode.number; }); return result; });
   });
 };
-Provider.prototype.identity = Provider.prototype.detail;
+Provider.prototype.identity = function (card) {
+  var self = this, token = self.generation, address = D.page(card.pageUrl);
+  if (!/^https:\/\/www\.startv\.com\.tr\/dizi\/[^/]+$/.test(address)) return Promise.reject(D.fail('Dizi kimliği bağlantısı geçersiz.'));
+  return self.request(address, self.deadline || Date.now() + 30000, token).then(function (body) {
+    var data = D.parse(body), result = seriesCard(data, data.selected('TvSeries', address));
+    if (!result || result.contentId !== card.contentId) throw D.fail('Dizi kimliği doğrulanamadı.');
+    result.identityEvidence = { version: 2, pageUrl: address, title: result.title, type: 'series', typeVerified: true, detailChecked: true };
+    return result;
+  });
+};
 function Resolver(log, now) { this.delegate = context.createResolver('r005', log, now); }
 Resolver.prototype.cancel = function () { this.delegate.cancel(); };
 Resolver.prototype.resolve = function (c, d, n, h) { return this.delegate.resolve(c, d, n, h); };

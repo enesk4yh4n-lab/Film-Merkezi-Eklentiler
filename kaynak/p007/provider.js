@@ -20,6 +20,10 @@
     if(!P.seriesUrl(page))return Promise.reject(new Error('P007: Geçersiz dizi bağlantısı.'));
     return self.fetch(page,function(body){return P.detail(body,input);},force,'detail');
   };
-  Provider.prototype.identity = Provider.prototype.detail;
+  Provider.prototype.identity = function (input, force) {
+    var page = P.seriesUrl(input.pageUrl);
+    if (!page) return Promise.reject(new Error('P007: Geçersiz dizi kimliği bağlantısı.'));
+    return this.fetch(page, function (body) { return P.detail(body, input, true); }, force, 'identity');
+  };
   root.P007Provider=Provider;
 })(window);

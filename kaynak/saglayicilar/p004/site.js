@@ -225,7 +225,7 @@
       subtitles: []
     };
   }
-  function detail(body, card) {
+  function detail(body, card, metadataOnly) {
     if (card.type === 'collection' || /\/haber\//.test(new root.URL(card.pageUrl).pathname))
       return collection(body, card);
     var env = P.envelope(body),
@@ -259,6 +259,29 @@
       var name = text(a);
       if (name) result.genres.push(name);
     });
+    if (root.ContentIdentity) {
+      var meta = root.ContentIdentity.fromPage(body, card.pageUrl), facts;
+      result = root.ContentIdentity.attachDetail(result, meta);
+      facts = root.ContentIdentity.evidence(result);
+      if (result.type === 'series' && d.querySelector('.p-v12-ep-list') &&
+          (/\b\d+\s*\.?\s*Sezon/i.test(title) || d.querySelector('.p-v12-meta-info a[href*="/dizi-izle/"]'))) {
+        if (facts.imdbType === 'episode') {
+          delete result.imdbId;
+          delete result.identityEvidence.imdbId;
+        }
+        result.identityEvidence.type = 'series';
+        result.identityEvidence.typeVerified = true;
+        delete result.identityEvidence.imdbType;
+        facts = root.ContentIdentity.evidence(result);
+      }
+      if (facts.yearVerified) result.year = facts.year;
+      if (facts.typeVerified && !series(title, d, card.type)) result.type = facts.type;
+    }
+    if (metadataOnly) {
+      delete result.seasons;
+      delete result.episodes;
+      return result;
+    }
     if (result.type === 'series') {
       /* Numbered pages also exist on movies. Only a verified series detail gets episodes. */
       var m = /(\d+)\s*\.?\s*Sezon/i.exec(title),
@@ -309,6 +332,7 @@
     list: parseList,
     home: home,
     detail: detail,
+    identity: function (body, card) { return detail(body, card, true); },
     cards: cards
   };
 })(window);
@@ -323,7 +347,7 @@ Provider.prototype.options=function(){var self=this;return self.filterOptions?Pr
 Provider.prototype.list=function(query,next){query=query||{};var filters=query.filters||{},hint=query.type==='series'?'series':null;if(filters.year||filters.language||filters.imdb)return Promise.reject(new Error('P004: bu filtre site tarafından sunulmuyor.'));var address=next&&next.url||filters.genre||query.url||(hint?BASE+'/Kategori/dizi-izle/':this.links.new);if(hint&&filters.genre)return Promise.reject(new Error('P004: dizi ve tür birleşik filtresi bulunmuyor.'));if(!next&&/^(date|views|imdb|comments)$/.test(query.order||''))address=P.withSort(address,query.order);return this.fetch(address,function(body){var data=P.list(body,address,hint);data.cards=data.cards.filter(function(c){return hint?c.type==='series':c.type!=='series';});return data;});};
 Provider.prototype.search=function(query,force,next){if(force&&typeof force==='object'&&!next)next=force;query=shared.CatalogUtils.clean(query);if(!query)return Promise.resolve({cards:[],next:null});if(query.length>100)return Promise.reject(new Error('P004: arama en fazla 100 karakter olabilir.'));var first=BASE+'/?s='+encodeURIComponent(query),address=next&&next.url||first;if(address.indexOf(BASE+'/')!==0)return Promise.reject(new Error('P004: geçersiz arama sayfası.'));return this.fetch(address,function(body){var r=P.list(body,address),fold=function(v){return shared.CatalogUtils.clean(v).replace(/\u0130/g,'i').toLowerCase().replace(/\u0131/g,'i').replace(/[^a-z0-9\u00e7\u011f\u00f6\u015f\u00fc]+/g,' ');},terms=fold(query).split(/\s+/).filter(function(t){return !!t;});r.cards=r.cards.filter(function(c){var name=fold([c.title].concat(c.titleAliases||[]).join(' '));return terms.every(function(t){return name.indexOf(t)>=0;});});return r;});};
 Provider.prototype.detail=function(card){return this.fetch(card.pageUrl,function(body){var d=P.detail(body,card);d.fetchedAt=Date.now();return d;});};
-Provider.prototype.identity=Provider.prototype.detail;
+Provider.prototype.identity=function(card){return this.fetch(card.pageUrl,function(body){return P.identity(body,card);});};
 function Resolver(log,now){this.delegate=context.createResolver('r004',log,now);}
 Resolver.prototype.cancel=function(){this.delegate.cancel();};
 Resolver.prototype.resolve=function(c,d,n,h){return this.delegate.resolve(c,d,n,h);};

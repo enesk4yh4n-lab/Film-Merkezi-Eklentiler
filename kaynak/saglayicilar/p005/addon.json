@@ -3,9 +3,9 @@
   "name": "P005",
   "description": "Series catalog and full episodes",
   "type": "site",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minAppVersion": "2.0.0",
-  "minCoreVersion": "2.0.0",
+  "minCoreVersion": "2.0.2",
   "dependencies": [
     {
       "publisher": "PUBLISHER_FINGERPRINT",

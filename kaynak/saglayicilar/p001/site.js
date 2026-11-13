@@ -123,9 +123,21 @@ var register=window.SiteRegistry.register;window.SiteRegistry.register=function(
  };
  Provider.prototype.search = function (query, force) {
   query = P.clean(query); if (!query || query.length > 100) return Promise.reject(new Error('Arama 1–100 karakter olmalı.'));
-  var url = BASE + '/search/?q=' + encodeURIComponent(query); return this.request(url, null, function (body) { var result = P.list(body, url); result.next = null; return result; }, force, 'search');
+  var url = BASE + '/search?q=' + encodeURIComponent(query); return this.request(url, null, function (body) { var result = P.list(body, url); result.next = null; return result; }, force, 'search');
  };
  /* Earlier parsed series caches can contain empty lists for slashless episode URLs. */
+ Provider.prototype.suggest = function (query) {
+  query = P.clean(query);
+  if (query.length < 3 || query.length > 100) return Promise.resolve({ cards: [], next: null });
+  var page = BASE + '/search?q=' + encodeURIComponent(query);
+  return this.request(page, null, function (body) {
+   var value = P.list(body, page);
+   return { cards: value.cards.slice(0, 6), next: null };
+  }, true, 'suggest').then(function (value) {
+   value.cards.forEach(function (card) { card.searchQuery = P.clean((card.titleAliases || [])[0] || card.title).slice(0, 100); });
+   return value;
+  });
+ };
  Provider.prototype.detail = function (card, force) {if(root.SiteAddresses)card=root.SiteAddresses.content(card); return this.request(card.pageUrl, null, function (body) { return P.detail(body, card); }, force, card.type === 'series' ? 'detail-series-v2' : 'detail'); };
  Provider.prototype.seriesLanguage = function (card) {if(root.SiteAddresses)card=root.SiteAddresses.content(card);
   var self = this, token = this.generation;
@@ -603,7 +615,7 @@ function load(n){n=n.replace('./','');if(cache[n])return cache[n].exports;var m=
 
 
 /* saglayicilar/p001/site.js */
-(function(root){'use strict';var site={"id": "hdf", "name": "HDfilmCehennemi", "base": "https://www.hdfilmcehennemi.nl", "mark": "HD", "subtitle": "Film ve dizi arşivi", "prefix": "hdf:", "storagePrefix": "", "supportsSeriesLanguage":true,"ui": {"movieRail": "Yeni eklenen filmler", "seriesRail": "Popüler diziler", "recommended": "Tavsiyeler", "liked": "Beğenilenler", "filterHint": "Uygula ile Film Robotu’nda arayın.", "filterSummary": "Film Robotu", "defaultOrder": "posts.imdb desc"}};site.textTransport='platform';site.Provider=root.CatalogProvider;site.Resolver=root.HdfSourceResolver;site.collectionQuery=function(type,key,links){var q={type:type};if(type==='movie'&&links[key])q.url=links[key];else if(key!=='new'){q.kind='discover';q.order=key==='liked'?'avg desc':'posts.imdb desc';if(key==='recommended')q.filters={imdb:'7-10'};}return q;};site.filterFields=function(){return ['type','genres','years','lang','imdb','order'];};root.SiteRegistry.register(site);})(window);
+(function(root){'use strict';var site={"id": "hdf", "name": "HDfilmCehennemi", "base": "https://www.hdfilmcehennemi.nl", "mark": "HD", "subtitle": "Film ve dizi arşivi", "prefix": "hdf:", "storagePrefix": "", "suggestions":true,"supportsSeriesLanguage":true,"ui": {"movieRail": "Yeni eklenen filmler", "seriesRail": "Popüler diziler", "recommended": "Tavsiyeler", "liked": "Beğenilenler", "filterHint": "Uygula ile Film Robotu’nda arayın.", "filterSummary": "Film Robotu", "defaultOrder": "posts.imdb desc"}};site.textTransport='platform';site.Provider=root.CatalogProvider;site.Resolver=root.HdfSourceResolver;site.collectionQuery=function(type,key,links){var q={type:type};if(type==='movie'&&links[key])q.url=links[key];else if(key!=='new'){q.kind='discover';q.order=key==='liked'?'avg desc':'posts.imdb desc';if(key==='recommended')q.filters={imdb:'7-10'};}return q;};site.filterFields=function(){return ['type','genres','years','lang','imdb','order'];};root.SiteRegistry.register(site);})(window);
 
 
 })(window);

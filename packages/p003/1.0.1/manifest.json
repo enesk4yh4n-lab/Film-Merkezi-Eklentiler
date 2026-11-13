@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "apiVersion": 2,
+  "type": "site",
+  "dependencies": [
+    {
+      "publisher": "247fdf077b7d36c0d2ab3a909024308abda39adf9f5b34f1b66b5fe55cdf6ac4",
+      "id": "r003",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "minCoreVersion": "2.0.2",
+  "id": "p003",
+  "name": "P003",
+  "version": "1.0.1",
+  "minAppVersion": "2.0.0",
+  "site": {
+    "id": "p003",
+    "prefix": "p003:",
+    "name": "P003",
+    "base": "https://www.nowtv.com.tr"
+  },
+  "modules": [
+    "site.js"
+  ],
+  "networkPolicy": {
+    "file": "network-policy.txt",
+    "signature": "network-policy.signature.txt"
+  },
+  "files": [
+    {
+      "path": "site.js",
+      "size": 12408,
+      "sha256": "98b25cf0168b8527f45b283f2a8352cffc8bc2444b1742cc8d442bf685e598dd"
+    },
+    {
+      "path": "LICENSE.txt",
+      "size": 1082,
+      "sha256": "13c486e12375d27cc88337a2c70d75b037b1152f1615a5806f3f7656d2bc0251"
+    },
+    {
+      "path": "network-policy.txt",
+      "size": 153,
+      "sha256": "ee22646b3a53656ce15cfb7188997cbe984ee87031b69dcbc1c1597f93e1851a"
+    },
+    {
+      "path": "network-policy.signature.txt",
+      "size": 345,
+      "sha256": "d483b88f5b8dafec69c8337ab2bb1fc95310ecb1f1fcb1f8c5465da0e166aad2"
+    }
+  ]
+}

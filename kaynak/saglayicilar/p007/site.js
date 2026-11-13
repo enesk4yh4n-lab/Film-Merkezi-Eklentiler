@@ -38,13 +38,14 @@
     if (!url) throw new Error('P007: Bölümün gerçek dizi bağlantısı bulunamadı.');
     return { pageUrl: url, selectedEpisodePageUrl: episodeUrl(page), title: text(d, '.r-ep-bas h1') };
   }
-  function detail(body, input) {
+  function detail(body, input, metadataOnly) {
     var e = U.envelope(body), d = e.doc, page = seriesUrl(input.pageUrl), schema = e.schema.filter(function (s) { return s['@type'] === 'TVSeries' && seriesUrl(s.url) === page; })[0], title = schema && U.clean(schema.name) || text(d, '.r-dinfo h1').replace(/\s+izle$/i, '');
     if (!page || !title || !d.querySelector('.r-bolum-grid')) throw new Error('P007: Dizi ayrıntısı tanınmadı.');
     var r = { contentId: id(page), providerId: 'p007', type: 'series', pageUrl: page, title: title, poster: schema && U.url(schema.image, page) || image(d.querySelector('.r-dposter'), page), description: U.clean(schema && schema.description), genres: schema && Array.isArray(schema.genre) ? schema.genre.slice(0,32) : [], cast: schema && Array.isArray(schema.actor) ? schema.actor.map(function (a) { return U.clean(a.name); }).filter(Boolean).slice(0,60) : [], sources: [], subtitles: [], seasons: [], episodes: [], next: null };
     var year = /^(19\d\d|20\d\d)/.exec(schema && schema.startDate || ''), score = /(?:IMDb\s*)?(\d(?:[.,]\d)?)/.exec(text(d, '.r-dinfo .r-imdb'));
     r.year = year ? Number(year[1]) : 0; r.imdb = score ? Number(score[1].replace(',', '.')) : 0;
     var imdbLink = d.querySelector('.r-dinfo a[href*="imdb.com/title/tt"]'), imdb = imdbLink && /\/title\/(tt\d+)/.exec(imdbLink.getAttribute('href')); if (imdb) r.imdbId = imdb[1];
+    if (metadataOnly) { delete r.episodes; delete r.seasons; return r; }
     Array.prototype.forEach.call(d.querySelectorAll('.r-bolum-grid .r-bolum > a[href]'), function (a) {
       var url = episodeUrl(a.getAttribute('href'), page), n = url && episodeNumbers(url); if (!n || !n.season || !n.number) return;
       r.episodes.push({ contentId: r.contentId + ':s' + n.season + ':e' + n.number, providerId: 'p007', type: 'episode', pageUrl: url, title: title + ' · ' + n.season + '×' + n.number, episodeTitle: text(a,'.r-sr') || title + ' ' + n.season + '. Sezon ' + n.number + '. Bölüm', seriesTitle: title, seriesPageUrl: page, poster: r.poster, episode: { seriesId: r.contentId, season: n.season, number: n.number }, language: flags(a), sources: [], subtitles: [] });
@@ -80,7 +81,11 @@
     if(!P.seriesUrl(page))return Promise.reject(new Error('P007: Geçersiz dizi bağlantısı.'));
     return self.fetch(page,function(body){return P.detail(body,input);},force,'detail');
   };
-  Provider.prototype.identity = Provider.prototype.detail;
+  Provider.prototype.identity = function (input, force) {
+    var page = P.seriesUrl(input.pageUrl);
+    if (!page) return Promise.reject(new Error('P007: Geçersiz dizi kimliği bağlantısı.'));
+    return this.fetch(page, function (body) { return P.detail(body, input, true); }, force, 'identity');
+  };
   root.P007Provider=Provider;
 })(window);
 
