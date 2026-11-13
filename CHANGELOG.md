@@ -1,5 +1,14 @@
 # Eklenti sürüm notları
 
+## P002 2.0.2 — 13 Kasım 2026
+
+- P002'nin kendi CDN'sinden liste için küçük, detay/vitrin için daha büyük afiş indirilir; yüksek çözünürlüklü orijinal TV'de küçültülmez.
+- Örnek afişte liste dosyası **336.353 → 40.594 bayt**, ham RGBA görüntü hesabı **9,84 → 0,71 MiB**. Gerçek TV toplam bellek kazancı olarak yorumlanmamalıdır.
+- Minimum çekirdek **2.1.4** gerekir; önce çekirdeği güncelleyin. **R002 1.0.5 değişmedi.**
+- P002'nin iki depodaki sürümü, imzası ve dosya özetleri aynıdır.
+
+Bu yayında güncellenen eklenti yalnız P002'dir. Diğer P/R paketleri değişmedi. SDK belgesine isteğe bağlı posterLarge alanı eklendi; SDK araç sürümü korunur.
+
 ## Site güncellemeleri — 13 Kasım 2026
 
 Güncellemeleri uygulamadaki **Güncelleme Merkezi → Kontrol et** üzerinden yükleyebilirsiniz. Önce çekirdeği **2.1.3** sürümüne güncellemeniz önerilir.

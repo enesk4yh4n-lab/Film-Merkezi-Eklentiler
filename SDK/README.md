@@ -25,6 +25,10 @@ Manifest ve depo biçimi v2'dir. Site `home/list/search/detail`, `cards/next` ve
 
 Özel HLS yükleyicisi gerekiyorsa `template/media-loader.js` örneğini resolver paketinin dosya/modül listesine ekleyin. `registerLoader` oturuma bağlı yükleyici kaydeder; kaynak `loaderId`, `loaderConfig` ve `playbackRequirements.customLoader` taşır. Global player/ağ işlevleri değiştirilmemelidir. Yeni codec, DRM veya native cihaz yetkisi eklenmez.
 
+## Afiş boyutları
+
+Çekirdek 2.1.4 ve sonrasında karttaki `poster` liste afişidir. İsteğe bağlı `posterLarge`, detay ve vitrinde kullanılır; bulunmazsa `poster` kullanılır. İki alanı da doğrudan indirilebilir, izinli HTTPS görsel adresi olarak sağlayın. Sitenin gerçekten sunduğu küçük görseli seçin; TV'de büyük resmi indirip küçültmek gereksiz indirme ve decode belleğini azaltmaz. P002 örneği liste için 360×540, büyük görünüm için 720×1080 sınırlarına oranı korunarak sığan CDN resimlerini kullanır. Bu alanı isteyen paket minimum çekirdek sürümünü 2.1.4 bildirmelidir. SDK araç sürümü değişmez.
+
 ## Yayın ve güven
 
 Paketleme `filmmerkezi-repository.json`, `.sig`, imzalı manifestler ve dosya özetlerini üretir. README'ye keşif işareti eklenir; alt klasöre yayın için `--github-root <depo-kökü>` kullanın. Komut GitHub'a yükleme yapmaz.
@@ -33,10 +37,6 @@ Kullanıcı **Güncelleme Merkezi → Eklenti depoları** üzerinden HTTPS adres
 
 Yalnız gereken HTTPS kökenlerini `origins` alanında bildirin. TLS, imza ve ağ izinleri korunur. Paket 4 MiB, dosya 1 MiB, toplam eklenti alanı 8 MiB ve toplam 128 köken sınırı vardır. Runtime ES5 olmalıdır. Yayımlanan sürümler değişmezdir; değişiklik için sürüm artırın.
 
-Eklentiler JavaScript sandbox'ı değildir; uygulama yetkileriyle çalışırlar. İmza içerik lisansı veya zararsızlık garantisi değildir. Platform metin taşımalarında yönlendirme görünürlüğü native TLS yolundan daha sınırlıdır. Ayrıntılı sözleşme [paket ve API sözleşmesi](docs/MODULER_EKLENTI_2.0.0.md) belgesindedir.
+Eklentiler JavaScript sandbox'ı değildir; uygulama yetkileriyle çalışırlar. İmza içerik lisansı veya zararsızlık garantisi değildir. Platform metin taşımalarında yönlendirme görünürlüğü native TLS yolundan daha sınırlıdır. Ayrıntılı sözleşme kaynak dağıtımındaki `docs/MODULER_EKLENTI_2.0.0.md` belgesindedir.
 
 Grafik geliştirme aracı planlanmaktadır, henüz yayımlanmamıştır. `npm test` bağımsız yayıncı, anahtarın korunması, paketleme ve bozuk imza kontrollerini çalıştırır.
-
-## SDK dağıtımı
-
-SDK kaynakları ve sonraki SDK güncellemeleri bu eklenti deposunda yayımlanır. Güncel sürüm: **2.0.0**. [SDK ZIP dosyası](../Film-Merkezi-SDK-2.0.0.zip) · [SHA-256](../SDK-SHA256SUMS.txt). ZIP dosyasını açtıktan sonra `SDK` klasöründe `npm ci` çalıştırın; yukarıdaki `node SDK/cli.cjs` komutlarını bu klasörün üstünden kullanın.
