@@ -1,8 +1,8 @@
 {
   "id": "p001",
   "name": "P001",
-  "description": "Catalog and addon-owned search suggestions; requires R001 and core 2.1.2",
-  "version": "2.0.5",
+  "description": "Catalog quick filters and addon-owned search suggestions; requires R001 and core 2.1.5",
+  "version": "2.0.6",
   "minAppVersion": "2.0.0",
   "site": {
     "id": "hdf",
@@ -22,7 +22,7 @@
     "https://hdfilmcehennemi.mobi"
   ],
   "type": "site",
-  "minCoreVersion": "2.1.2",
+  "minCoreVersion": "2.1.5",
   "dependencies": [
     {
       "publisher": "PUBLISHER_FINGERPRINT",

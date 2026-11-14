@@ -29,6 +29,14 @@ Manifest ve depo biçimi v2'dir. Site `home/list/search/detail`, `cards/next` ve
 
 Çekirdek 2.1.4 ve sonrasında karttaki `poster` liste afişidir. İsteğe bağlı `posterLarge`, detay ve vitrinde kullanılır; bulunmazsa `poster` kullanılır. İki alanı da doğrudan indirilebilir, izinli HTTPS görsel adresi olarak sağlayın. Sitenin gerçekten sunduğu küçük görseli seçin; TV'de büyük resmi indirip küçültmek gereksiz indirme ve decode belleğini azaltmaz. P002 örneği liste için 360×540, büyük görünüm için 720×1080 sınırlarına oranı korunarak sığan CDN resimlerini kullanır. Bu alanı isteyen paket minimum çekirdek sürümünü 2.1.4 bildirmelidir. SDK araç sürümü değişmez.
 
+## İsteğe bağlı hazır katalog filtreleri
+
+Çekirdek 2.1.5 ile site tanımı `supportsQuickFilters: true` bildirebilir. `options()` çıktısındaki `quickFilters` en fazla 32 kayıt içerir. Her kayıt `{id, label, types, query}` biçimindedir: örneğin `{id:'genre:action', label:'Aksiyon', types:['movie','series'], query:{filters:{genre:'action'}}}`. `query` sitenin gerçekten desteklediği `list(query, next, force)` sorgusudur; sunulmayan filtreyi bildirmeyin. Ortak listede yalnız o filtreyi destekleyen siteler sorgulanır. Destek bildirmeyen eski paketler için ek `options()` isteği yapılmaz.
+
+Ortak kimlikler: `new`, `most-viewed`, `genre:action`, `genre:science-fiction`, `genre:comedy`, `genre:romance`. Diğer kimliklerde paket etiketi gösterilir. Bu kabiliyeti kullanan paketin minimum çekirdek sürümü 2.1.5 olmalıdır. Bu çalışma mevcut site paketlerini güncellemez.
+
+GitHub keşfi için README'de `film-merkezi` ve `filmmerkezi-repository.json` bulunmalıdır. Keşif yayıncıya özel değildir; sonuç güven onayı veya otomatik kurulum sayılmaz. İşaret kullanmayan depo HTTPS adresiyle eklenebilir.
+
 ## Yayın ve güven
 
 Paketleme `filmmerkezi-repository.json`, `.sig`, imzalı manifestler ve dosya özetlerini üretir. README'ye keşif işareti eklenir; alt klasöre yayın için `--github-root <depo-kökü>` kullanın. Komut GitHub'a yükleme yapmaz.

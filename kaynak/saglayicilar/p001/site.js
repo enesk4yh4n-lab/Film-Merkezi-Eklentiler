@@ -111,12 +111,23 @@ var register=window.SiteRegistry.register;window.SiteRegistry.register=function(
  function Provider(cache, network) { root.CatalogClient.call(this,cache,network || root.ChainNetwork.createClient({platformText:true,destination:'downloads'}),{base:BASE,identitySelectors:'.post-info-imdb a[href]',headers:{Accept:'application/json, text/html','X-Requested-With':'fetch'},postHeaders:{'X-Mofycore-Action':'discover'}}); this.links = { new: BASE + '/', recommended: BASE + '/category/tavsiye-filmler-izle2/', rated: BASE + '/imdb-7-puan-uzeri-filmler-2/', liked: BASE + '/en-cok-begenilen-filmleri-izle-4/' }; this.filterOptions = null; }
  Provider.prototype=Object.create(root.CatalogClient.prototype);Provider.prototype.constructor=Provider;
  Provider.prototype.home = function (force) { var self = this; return this.request(BASE + '/', null, function (body) { return P.home(body, BASE + '/'); }, force, 'home').then(function (value) { Object.keys(value.links || {}).forEach(function (key) { self.links[key] = value.links[key]; }); return value; }); };
- Provider.prototype.options = function (force) { var self = this; if (this.filterOptions && !force) return Promise.resolve(this.filterOptions); return this.request(BASE + '/film-robotu-1/', null, function (body) { return { options: P.list(body, BASE + '/film-robotu-1/').options }; }, force, 'options').then(function (value) { self.filterOptions = value.options; return value.options; }); };
+ function quickFilters(options) {
+  var result = [{ id: 'new', label: 'Yeni eklenenler', types: ['movie', 'series'], query: {} }];
+  var viewed = (options.order || []).filter(function (o) { return /izlenme|most\s*viewed|views/.test(P.clean(o.label).replace(/\u0130/g,'I').toLowerCase()); })[0];
+  if (viewed) result.push({ id: 'most-viewed', label: 'En Çok İzlenenler', types: ['movie', 'series'], query: { kind: 'discover', order: viewed.value } });
+  var genres = [ ['aksiyon','action'], ['bilim kurgu','science-fiction'], ['komedi','comedy'], ['romantik','romance'], ['aile','family'], ['animasyon','animation'], ['belgesel','documentary'], ['dram','drama'], ['fantastik','fantasy'], ['gerilim','thriller'], ['gizem','mystery'], ['korku','horror'], ['macera','adventure'], ['suç','crime'], ['savaş','war'], ['western','western'] ];
+  genres.forEach(function (genre) {
+   var row = (options.genres || []).filter(function (o) { return P.clean(o.label).toLowerCase() === genre[0]; })[0];
+   if (row && row.value) result.push({ id: 'genre:' + genre[1], label: row.label, types: ['movie', 'series'], query: { kind: 'discover', filters: { genre: row.value } } });
+  });
+  return result;
+ }
+ Provider.prototype.options = function (force) { var self = this; if (this.filterOptions && !force) return Promise.resolve(this.filterOptions); return this.request(BASE + '/film-robotu-1/', null, function (body) { return { options: P.list(body, BASE + '/film-robotu-1/').options }; }, force, 'options').then(function (value) { self.filterOptions = value.options; self.filterOptions.quickFilters = quickFilters(value.options); return self.filterOptions; }); };
  Provider.prototype.list = function (query, next, force) {
   query = query || {}; var filters = query.filters || {}, discover = next && next.kind === 'discover' || query.kind === 'discover' || filters.genre || filters.year || filters.language || filters.imdb;
   var page = next && next.page || 1, body = null, url = next && next.url;
   if (discover) {
-   url = BASE + '/film-robotu-1/'; body = { type: query.type === 'series' ? '2' : '1', genres: JSON.stringify(filters.genre ? [filters.genre] : []), years: filters.year || '', imdb: filters.imdb || '', lang: JSON.stringify(filters.language ? [filters.language] : []), order: query.order || 'posts.imdb desc', page: String(page) };
+   url = BASE + '/film-robotu-2/'; body = { type: query.type === 'series' ? '2' : '1', genres: JSON.stringify(filters.genre ? [filters.genre] : []), years: filters.year || '', imdb: filters.imdb || '', lang: JSON.stringify(filters.language ? [filters.language] : []), order: query.order || 'posts.imdb desc', page: String(page) };
   } else if (!url) url = query.url || (query.type === 'series' ? BASE + '/yabancidiziizle-2/' : BASE + '/');
   var context = discover ? { kind: 'discover', page: page } : next || { page: 1 };
   return this.request(url, body, function (response) { return P.list(response, url, context); }, force);
@@ -615,7 +626,7 @@ function load(n){n=n.replace('./','');if(cache[n])return cache[n].exports;var m=
 
 
 /* saglayicilar/p001/site.js */
-(function(root){'use strict';var site={"id": "hdf", "name": "HDfilmCehennemi", "base": "https://www.hdfilmcehennemi.nl", "mark": "HD", "subtitle": "Film ve dizi arşivi", "prefix": "hdf:", "storagePrefix": "", "suggestions":true,"supportsSeriesLanguage":true,"ui": {"movieRail": "Yeni eklenen filmler", "seriesRail": "Popüler diziler", "recommended": "Tavsiyeler", "liked": "Beğenilenler", "filterHint": "Uygula ile Film Robotu’nda arayın.", "filterSummary": "Film Robotu", "defaultOrder": "posts.imdb desc"}};site.textTransport='platform';site.Provider=root.CatalogProvider;site.Resolver=root.HdfSourceResolver;site.collectionQuery=function(type,key,links){var q={type:type};if(type==='movie'&&links[key])q.url=links[key];else if(key!=='new'){q.kind='discover';q.order=key==='liked'?'avg desc':'posts.imdb desc';if(key==='recommended')q.filters={imdb:'7-10'};}return q;};site.filterFields=function(){return ['type','genres','years','lang','imdb','order'];};root.SiteRegistry.register(site);})(window);
+(function(root){'use strict';var site={"id": "hdf", "name": "HDfilmCehennemi", "base": "https://www.hdfilmcehennemi.nl", "mark": "HD", "subtitle": "Film ve dizi arşivi", "prefix": "hdf:", "storagePrefix": "", "suggestions":true,"supportsQuickFilters":true,"supportsSeriesLanguage":true,"ui": {"movieRail": "Yeni eklenen filmler", "seriesRail": "Popüler diziler", "recommended": "Tavsiyeler", "liked": "Beğenilenler", "filterHint": "Uygula ile Film Robotu’nda arayın.", "filterSummary": "Film Robotu", "defaultOrder": "posts.imdb desc"}};site.textTransport='platform';site.Provider=root.CatalogProvider;site.Resolver=root.HdfSourceResolver;site.collectionQuery=function(type,key,links){var q={type:type};if(type==='movie'&&links[key])q.url=links[key];else if(key!=='new'){q.kind='discover';q.order=key==='liked'?'avg desc':'posts.imdb desc';if(key==='recommended')q.filters={imdb:'7-10'};}return q;};site.filterFields=function(){return ['type','genres','years','lang','imdb','order'];};root.SiteRegistry.register(site);})(window);
 
 
 })(window);

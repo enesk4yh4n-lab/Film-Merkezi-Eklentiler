@@ -1,5 +1,12 @@
 # Eklenti sürüm notları
 
+## P001 2.0.6 — 14 Kasım 2026
+
+- Yeni eklenenler, En Çok İzlenenler ve 16 tür için hazır katalog filtreleri eklendi. Tür değerleri sitenin güncel seçeneklerinden okunur.
+- Tür, sıralama ve sayfalama sorguları doğru filtre API'sine gönderilir. Önceki yerel adayın genel liste döndürme hatası giderildi.
+- Emülatörde Aksiyon, Komedi ve Bilim Kurgu farklı listeler döndürdü; altı örnek filmin detay türü seçilen türle eşleşti. Ortak katalog filtresi de sınandı.
+- Minimum çekirdek **2.1.5** gerekir. **R001 değişmedi.** Bu yayında diğer P/R paketleri korunur.
+
 ## P002 2.0.2 — 13 Kasım 2026
 
 - P002'nin kendi CDN'sinden liste için küçük, detay/vitrin için daha büyük afiş indirilir; yüksek çözünürlüklü orijinal TV'de küçültülmez.
