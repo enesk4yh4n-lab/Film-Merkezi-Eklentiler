@@ -1,6 +1,6 @@
 {
   "name": "film-merkezi-addon-sdk",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "description": "ES5 page adapter and signed repository SDK",
   "engines": {

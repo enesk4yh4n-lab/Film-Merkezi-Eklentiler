@@ -1,7 +1,7 @@
 {
-  "version": "1.0.2",
-  "minAppVersion": "2.0.0",
-  "minCoreVersion": "2.0.3",
+  "version": "1.0.3",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.8",
   "id": "p004",
   "name": "P004",
   "description": "Movie and series catalog adapter",

@@ -80,8 +80,13 @@
     );
   }
   function cards(d, page, hint) {
-    var seen = {},
+    var seen = {}, animationPages = {},
       result = [];
+    Array.prototype.forEach.call(d.querySelectorAll('.v100-section'),function(section){
+      var link=section.querySelector('a.v100-view-all');
+      if(link&&/\/Kategori\/(?:tur\/animasyon-filmleri|anime-izle)\//i.test(safe(link.getAttribute('href'))))
+        Array.prototype.forEach.call(section.querySelectorAll('a.v100-card[href]'),function(a){animationPages[safe(a.getAttribute('href'),page)]=true;});
+    });
     Array.prototype.forEach.call(
       d.querySelectorAll('a.v100-card, .custom-card-wrapper, .v50-card'),
       function (box) {
@@ -100,6 +105,7 @@
         var year = text(box, '.movie-release'),
           match = /\b(?:19|20)\d{2}\b/.exec(year);
         result.push({
+          catalogSection: animationPages[u]||/\/Kategori\/(?:tur\/animasyon-filmleri|anime-izle)\//i.test(page)?'animation':'',
           contentId: id(u, type),
           providerId: 'p004',
           type: type,
@@ -344,13 +350,22 @@ Provider.prototype.isIdle=function(){return this.pending===0;};
 Provider.prototype.fetch=function(address,parse){var self=this,token=self.generation,end=Date.now()+30000;if(!P.safe(address))return Promise.reject(new Error('P004: geçersiz katalog adresi.'));self.pending++;return self.client.get(address,BASE+'/',{}, {deadline:end,timeoutMs:30000}).then(function(r){self.pending--;if(token!==self.generation){var e=new Error('P004: iptal edildi.');e.cancelled=true;throw e;}return shared.CatalogUtils.withEnvelope(r.body,function(){return parse(r.body);});},function(e){self.pending--;if(token!==self.generation)e.cancelled=true;throw e;});};
 Provider.prototype.home=function(){var self=this;return self.fetch(BASE+'/',P.home).then(function(data){self.links=data.links;self.filterOptions={genres:data.genres,order:[{value:'date',label:'Yeni eklenenler'},{value:'views',label:'En çok izlenenler'},{value:'imdb',label:'IMDb puanı'},{value:'comments',label:'En çok yorumlananlar'}]};return data;});};
 Provider.prototype.options=function(){var self=this;return self.filterOptions?Promise.resolve(self.filterOptions):self.home().then(function(){return self.filterOptions;});};
-Provider.prototype.list=function(query,next){query=query||{};var filters=query.filters||{},hint=query.type==='series'?'series':null;if(filters.year||filters.language||filters.imdb)return Promise.reject(new Error('P004: bu filtre site tarafından sunulmuyor.'));var address=next&&next.url||filters.genre||query.url||(hint?BASE+'/Kategori/dizi-izle/':this.links.new);if(hint&&filters.genre)return Promise.reject(new Error('P004: dizi ve tür birleşik filtresi bulunmuyor.'));if(!next&&/^(date|views|imdb|comments)$/.test(query.order||''))address=P.withSort(address,query.order);return this.fetch(address,function(body){var data=P.list(body,address,hint);data.cards=data.cards.filter(function(c){return hint?c.type==='series':c.type!=='series';});return data;});};
+Provider.prototype.list=function(query,next){query=query||{};if(query.section==='animation')return this.sectionList(query,next);var filters=query.filters||{},hint=query.type==='series'?'series':null;if(filters.year||filters.language||filters.imdb)return Promise.reject(new Error('P004: bu filtre site tarafından sunulmuyor.'));var address=next&&next.url||filters.genre||query.url||(hint?BASE+'/Kategori/dizi-izle/':this.links.new);if(hint&&filters.genre)return Promise.reject(new Error('P004: dizi ve tür birleşik filtresi bulunmuyor.'));if(!next&&/^(date|views|imdb|comments)$/.test(query.order||''))address=P.withSort(address,query.order);return this.fetch(address,function(body){var data=P.list(body,address,hint);data.cards=data.cards.filter(function(c){return hint?c.type==='series':c.type!=='series';});return data;});};
+Provider.prototype.sectionList=function(query,next){
+ var self=this,token=this.generation,state=next&&next.kind==='animation'?next:{kind:'animation',pages:[BASE+'/Kategori/tur/animasyon-filmleri/',BASE+'/Kategori/anime-izle/']},result={cards:[],next:null},task=Promise.resolve(),pending=[];
+ state.pages.forEach(function(address){task=task.then(function(){
+  if(token!==self.generation)throw new Error('İptal edildi');
+  if(!/\/Kategori\/(?:tur\/animasyon-filmleri|anime-izle)\//i.test(address))throw new Error('P004: Geçersiz kategori adresi.');
+  return self.fetch(address,function(body){return P.list(body,address);}).then(function(data){data.cards.forEach(function(c){c.catalogSection='animation';});result.cards=result.cards.concat(data.cards);if(data.next)pending.push(data.next.url);});
+ });});
+ return task.then(function(){var seen={};result.cards=result.cards.filter(function(c){if(seen[c.contentId])return false;seen[c.contentId]=true;return true;});result.next=pending.length?{kind:'animation',pages:pending}:null;return result;});
+};
 Provider.prototype.search=function(query,force,next){if(force&&typeof force==='object'&&!next)next=force;query=shared.CatalogUtils.clean(query);if(!query)return Promise.resolve({cards:[],next:null});if(query.length>100)return Promise.reject(new Error('P004: arama en fazla 100 karakter olabilir.'));var first=BASE+'/?s='+encodeURIComponent(query),address=next&&next.url||first;if(address.indexOf(BASE+'/')!==0)return Promise.reject(new Error('P004: geçersiz arama sayfası.'));return this.fetch(address,function(body){var r=P.list(body,address),fold=function(v){return shared.CatalogUtils.clean(v).replace(/\u0130/g,'i').toLowerCase().replace(/\u0131/g,'i').replace(/[^a-z0-9\u00e7\u011f\u00f6\u015f\u00fc]+/g,' ');},terms=fold(query).split(/\s+/).filter(function(t){return !!t;});r.cards=r.cards.filter(function(c){var name=fold([c.title].concat(c.titleAliases||[]).join(' '));return terms.every(function(t){return name.indexOf(t)>=0;});});return r;});};
 Provider.prototype.detail=function(card){return this.fetch(card.pageUrl,function(body){var d=P.detail(body,card);d.fetchedAt=Date.now();return d;});};
 Provider.prototype.identity=function(card){return this.fetch(card.pageUrl,function(body){return P.identity(body,card);});};
 function Resolver(log,now){this.delegate=context.createResolver('r004',log,now);}
 Resolver.prototype.cancel=function(){this.delegate.cancel();};
 Resolver.prototype.resolve=function(c,d,n,h){return this.delegate.resolve(c,d,n,h);};
-shared.SiteRegistry.register({id:'p004',name:'P004',base:BASE,prefix:'p004:',storagePrefix:'site.p004.',mark:'P004',subtitle:'P004',Provider:Provider,Resolver:Resolver,Parser:P,contentTypes:['movie','series'],ui:{movieRail:'Filmler',seriesRail:'Diziler',defaultOrder:'date'},filterFields:function(type){return type==='series'?['order']:['genres','order'];},collectionQuery:function(type,key){return {type:type,order:{new:'date',recommended:'views',rated:'imdb',liked:'comments'}[key]};}});
+shared.SiteRegistry.register({id:'p004',name:'P004',base:BASE,prefix:'p004:',storagePrefix:'site.p004.',mark:'P004',subtitle:'P004',Provider:Provider,Resolver:Resolver,Parser:P,contentTypes:['movie','series'],catalogSections:['animation'],ui:{movieRail:'Filmler',seriesRail:'Diziler',defaultOrder:'date'},filterFields:function(type){return type==='series'?['order']:['genres','order'];},collectionQuery:function(type,key){return {type:type,order:{new:'date',recommended:'views',rated:'imdb',liked:'comments'}[key]};}});
 
 })(window);

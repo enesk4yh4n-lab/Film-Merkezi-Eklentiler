@@ -1,35 +1,37 @@
 # Film Merkezi Eklentiler
 
-Film Merkezi 2.0.0 için kullanıcı seçimine bağlı site ve çözümleyici paketleri.
+Kullanıcının seçerek kurduğu site ve çözümleyici paketleri. Depo eklemek paketleri kendiliğinden kurmaz.
 
-| Site paketi | Sürüm | Gerekli çözümleyici | Sürüm |
+## Son güncelleme
+
+**WGT 2.0.1 / çekirdek 2.1.8** için P001 2.0.7, P004 1.0.3 ve P007 1.0.2 hazır. Yeni katalog bölümleri için bu sürümler gerekir; R paketleri değişmedi.
+
+| Site | Sürüm | Çözümleyici | Sürüm |
 |---|---|---|---|
-| P001 | 2.0.2 | R001 | 1.0.2 |
-| P002 (Puhutv) | 2.0.0 | R002 | 1.0.5 |
-| P003 | 1.0.0 | R003 | 1.0.0 |
-| P004 | 1.0.0 | R004 | 1.0.0 |
-| P005 | 1.0.0 | R005 | 1.0.0 |
+| P001 | 2.0.7 | R001 | 1.0.2 |
+| P002 | 2.0.2 | R002 | 1.0.5 |
+| P003 | 1.0.1 | R003 | 1.0.0 |
+| P004 | 1.0.3 | R004 | 1.0.0 |
+| P005 | 1.0.1 | R005 | 1.0.0 |
 | P006 | 1.0.0 | R006 | 1.0.1 |
-| P007 | 1.0.0 | R007 | 1.0.0 |
+| P007 | 1.0.2 | R007 | 1.0.0 |
 
-GitHub depo aramasında **Film-Merkezi-Eklentiler** yazın veya bu deponun adresini ekleyin. Kurulu depoda **Güncellemeleri kontrol et → Eklentilere gözat** yolundan P001 seçildiğinde R001 birlikte sunulur. Depo eklemek paketleri otomatik kurmaz.
+## Kurulum
 
-P002/R002 ana depoda da sunulur. Bir depodan kurduğunuz aynı paketi tekrar kurmanız gerekmez; güncellemeler kurduğunuz depodan alınır.
+Film Merkezi'nde **Güncelleme Merkezi → Depo ekle → GitHub'da depo ara** yoluyla **Film-Merkezi-Eklentiler** aratın. Depoyu inceleyip ekleyin; istediğiniz siteyi seçtiğinizde gerekli çözümleyici kurulum planına alınır.
 
-[Ekran görüntülü kurulum kılavuzu](https://github.com/enesk4yh4n-lab/TizenTV-Film-Merkezi/blob/main/docs/DEPO_EKLEME.md) · [Uygulama](https://github.com/enesk4yh4n-lab/TizenTV-Film-Merkezi)
+- WGT **2.0.1**: [filmmerkezi201-repository.json](filmmerkezi201-repository.json).
+- WGT **2.0.0**: [filmmerkezi-repository.json](filmmerkezi-repository.json), uyumlu eski sürümlerle korunur.
 
-İndeks: [filmmerkezi-repository.json](filmmerkezi-repository.json). Paketler ilgili sitelerle resmî bağlantı veya entegrasyon onayı iddia etmez. Kaynakların erişim koşulları değişebilir; uygulama içerik veya erişim hakkı sağlamaz. [Lisanslar ve kaynak bildirimleri](THIRD_PARTY_NOTICES.md).
+P002/R002 ana uygulama deposunda da aynı kimlikle sunulur; bir kez kurmanız yeterlidir. Erişim koşulları değişebilir. Paketler sitelerle resmî ortaklık veya içerik/erişim hakkı iddia etmez.
 
-<!-- film-merkezi-repository: filmmerkezi-repository.json -->
-
-## Eklenti geliştirme SDK’sı
-
-[Film Merkezi SDK 2.0.0](SDK/README.md) ile bağımsız site ve çözümleyici paketleri hazırlayabilirsiniz. SDK güncellemeleri bu depoda paylaşılır. [İndir](Film-Merkezi-SDK-2.0.0.zip) · [SHA-256](SDK-SHA256SUMS.txt). Uygulama ve çekirdek güncellemeleri ana uygulama deposunda kalır.
-
-<!-- film-merkezi-discovery:start -->
-## Film Merkezi repository
-
-Repository index: `filmmerkezi-repository.json`. Find this repository in Film Merkezi using its name or GitHub username, or add its HTTPS address.
+[Ekran görüntülü kılavuz](https://github.com/enesk4yh4n-lab/TizenTV-Film-Merkezi/blob/main/docs/DEPO_EKLEME.md) · [Uygulama ve sürüm notları](https://github.com/enesk4yh4n-lab/TizenTV-Film-Merkezi) · [Lisanslar](THIRD_PARTY_NOTICES.md)
 
 <!-- film-merkezi-repository: filmmerkezi-repository.json -->
-<!-- film-merkezi-discovery:end -->
+<!-- film-merkezi201-repository: filmmerkezi201-repository.json -->
+
+## SDK 2.0.1
+
+[Geliştirme kılavuzu](SDK/README.md) · [SDK ZIP](Film-Merkezi-SDK-2.0.1.zip) · [SHA-256](SDK-SHA256SUMS.txt)
+
+SDK yeni 201 listesini üretir; eski imzalı listeyi ve yayıncı anahtarını korur. Çekirdek güncellemeleri ana uygulama deposundadır. Ayrı grafik geliştirme aracı henüz yayımlanmamıştır.

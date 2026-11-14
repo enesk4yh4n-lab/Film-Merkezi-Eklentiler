@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 2,
+  "id": "film-merkezi-eklentiler",
+  "name": "Film Merkezi Eklentiler",
+  "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5asyOWYkiWXZNeUMmYocbH2+VxPU+BkA/Yk22PhuRpWMo/h1nw/LfWL7ZrPcxo8loJ2VPwbeo05KAtE1H1LUieNRHgMMBMwJaeuV2JvyS8+JNMqrGDhkywDMNNZT4H32uOpQlfZmkNf+tE5EKfFKBNuj5dwlPN0E5/y1B0230WlcIb6JsE40ZmZqzfSuGtprwrNSc0Mx4MQhD56NBmQZUyfrUCYuh27x0ozzUjNLx3JJKpXeS2xWuZv69gFjO+R/Pkl1su0B/cgF2vPqMPKqMWTDUU0SHkUk320Xdv7YbMbAyKkuOYPAi7wZzCVZggU6NBr9nMwhcjWZeUWyFyy/2wIDAQAB",
+  "revision": 32,
+  "plugins": [
+    {
+      "id": "r001",
+      "type": "resolver",
+      "name": "R001",
+      "version": "1.0.2",
+      "description": "Media source resolver for P001",
+      "manifest": "packages/r001/1.0.2/manifest.json",
+      "manifestSha256": "8ff2b4bcfd6016183c67f938828d011a37435c4f66f7c98b8daf785220db8636"
+    },
+    {
+      "id": "r002",
+      "type": "resolver",
+      "name": "R002",
+      "version": "1.0.5",
+      "description": "Public watch-asset resolver for P002",
+      "manifest": "packages/r002/1.0.5/manifest.json",
+      "manifestSha256": "38c4d20c247d6811b5f79218f050514662301c614bcc9e8d02757340b86eb8b6"
+    },
+    {
+      "id": "r003",
+      "type": "resolver",
+      "name": "R003",
+      "version": "1.0.0",
+      "description": "Full episode HLS resolver for P003",
+      "manifest": "packages/r003/1.0.0/manifest.json",
+      "manifestSha256": "b6cea433652170149fdb4888a24d89c470c3512e7d5646cc97a0180c0b645b68"
+    },
+    {
+      "id": "r004",
+      "type": "resolver",
+      "name": "R004",
+      "version": "1.0.0",
+      "description": "Hotstream media resolver for P004",
+      "manifest": "packages/r004/1.0.0/manifest.json",
+      "manifestSha256": "e07f4654f1ed8f652f87d211bf942c69c18e8a33d317add5168d01d8a781a7a5"
+    },
+    {
+      "id": "r005",
+      "type": "resolver",
+      "name": "R005",
+      "version": "1.0.0",
+      "description": "Public full-episode HLS resolver for P005",
+      "manifest": "packages/r005/1.0.0/manifest.json",
+      "manifestSha256": "c43d238a1b717539f60da3aa3a986e32cc2648c4d22ae98a7f16af55fff622fa"
+    },
+    {
+      "id": "p006",
+      "type": "site",
+      "name": "P006",
+      "version": "1.0.0",
+      "description": "Series catalog, seasons and episode adapter",
+      "manifest": "packages/p006/1.0.0/manifest.json",
+      "manifestSha256": "25a7abd072a4c3dd606752cea80d3f234b395a768bd918f84b108cbd636230e5"
+    },
+    {
+      "id": "r007",
+      "type": "resolver",
+      "name": "R007",
+      "version": "1.0.0",
+      "description": "Active player metadata, HLS, audio and subtitle adapter",
+      "manifest": "packages/r007/1.0.0/manifest.json",
+      "manifestSha256": "87bd5557a9ae1f3e03ce14ba0dab3e0355fb4a24cdb115671b0e66443b703729"
+    },
+    {
+      "id": "r006",
+      "type": "resolver",
+      "name": "R006",
+      "version": "1.0.1",
+      "description": "Multiple media sources and language alternatives for P006",
+      "manifest": "packages/r006/1.0.1/manifest.json",
+      "manifestSha256": "15e40c7d16f53253b4bb145d9c7bfcfe62063a1343f70b71f83ca80c3b15ddab"
+    },
+    {
+      "id": "p002",
+      "type": "site",
+      "name": "P002",
+      "version": "2.0.2",
+      "description": "P002 public catalog adapter",
+      "manifest": "packages/p002/2.0.2/manifest.json",
+      "manifestSha256": "c421686ef2170bf95e460d1b49bc3656d024352d9d0cdfd7beef5c6b909c9d84"
+    },
+    {
+      "id": "p003",
+      "type": "site",
+      "name": "P003",
+      "version": "1.0.1",
+      "description": "Series and full episode catalog adapter",
+      "manifest": "packages/p003/1.0.1/manifest.json",
+      "manifestSha256": "b9014e5f2905e7250e06fba36c2d6a9be3d24ece094eddaf88d8966c2df84444"
+    },
+    {
+      "id": "p005",
+      "type": "site",
+      "name": "P005",
+      "version": "1.0.1",
+      "description": "Series catalog and full episodes",
+      "manifest": "packages/p005/1.0.1/manifest.json",
+      "manifestSha256": "cd0431458b3dd15b9199cb6ce41141a692cb92c4a1f21035726ba07e3c3092b7"
+    },
+    {
+      "id": "p007",
+      "type": "site",
+      "name": "P007",
+      "version": "1.0.2",
+      "description": "Series catalog, search, seasons and episodes",
+      "manifest": "packages/p007/1.0.2/manifest.json",
+      "manifestSha256": "7a2e5c8b8a283a48d9da0a53b4ad025326656e97bc74eb3660fdb40981c91072"
+    },
+    {
+      "id": "p004",
+      "type": "site",
+      "name": "P004",
+      "version": "1.0.3",
+      "description": "Movie and series catalog adapter",
+      "manifest": "packages/p004/1.0.3/manifest.json",
+      "manifestSha256": "869500ac8a4917541393d7f0f250373400c5d277ba786236bdba673f7f8d76e1"
+    },
+    {
+      "id": "p001",
+      "type": "site",
+      "name": "P001",
+      "version": "2.0.7",
+      "description": "Catalog categories, quick filters and addon-owned search suggestions; requires R001 and core 2.1.8",
+      "manifest": "packages/p001/2.0.7/manifest.json",
+      "manifestSha256": "bc15728bd611ce341406476fa04858de0549456a6382d4c77e8023275556238a"
+    }
+  ]
+}

@@ -69,10 +69,10 @@
   Provider.prototype.options = function () { return Promise.resolve({}); };
   Provider.prototype.list = function (query,cursor,force) {
     query=query||{}; if(query.type==='movie')return Promise.resolve({cards:[],next:null});
-    var url=P.safe(cursor&&cursor.url||query.url||BASE+'/diziler/'),u=url&&new root.URL(url);
+    var url=P.safe(cursor&&cursor.url||query.url||BASE+(query.section==='drama-short'?'/asya-dizileri/':'/diziler/')),u=url&&new root.URL(url);
     if(!u||!/^\/(?:diziler|dizi-arsivi|asya-dizileri)\/?$/.test(u.pathname))return Promise.reject(new Error('P007: Desteklenmeyen katalog adresi.'));
     if(Object.keys(query.filters||{}).some(function(k){return !!query.filters[k];}))return Promise.reject(new Error('P007: Bu katalog filtresi sunulmuyor.'));
-    return this.fetch(url,function(body){return P.list(body,url,false);},force,'list');
+    return this.fetch(url,function(body){var data=P.list(body,url,false);if(/^\/asya-dizileri\/?$/.test(u.pathname))data.cards.forEach(function(c){c.catalogSection='drama-short';});return data;},force,'list-sections');
   };
   Provider.prototype.search = function (q,force,cursor) { q=root.CatalogUtils.clean(q);if(!q)return Promise.resolve({cards:[],next:null});var url=cursor&&cursor.url||BASE+'/?s='+encodeURIComponent(q);return this.fetch(url,function(body){return P.list(body,url,true);},force,'search'); };
   Provider.prototype.detail = function (input,force) {
@@ -92,5 +92,5 @@
 
 var P=window.P007Parser;
 function Resolver(log,now){this.delegate=context.createResolver('r007',log,now);}Resolver.prototype.cancel=function(){this.delegate.cancel();};Resolver.prototype.resolve=function(c,d,n,h){return this.delegate.resolve(c,d,n,h);};
-shared.SiteRegistry.register({id:'p007',name:'P007',base:context.site.base,mark:'P007',subtitle:'P007',prefix:'p007:',storagePrefix:'site.p007.',contentTypes:['series'],collectionKeys:['new','recommended'],Provider:window.P007Provider,Resolver:Resolver,Parser:P,ui:{seriesRail:'Diziler',recommended:'Asya dizileri',filterHint:'Diziboxum dizi kataloğu',defaultOrder:'date'},collectionQuery:function(type,key,links){return {type:'series',url:links&&links[key]||context.site.base+(key==='recommended'?'/asya-dizileri/':'/diziler/')};},filterFields:function(){return [];}});
+shared.SiteRegistry.register({id:'p007',name:'P007',base:context.site.base,mark:'P007',subtitle:'P007',prefix:'p007:',storagePrefix:'site.p007.',contentTypes:['series'],catalogSections:['drama-short'],collectionKeys:['new','recommended'],Provider:window.P007Provider,Resolver:Resolver,Parser:P,ui:{seriesRail:'Diziler',recommended:'Asya dizileri',filterHint:'Diziboxum dizi kataloğu',defaultOrder:'date'},collectionQuery:function(type,key,links){return {type:'series',url:links&&links[key]||context.site.base+(key==='recommended'?'/asya-dizileri/':'/diziler/')};},filterFields:function(){return [];}});
 })(window);

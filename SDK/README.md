@@ -1,6 +1,6 @@
-﻿# Film Merkezi SDK 2.0.0
+﻿# Film Merkezi SDK 2.0.1
 
-Tizen 3 / Chromium 47 için bağımsız **site** ve **çözümleyici** paketleri üretir. WGT ve çekirdek 2.0.0 gerekir. Eski paket API'si desteklenmez.
+Tizen 3 / Chromium 47 için bağımsız **site** ve **çözümleyici** paketleri üretir. WGT 2.0.1 / çekirdek 2.1.8 gerekir. Eski paket API'si desteklenmez.
 
 ## Başlangıç
 
@@ -35,11 +35,17 @@ Manifest ve depo biçimi v2'dir. Site `home/list/search/detail`, `cards/next` ve
 
 Ortak kimlikler: `new`, `most-viewed`, `genre:action`, `genre:science-fiction`, `genre:comedy`, `genre:romance`. Diğer kimliklerde paket etiketi gösterilir. Bu kabiliyeti kullanan paketin minimum çekirdek sürümü 2.1.5 olmalıdır. Bu çalışma mevcut site paketlerini güncellemez.
 
-GitHub keşfi için README'de `film-merkezi` ve `filmmerkezi-repository.json` bulunmalıdır. Keşif yayıncıya özel değildir; sonuç güven onayı veya otomatik kurulum sayılmaz. İşaret kullanmayan depo HTTPS adresiyle eklenebilir.
+GitHub keşfi için README'de `film-merkezi` ve `filmmerkezi201-repository.json` bulunmalıdır. Keşif yayıncıya özel değildir; sonuç güven onayı veya otomatik kurulum sayılmaz. İşaret kullanmayan depo HTTPS adresiyle eklenebilir.
 
 ## Yayın ve güven
 
-Paketleme `filmmerkezi-repository.json`, `.sig`, imzalı manifestler ve dosya özetlerini üretir. README'ye keşif işareti eklenir; alt klasöre yayın için `--github-root <depo-kökü>` kullanın. Komut GitHub'a yükleme yapmaz.
+### Özel katalog bölümleri (çekirdek 2.1.8)
+
+Site kaydı isteğe bağlı `catalogSections: ['animation', 'drama-short']` kabiliyetini bildirebilir. Yalnız gerçekten sunduğu bölümleri yazmalıdır. Çekirdek bu bölümlerde `list({section: 'animation'}, next)` veya `list({section: 'drama-short'}, next)` çağırır; mevcut `cards/next`, iptal ve sayfalama sözleşmesi değişmez. Animasyon bölümü film ve dizi döndürebilir.
+
+Kart/detail üzerinde doğrulanmış `catalogSection`, `genres`, `identityCategories`, `catalogCategories` veya dizi için `productionCountries` kullanılabilir. Bölüm seçimi `type`, içerik kimliği ve bölüm sırasını değiştirmez. `drama-short` Kore/Asya ve kısa bölümlü dizilerdir; genel Dram türü değildir. Kategorisi öğrenilen kayıt normal Film/Dizi görünümünden ayrılır. Başlıktan veya kısa toplam süreden kategori tahmini yapılmaz. Ayrı liste sunmayan bir sitede önceden öğrenilmiş kayıtlar ek ağ isteği olmadan gösterilebilir.
+
+Paketleme `filmmerkezi201-repository.json`, `.sig`, imzalı manifestler ve dosya özetlerini üretir. README'ye keşif işareti eklenir; alt klasöre yayın için `--github-root <depo-kökü>` kullanın. Komut GitHub'a yükleme yapmaz.
 
 Kullanıcı **Güncelleme Merkezi → Eklenti depoları** üzerinden HTTPS adresini ekler veya GitHub'da arar. Hazır/resmî depo yoktur. Site seçildiğinde çözümleyiciler kurulum özetinde gösterilir. Kullanıcı eklemedikçe başka depo aranmaz/eklenmez.
 
