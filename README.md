@@ -4,7 +4,7 @@ Kullanıcının seçerek kurduğu site ve çözümleyici paketleri. Depo eklemek
 
 ## Son güncelleme
 
-**WGT 2.0.1 / çekirdek 2.1.8** için P001 2.0.7, P004 1.0.3 ve P007 1.0.2 hazır. Yeni katalog bölümleri için bu sürümler gerekir; R paketleri değişmedi.
+**15 Kasım 2026:** P008–P014 site/çözümleyici paketleri **1.0.0** olarak eklendi; **R007 1.0.1** büyük medya parçası düzeltmesini içerir. Minimum WGT **2.0.1**, çekirdek **2.1.8** gerekir. Bu yayında WGT, çekirdek ve SDK değişmedi. [Ayrıntılı sürüm notları](CHANGELOG.md).
 
 | Site | Sürüm | Çözümleyici | Sürüm |
 |---|---|---|---|
@@ -14,7 +14,16 @@ Kullanıcının seçerek kurduğu site ve çözümleyici paketleri. Depo eklemek
 | P004 | 1.0.3 | R004 | 1.0.0 |
 | P005 | 1.0.1 | R005 | 1.0.0 |
 | P006 | 1.0.0 | R006 | 1.0.1 |
-| P007 | 1.0.2 | R007 | 1.0.0 |
+| P007 | 1.0.2 | R007 | 1.0.1 |
+| P008 | 1.0.0 | R008 | 1.0.0 |
+| P009 | 1.0.0 | R009 | 1.0.0 |
+| P010 | 1.0.0 | R010 | 1.0.0 |
+| P011 | 1.0.0 | R011 | 1.0.0 |
+| P012 | 1.0.0 | R012 | 1.0.0 |
+| P013 | 1.0.0 | R013 | 1.0.0 |
+| P014 | 1.0.0 | R014 | 1.0.0 |
+
+Etkin paketlerin toplam ağ izin bütçesi mevcut WGT kapasitesiyle sınırlıdır; bütün paketleri aynı anda kurmak mümkün olmayabilir. İstediğiniz siteleri seçerek kurun.
 
 ## Kurulum
 

@@ -1,0 +1,31 @@
+{
+  "id": "r012",
+  "name": "R012",
+  "type": "resolver",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.8",
+  "description": "Active JW HLS and session-scoped fragmented MP4 adapter",
+  "dependencies": [],
+  "modules": [
+    "resolver.js"
+  ],
+  "files": [
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.trdiziizle.tv",
+    "https://video.twimg.com",
+    "https://streambox.xyz",
+    "https://streambox{n}.xyz",
+    "https://*.googlevideo.com",
+    "https://downloader.disk.yandex.com.tr",
+    "https://mds.storage.yandex.net",
+    "https://puhu-p{n}.mncdn.com",
+    "https://rtuk-p.mncdn.com",
+    "https://eu1.tabii.com",
+    "https://cms-tabii-public-video.tabii.com",
+    "https://vmcdn.ciner.com.tr"
+  ]
+}

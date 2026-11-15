@@ -1,0 +1,34 @@
+{
+  "id": "p009",
+  "name": "P009",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.8",
+  "type": "site",
+  "description": "Film and series catalog with genuine seasons",
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r009",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://hdfilmdelisi1.com",
+    "https://img.hdfilmdelisi1.com"
+  ],
+  "site": {
+    "id": "p009",
+    "prefix": "p009:",
+    "name": "P009",
+    "base": "https://hdfilmdelisi1.com"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "p012",
+  "name": "P012",
+  "type": "site",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.8",
+  "description": "Series catalog, search and actual ordered episodes",
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r012",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.trdiziizle.tv"
+  ],
+  "site": {
+    "id": "p012",
+    "prefix": "p012:",
+    "name": "P012",
+    "base": "https://www.trdiziizle.tv"
+  }
+}

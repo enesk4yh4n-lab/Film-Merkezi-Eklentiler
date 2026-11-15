@@ -1,0 +1,27 @@
+{
+  "id": "r011",
+  "name": "R011",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.8",
+  "type": "resolver",
+  "description": "Package-owned media and subtitle adapter",
+  "dependencies": [],
+  "modules": [
+    "resolver.js"
+  ],
+  "files": [
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.fullhdfilmizlesene.now",
+    "https://rapidvid.org",
+    "https://rapidvid.net",
+    "https://tv.rapidvid.org",
+    "https://s{n}.imgz.me",
+    "https://s41.imgcdn4936.shop",
+    "https://s2.images9202.shop",
+    "https://s2.cdnimage4487.shop"
+  ]
+}

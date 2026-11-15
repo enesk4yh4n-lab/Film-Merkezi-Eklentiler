@@ -1,0 +1,33 @@
+{
+  "id": "p010",
+  "name": "P010",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.8",
+  "type": "site",
+  "description": "Film catalog adapter",
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r010",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://filmmakinesi.to"
+  ],
+  "site": {
+    "id": "p010",
+    "prefix": "p010:",
+    "name": "P010",
+    "base": "https://filmmakinesi.to"
+  }
+}

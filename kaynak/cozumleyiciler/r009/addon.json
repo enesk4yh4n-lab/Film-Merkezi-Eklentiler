@@ -1,0 +1,26 @@
+{
+  "id": "r009",
+  "name": "R009",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.8",
+  "type": "resolver",
+  "description": "Active player data and HLS media adapter",
+  "dependencies": [],
+  "modules": [
+    "resolver.js"
+  ],
+  "files": [
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://hdfilmdelisi1.com",
+    "https://pl.vixolity.com",
+    "https://ha.vixolity.com",
+    "https://hs1.nodedatastream.top",
+    "https://speedtest.storagegridlink.top",
+    "https://hs1.storagegridlink.top",
+    "https://speedtest.nodedatastream.top"
+  ]
+}

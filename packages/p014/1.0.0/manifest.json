@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "apiVersion": 2,
+  "type": "site",
+  "dependencies": [
+    {
+      "publisher": "247fdf077b7d36c0d2ab3a909024308abda39adf9f5b34f1b66b5fe55cdf6ac4",
+      "id": "r014",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "minCoreVersion": "2.1.8",
+  "id": "p014",
+  "name": "P014",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "site": {
+    "id": "p014",
+    "prefix": "p014:",
+    "name": "P014",
+    "base": "https://filmizlehell.net"
+  },
+  "modules": [
+    "site.js"
+  ],
+  "networkPolicy": {
+    "file": "network-policy.txt",
+    "signature": "network-policy.signature.txt"
+  },
+  "files": [
+    {
+      "path": "site.js",
+      "size": 15253,
+      "sha256": "27f047b280d2a94d3e45c36967ec361f17485001c1867034c82c456023009416"
+    },
+    {
+      "path": "LICENSE.txt",
+      "size": 1145,
+      "sha256": "40f60e3521ed9bd2a2a49a97431cf87dc607db9b186728d24d9dcea11000eda8"
+    },
+    {
+      "path": "network-policy.txt",
+      "size": 48,
+      "sha256": "c52bf5df7fc0a83a99c455497e32f472bc46e6c086fb9ee2b9a8c96ebe126c97"
+    },
+    {
+      "path": "network-policy.signature.txt",
+      "size": 345,
+      "sha256": "0cb2f276f4aba7ac26e412c0931c16643a2d58146d76a05b63bac570d5cace57"
+    }
+  ]
+}

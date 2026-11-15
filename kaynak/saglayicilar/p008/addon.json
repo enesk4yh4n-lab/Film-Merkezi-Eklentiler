@@ -1,0 +1,33 @@
+{
+  "id": "p008",
+  "name": "P008",
+  "type": "site",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.8",
+  "description": "Catalog, search, seasons and anime lists",
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r008",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.dizigom.news"
+  ],
+  "site": {
+    "id": "p008",
+    "prefix": "p008:",
+    "name": "P008",
+    "base": "https://www.dizigom.news"
+  }
+}

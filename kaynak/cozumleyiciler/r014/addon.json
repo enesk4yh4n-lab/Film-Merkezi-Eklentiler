@@ -1,0 +1,32 @@
+{
+  "id": "r014",
+  "name": "R014",
+  "type": "resolver",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.8",
+  "description": "Package-scoped active media adapter",
+  "dependencies": [],
+  "modules": [
+    "resolver.js"
+  ],
+  "files": [
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://filmizlehell.net",
+    "https://p.playturka.space",
+    "https://n.vidproxy-{n}.site",
+    "https://n.thorcdn.site",
+    "https://n.{n}turk.store",
+    "https://n.{n}turk.space",
+    "https://n.sharemedia.space",
+    "https://n.sharemedia.site",
+    "https://n.mediaturka.sbs",
+    "https://n.1071play.sbs",
+    "https://n.meyascope.sbs",
+    "https://n.1071.site",
+    "https://n.1071media.sbs"
+  ]
+}

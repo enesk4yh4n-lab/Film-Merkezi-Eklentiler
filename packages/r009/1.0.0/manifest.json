@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "apiVersion": 2,
+  "type": "resolver",
+  "dependencies": [],
+  "minCoreVersion": "2.1.8",
+  "id": "r009",
+  "name": "R009",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "modules": [
+    "resolver.js"
+  ],
+  "networkPolicy": {
+    "file": "network-policy.txt",
+    "signature": "network-policy.signature.txt"
+  },
+  "files": [
+    {
+      "path": "resolver.js",
+      "size": 11926,
+      "sha256": "24969a793559309835add99d9c9109abd8872d028555ebb851d50783f2862052"
+    },
+    {
+      "path": "LICENSE.txt",
+      "size": 1145,
+      "sha256": "40f60e3521ed9bd2a2a49a97431cf87dc607db9b186728d24d9dcea11000eda8"
+    },
+    {
+      "path": "network-policy.txt",
+      "size": 235,
+      "sha256": "f45f8be949a8e790d5d30cdd60d567711e30d727710b19af56a10e9e8a62c582"
+    },
+    {
+      "path": "network-policy.signature.txt",
+      "size": 345,
+      "sha256": "1a6049da051a97ce0b395974bf562b36b06316c43a867935ba0c37c0b180d646"
+    }
+  ]
+}

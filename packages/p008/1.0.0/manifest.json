@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "apiVersion": 2,
+  "type": "site",
+  "dependencies": [
+    {
+      "publisher": "247fdf077b7d36c0d2ab3a909024308abda39adf9f5b34f1b66b5fe55cdf6ac4",
+      "id": "r008",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "minCoreVersion": "2.1.8",
+  "id": "p008",
+  "name": "P008",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "site": {
+    "id": "p008",
+    "prefix": "p008:",
+    "name": "P008",
+    "base": "https://www.dizigom.news"
+  },
+  "modules": [
+    "site.js"
+  ],
+  "networkPolicy": {
+    "file": "network-policy.txt",
+    "signature": "network-policy.signature.txt"
+  },
+  "files": [
+    {
+      "path": "site.js",
+      "size": 9244,
+      "sha256": "52c09faa2bee36cecea0b5b3ccf3820f9f056fd70d8b8360bd965362a81c10ab"
+    },
+    {
+      "path": "LICENSE.txt",
+      "size": 1145,
+      "sha256": "40f60e3521ed9bd2a2a49a97431cf87dc607db9b186728d24d9dcea11000eda8"
+    },
+    {
+      "path": "network-policy.txt",
+      "size": 48,
+      "sha256": "20b3cf08de22d507a2c7cd2f7222d33c13fe66cc51621cc351f14ed0546ae240"
+    },
+    {
+      "path": "network-policy.signature.txt",
+      "size": 345,
+      "sha256": "0cd064c5fc5ca556b1b99818828a7f8cb17c9f3f724ead2f860f6a7d8a9a1bc0"
+    }
+  ]
+}

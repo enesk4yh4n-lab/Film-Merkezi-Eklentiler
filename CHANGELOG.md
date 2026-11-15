@@ -1,3 +1,14 @@
+## P008–P014 1.0.0 / R007 1.0.1 — 15 Kasım 2026
+
+- **P008–P014 ve R008–R014 1.0.0:** yedi yeni site ve bunların bağımsız çözümleyici paketleri eklendi. Katalog, arama ve sitenin sunduğu gerçek içerik/bölüm bilgileri desteklenir.
+- **R007 1.0.1:** KSD kaynağının izinli büyük medya parçaları mevcut 24 MiB WGT tavanına uygun yüklenir; diğer kaynakların varsayılan sınırı korunur.
+- **P010/P011:** katalog metni taşıma uyumu; **R011:** gerçek medya sunucusu izinleri düzenlendi.
+- **R012:** ek HLS ve MP4 kaynakları, oturumluk MP4 Range yükleyicisi ve çoklu kalite desteği eklendi.
+- **P013/R013:** native metin taşıması, aktif kaynakların ayrıştırılması, video kimliği ve altyazı doğrulaması; resmî fragmanın tam bölüm gibi sunulmaması düzenlendi. **R014:** Referer uyumu düzeltildi.
+- İlgili kısa Tizen 3 TV oynatma ve kontrol turları yapıldı. Bu, her içerik ve kaynak için kesintisiz oynatma garantisi değildir. TLS ve paket imzaları korunur.
+
+Yeni paketler yalnız **WGT 2.0.1 / çekirdek 2.1.8** ile çalışan `filmmerkezi201-repository.json` listesinde sunulur. Önceki WGT 2.0.0 listesi ve paketleri korunur. Toplam izin bütçesi WGT kapasitesine tabidir. WGT, çekirdek, SDK ve Apps2Samsung kaydı bu yayında değişmez.
+
 ## WGT 2.0.1 / Çekirdek 2.1.8 — 14 Kasım 2026
 
 - Ana menüye **ÇizgiFilm/Anime** ve **Drama/Short** eklendi; Keşfet kaldırıldı. Drama/Short, Kore/Asya ve kısa bölümlü diziler içindir.
