@@ -2,7 +2,7 @@
   "id": "r008",
   "name": "R008",
   "type": "resolver",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minAppVersion": "2.0.1",
   "minCoreVersion": "2.1.8",
   "description": "Active player and HLS media adapter",
@@ -16,6 +16,7 @@
   ],
   "origins": [
     "https://www.dizigom.news",
+    "https://pilavyerplay.top",
     "https://play2.pilavyerplay.top",
     "https://pilavyer1.top",
     "https://pilavyer2.top",

@@ -4,18 +4,18 @@ Kullanıcının seçerek kurduğu site ve çözümleyici paketleri. Depo eklemek
 
 ## Son güncelleme
 
-**15 Kasım 2026:** P008–P014 site/çözümleyici paketleri **1.0.0** olarak eklendi; **R007 1.0.1** büyük medya parçası düzeltmesini içerir. Minimum WGT **2.0.1**, çekirdek **2.1.8** gerekir. Bu yayında WGT, çekirdek ve SDK değişmedi. [Ayrıntılı sürüm notları](CHANGELOG.md).
+**16 Kasım 2026:** **R001 1.0.3** kaynak çözümleme ve **R008 1.0.1** oynatıcı erişim izni düzeltmelerini içerir. Site paketleri, WGT ve SDK değişmedi. [Ayrıntılı sürüm notları](CHANGELOG.md).
 
 | Site | Sürüm | Çözümleyici | Sürüm |
 |---|---|---|---|
-| P001 | 2.0.7 | R001 | 1.0.2 |
+| P001 | 2.0.7 | R001 | 1.0.3 |
 | P002 | 2.0.2 | R002 | 1.0.5 |
 | P003 | 1.0.1 | R003 | 1.0.0 |
 | P004 | 1.0.3 | R004 | 1.0.0 |
 | P005 | 1.0.1 | R005 | 1.0.0 |
 | P006 | 1.0.0 | R006 | 1.0.1 |
 | P007 | 1.0.2 | R007 | 1.0.1 |
-| P008 | 1.0.0 | R008 | 1.0.0 |
+| P008 | 1.0.0 | R008 | 1.0.1 |
 | P009 | 1.0.0 | R009 | 1.0.0 |
 | P010 | 1.0.0 | R010 | 1.0.0 |
 | P011 | 1.0.0 | R011 | 1.0.0 |

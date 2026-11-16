@@ -1,3 +1,11 @@
+## R001 1.0.3 / R008 1.0.1 — 16 Kasım 2026
+
+- **R001 1.0.3:** Close kaynaklarında HTML verisine bağlı anahtar biçimleri ve Rapidrame'in kaynak alanındaki yeni literal çağrı biçimi desteklendi. Site betikleri çalıştırılmaz; ilgisiz/yanıltıcı veriler kaynak sayılmaz.
+- **R008 1.0.1:** Gerçek oynatıcı kökenine ait eksik ağ izni eklendi. Çalıştırılabilir çözümleyici kodu değişmedi.
+- İlgili kısa Tizen 3 emülatör oynatma, duraklatma/devam ve eski yanıt kontrolleri geçti. Bu tur fiziksel TV sesi/senkronu kabulü değildir.
+
+**P001/P008 site paketleri ve diğer 26 depo girdisi değişmedi.** WGT ve SDK güncellemesi gerekmez; mevcut minimum WGT 2.0.1 / çekirdek 2.1.8 koşulları korunur. Ayrı çekirdek 2.1.9 güncellemesi uygulama deposundan sunulur. TLS, imzalar ve izin sınırları açık kalır.
+
 ## P008–P014 1.0.0 / R007 1.0.1 — 15 Kasım 2026
 
 - **P008–P014 ve R008–R014 1.0.0:** yedi yeni site ve bunların bağımsız çözümleyici paketleri eklendi. Katalog, arama ve sitenin sunduğu gerçek içerik/bölüm bilgileri desteklenir.

@@ -393,6 +393,10 @@ function seededProfile(body, parameter) {
     var saltName;
     var operationName;
     var hostnameBinding;
+    var suffixes;
+    var suffix;
+    var expression;
+    var binding;
     function literalProperty(value) {
         var position = 0, result = '', part;
         while (position < value.length) {
@@ -402,6 +406,21 @@ function seededProfile(body, parameter) {
             if (position < value.length && value.charAt(position++) !== '+') return '';
         }
         return result;
+    }
+    function elementAttribute(value) {
+        var match = /^document\.(getElementById|querySelector|querySelectorAll)\((.+?)\)(\[0\])?(?:\.getAttribute\((.+?)\)|\.attributes\[(.+?)\]\.value)$/.exec(value);
+        var selector, name, id, selected;
+        if (!match || (match[1] === 'querySelectorAll') !== !!match[3]) return null;
+        selector = literalProperty(match[2]); name = literalProperty(match[4] || match[5]);
+        if (!/^data-[a-z0-9_-]{1,64}$/i.test(name) || !selector || selector.length > 128) return null;
+        if (match[1] === 'getElementById') id = selector;
+        else if (/^#[a-z0-9_-]+$/i.test(selector)) id = selector.slice(1);
+        else {
+            selected = /^\[(data-[a-z0-9_-]{1,64})\]$/i.exec(selector);
+            if (!selected || selected[1] !== name) return null;
+            id = null;
+        }
+        return { type: 'attribute', id: id, name: name.toLowerCase() };
     }
     var byte;
     var index;
@@ -418,6 +437,26 @@ function seededProfile(body, parameter) {
        this explicit data operation; never use the widget's own location. */
     hostnameBinding = new RegExp(escape(saltName) + '\\+=(?:(?:window|self|document)\\.)?location(\\.hostname|\\[([^\\]]{1,128})\\])(?:;|$)').exec(compact);
     profile.hostnameSuffix = !!hostnameBinding && (hostnameBinding[1] === '.hostname' || literalProperty(hostnameBinding[2] || '') === 'hostname');
+    /* Only literal, inert HTML facts can extend a salt. No site code or DOM
+       methods are evaluated, and missing/ambiguous facts fail closed. */
+    profile.saltBindings = [];
+    suffixes = new RegExp(escape(saltName) + '\\+=([^;]{1,512})(?:;|$)', 'g');
+    while ((suffix = suffixes.exec(compact))) {
+        expression = suffix[1];
+        if (/^(?:(?:window|self|document)\.)?location(?:\.hostname|\[.+\])$/.test(expression) &&
+            (/\.hostname$/.test(expression) || literalProperty(expression.slice(expression.indexOf('[') + 1, -1)) === 'hostname'))
+            profile.saltBindings.push({ type: 'hostname' });
+        else {
+            binding = elementAttribute(expression);
+            if (binding) profile.saltBindings.push(binding);
+            else {
+                binding = /^document\.createElement\((.+?)\)\.tagName$/.exec(expression);
+                if (!binding || !/^[a-z]{1,16}$/i.test(literalProperty(binding[1]))) return null;
+                profile.saltBindings.push({ type: 'tag', name: literalProperty(binding[1]).toUpperCase() });
+            }
+        }
+        if (profile.saltBindings.length > 8) return null;
+    }
     if (format === 'metadata') {
         metadata = new RegExp('([\\w$]+)=' + escape(parameter) + '\\.length-(\\d+),([\\w$]+)=\\1%(\\d+),([\\w$]+)=(\\d+)\\+\\(\\1%(\\d+)\\)').exec(compact);
         if (!metadata) return null;
@@ -468,7 +507,20 @@ function seededProfile(body, parameter) {
     return profile;
 }
 
-function decodeSeeded(parts, profile, hostname) {
+function inertAttribute(html, id, name) {
+    var text = String(html || '').replace(/<!--[\s\S]*?-->|<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, '');
+    var re = /<[a-z][^>]{0,8192}>/gi, match, attrs, value, count = 0;
+    while ((match = re.exec(text))) {
+        attrs = attributes(match[0]);
+        if (id !== null ? attrs.id !== id : !Object.prototype.hasOwnProperty.call(attrs, name)) continue;
+        count++;
+        value = attrs[name];
+    }
+    if (count !== 1 || typeof value !== 'string' || value.length > 4096) throw new Error('Literal HTML salt missing or ambiguous');
+    return value;
+}
+
+function decodeSeeded(parts, profile, hostname, html) {
     var values = parts.slice();
     var salt = profile.salt;
     var operations = profile.operations;
@@ -498,7 +550,15 @@ function decodeSeeded(parts, profile, hostname) {
         if (i >= values.length) throw new Error('Invalid salt index');
         salt = values.splice(i, 1)[0];
     }
-    if (profile.hostnameSuffix) {
+    if (profile.saltBindings && profile.saltBindings.length) {
+        profile.saltBindings.forEach(function (binding) {
+            if (binding.type === 'hostname') {
+                if (typeof hostname !== 'string' || !/^[a-z0-9.-]{1,253}$/i.test(hostname)) throw new Error('Embed hostname required');
+                salt += hostname.toLowerCase();
+            } else if (binding.type === 'attribute') salt += inertAttribute(html, binding.id, binding.name);
+            else if (binding.type === 'tag') salt += binding.name;
+        });
+    } else if (profile.hostnameSuffix) {
         if (typeof hostname !== 'string' || !/^[a-z0-9.-]{1,253}$/i.test(hostname)) throw new Error('Embed hostname required');
         salt += hostname.toLowerCase();
     }
@@ -537,7 +597,43 @@ function decodeSeeded(parts, profile, hostname) {
 }
 
 /* Find literal source-property references, skipping comments and string values. */
-function sourceVariables(html) {
+function literalCall(text, start) {
+    var head = /^([\w$]+)\s*\(/.exec(text.slice(start)), literal, i, delimiter, parts;
+    if (!head) return null;
+    literal = readLiteral(text, start + head[0].length, 0);
+    if (!literal) return null;
+    parts = literal.value; i = skipSpace(text, literal.end);
+    if (typeof parts === 'string') {
+        if (text.slice(i, i + 6) !== '.split') return null;
+        i = skipSpace(text, i + 6);
+        if (text.charAt(i++) !== '(') return null;
+        delimiter = readLiteral(text, i, 0);
+        if (!delimiter || typeof delimiter.value !== 'string' || !delimiter.value.length || delimiter.value.length > 8) return null;
+        i = skipSpace(text, delimiter.end);
+        if (text.charAt(i++) !== ')') return null;
+        parts = parts.split(delimiter.value);
+    }
+    i = skipSpace(text, i);
+    if (Object.prototype.toString.call(parts) !== '[object Array]' || parts.length > MAX_ITEMS || text.charAt(i) !== ')') return null;
+    return { name: head[1], parts: parts, end: i + 1 };
+}
+
+function wrappedSourceCall(text, start) {
+    var head = /^\(\s*function\s*\(\s*\)\s*\{/.exec(text.slice(start)), end, body, re, match, call, found = null;
+    if (!head) return null;
+    end = closingBrace(text, start + head[0].length - 1);
+    if (end < 0 || end - start > 8192 || !/^\s*\)\s*\(\s*\)/.test(text.slice(end + 1))) return null;
+    body = text.slice(start + head[0].length, end);
+    re = /\breturn\s+([\w$]+)\s*\(/g;
+    while ((match = re.exec(body))) {
+        call = literalCall(body, match.index + match[0].indexOf(match[1]));
+        if (!call || !/^\s*;?\s*$/.test(body.slice(call.end)) || found) return null;
+        found = call;
+    }
+    return found;
+}
+
+function sourceVariables(html, calls) {
     var found = {};
     var scripts = [];
     var re = /<script\b[^>]*>([\s\S]*?)<\/script\s*>/gi;
@@ -552,6 +648,8 @@ function sourceVariables(html) {
     var previous;
     var history;
     var inClass;
+    var tokenStart;
+    var sourceCall;
     while ((match = re.exec(html)) && scripts.length < 128) scripts.push(match[1]);
     if (!scripts.length) scripts.push(html);
     for (s = 0; s < scripts.length; s++) {
@@ -561,6 +659,7 @@ function sourceVariables(html) {
             if (/\s/.test(c)) { i++; continue; }
             if (c === '/' && text.charAt(i + 1) === '/') { j = text.indexOf('\n', i + 2); i = j < 0 ? text.length : j + 1; continue; }
             if (c === '/' && text.charAt(i + 1) === '*') { j = text.indexOf('*/', i + 2); i = j < 0 ? text.length : j + 2; continue; }
+            tokenStart = i;
             if (c === '"' || c === "'") {
                 item = readString(text, i);
                 if (!item) break;
@@ -587,6 +686,10 @@ function sourceVariables(html) {
                 } else { token = { type: 'punctuation', value: c }; i++; }
             }
             if (token.type === 'identifier' && history.length === 3 && history[2].value === ':' && /^(?:file|src)$/.test(history[1].value) && /^(?:string|identifier)$/.test(history[1].type) && /^[{,]$/.test(history[0].value)) found[token.value] = true;
+            if (calls && calls.length < 32 && history.length === 3 && history[2].value === ':' && /^(?:file|src)$/.test(history[1].value) && /^(?:string|identifier)$/.test(history[1].type) && /^[{,]$/.test(history[0].value)) {
+                sourceCall = token.value === '(' ? wrappedSourceCall(text, tokenStart) : literalCall(text, tokenStart);
+                if (sourceCall) calls.push(sourceCall);
+            }
             history.push(token);
             if (history.length > 3) history.shift();
         }
@@ -594,7 +697,7 @@ function sourceVariables(html) {
     return found;
 }
 
-function parseSeededDecoders(html, references, baseUrl) {
+function parseSeededDecoders(html, references, baseUrl, sourceHtml, sourceCalls) {
     var results = [];
     var functions = /(?:function\s+([\w$]+)\s*\(\s*([\w$]+)\s*\)|(?:var|let|const)\s+([\w$]+)\s*=\s*function\s*\(\s*([\w$]+)\s*\))\s*\{/g;
     var fn;
@@ -610,12 +713,23 @@ function parseSeededDecoders(html, references, baseUrl) {
     var attempts = 0;
     var callAttempts;
     var referenced = references || sourceVariables(html);
+    var host = /^https?:\/\/([^/:?#]+)(?::\d+)?(?:\/|$)/i.exec(String(baseUrl || ''));
+    var directCalls = sourceCalls || [], functionName;
+    if (!sourceCalls) sourceVariables(html, directCalls);
     while ((fn = functions.exec(html)) && attempts++ < 64 && results.length < 32) {
         end = closingBrace(html, functions.lastIndex - 1);
         if (end < 0) continue;
         profile = seededProfile(html.slice(functions.lastIndex, end), fn[2] || fn[4]);
         functions.lastIndex = end + 1;
         if (!profile) continue;
+        functionName = fn[1] || fn[3];
+        for (var directIndex = 0; directIndex < directCalls.length && results.length < 32; directIndex++) {
+            if (directCalls[directIndex].name !== functionName) continue;
+            try {
+                decoded = decodeSeeded(directCalls[directIndex].parts, profile, host ? host[1] : '', sourceHtml || html);
+                results.push({ value: decoded.value, steps: decoded.steps, format: profile.format, variable: functionName });
+            } catch (ignoredDirect) {}
+        }
         calls = new RegExp('(?:var|let|const)\\s+([\\w$]+)\\s*=\\s*' + (fn[1] || fn[3]).replace(/[$]/g, '\\$') + '\\s*\\(', 'g');
         callAttempts = 0;
         while ((call = calls.exec(html)) && callAttempts++ < 32) {
@@ -637,8 +751,7 @@ function parseSeededDecoders(html, references, baseUrl) {
             }
             if (Object.prototype.toString.call(parts) !== '[object Array]' || html.charAt(skipSpace(html, i)) !== ')') continue;
             try {
-                var host = /^https?:\/\/([^/:?#]+)(?::\d+)?(?:\/|$)/i.exec(String(baseUrl || ''));
-                decoded = decodeSeeded(parts, profile, host ? host[1] : '');
+                decoded = decodeSeeded(parts, profile, host ? host[1] : '', sourceHtml || html);
                 results.push({ value: decoded.value, steps: decoded.steps, format: profile.format, variable: call[1] });
             } catch (ignoredSeeded) {}
         }
@@ -680,6 +793,7 @@ function extractPlayer(html, baseUrl) {
     var obj;
     var ld;
     var references;
+    var sourceCalls = [];
     if (typeof html !== 'string' || html.length > MAX_INPUT) return result;
     function addStream(value, quality, provisional, forceMedia) {
         var url = absoluteUrl(value, baseUrl);
@@ -714,8 +828,8 @@ function extractPlayer(html, baseUrl) {
     }
     work = html.replace(/<script\b[^>]*type\s*=\s*(['"])application\/ld\+json\1[^>]*>[\s\S]*?<\/script\s*>/gi, '');
     scripts = [work].concat(unpackScripts(work));
-    references = sourceVariables(work);
-    for (i = 1; i < scripts.length; i++) { var unpackedReferences = sourceVariables(scripts[i]); Object.keys(unpackedReferences).forEach(function (name) { references[name] = true; }); }
+    references = sourceVariables(work, sourceCalls);
+    for (i = 1; i < scripts.length; i++) { var unpackedReferences = sourceVariables(scripts[i], sourceCalls); Object.keys(unpackedReferences).forEach(function (name) { references[name] = true; }); }
     re = /<(source|video|track)\b([^>]*)>/gi;
     while ((m = re.exec(work))) {
         attrs = attributes(m[2]);
@@ -724,7 +838,7 @@ function extractPlayer(html, baseUrl) {
         } else addStream(attrs.src, attrs.label || attrs.res || attrs.size, false, /^(?:video\/|application\/(?:vnd\.apple\.mpegurl|x-mpegurl|dash\+xml))/i.test(attrs.type || ''));
     }
     for (i = 0; i < scripts.length; i++) {
-        seeded = parseSeededDecoders(scripts[i], references, baseUrl);
+        seeded = parseSeededDecoders(scripts[i], references, baseUrl, html, sourceCalls);
         for (j = 0; j < seeded.length; j++) addStream(seeded[j].value);
         decoders = parseInlineDecoder(scripts[i]);
         for (j = 0; j < decoders.length; j++) {

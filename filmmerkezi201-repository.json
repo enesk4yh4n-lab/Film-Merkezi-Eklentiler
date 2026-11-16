@@ -3,17 +3,8 @@
   "id": "film-merkezi-eklentiler",
   "name": "Film Merkezi Eklentiler",
   "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5asyOWYkiWXZNeUMmYocbH2+VxPU+BkA/Yk22PhuRpWMo/h1nw/LfWL7ZrPcxo8loJ2VPwbeo05KAtE1H1LUieNRHgMMBMwJaeuV2JvyS8+JNMqrGDhkywDMNNZT4H32uOpQlfZmkNf+tE5EKfFKBNuj5dwlPN0E5/y1B0230WlcIb6JsE40ZmZqzfSuGtprwrNSc0Mx4MQhD56NBmQZUyfrUCYuh27x0ozzUjNLx3JJKpXeS2xWuZv69gFjO+R/Pkl1su0B/cgF2vPqMPKqMWTDUU0SHkUk320Xdv7YbMbAyKkuOYPAi7wZzCVZggU6NBr9nMwhcjWZeUWyFyy/2wIDAQAB",
-  "revision": 51,
+  "revision": 57,
   "plugins": [
-    {
-      "id": "r001",
-      "type": "resolver",
-      "name": "R001",
-      "version": "1.0.2",
-      "description": "Media source resolver for P001",
-      "manifest": "packages/r001/1.0.2/manifest.json",
-      "manifestSha256": "8ff2b4bcfd6016183c67f938828d011a37435c4f66f7c98b8daf785220db8636"
-    },
     {
       "id": "r002",
       "type": "resolver",
@@ -132,15 +123,6 @@
       "manifestSha256": "bc15728bd611ce341406476fa04858de0549456a6382d4c77e8023275556238a"
     },
     {
-      "id": "r008",
-      "type": "resolver",
-      "name": "R008",
-      "version": "1.0.0",
-      "description": "Active player and HLS media adapter",
-      "manifest": "packages/r008/1.0.0/manifest.json",
-      "manifestSha256": "e498bf86a6a2b401c29e426eac75f6d0b4b648d0e83083c06aa14cdd77fd34e1"
-    },
-    {
       "id": "p008",
       "type": "site",
       "name": "P008",
@@ -256,6 +238,24 @@
       "description": "Catalog, search, genuine detail and episodes",
       "manifest": "packages/p014/1.0.0/manifest.json",
       "manifestSha256": "3569d8f0398b29f30aa185fcf715de0e2feb972e2eee0573a85c3fcc23880344"
+    },
+    {
+      "id": "r001",
+      "type": "resolver",
+      "name": "R001",
+      "version": "1.0.3",
+      "description": "Media source resolver for P001",
+      "manifest": "packages/r001/1.0.3/manifest.json",
+      "manifestSha256": "cb450c2766520b3d02a02239c714ca61b2f52ce7852a2bbaaab55d57235ffc87"
+    },
+    {
+      "id": "r008",
+      "type": "resolver",
+      "name": "R008",
+      "version": "1.0.1",
+      "description": "Active player and HLS media adapter",
+      "manifest": "packages/r008/1.0.1/manifest.json",
+      "manifestSha256": "65da5ac88f7eee84b6d39049973d4ad0d122e8adea3e933956b174300d282502"
     }
   ]
 }
