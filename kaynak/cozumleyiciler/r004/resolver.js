@@ -1,5 +1,5 @@
 /* R004: package-local Hotstream data decoder. ES5; no remote script execution. */
-(function(shared){'use strict';var context=shared.FilmPlugins.context(),window={URL:shared.URL,CatalogUtils:shared.CatalogUtils,CryptoJS:shared.CryptoJS,SourceProgress:shared.SourceProgress,ChainNetwork:{createClient:function(){return context.createClient();}}};window.FilmizleParser={base:'https://filmizle.ink',safe:function(value){try{var u=new shared.URL(value);return u.origin==='https://filmizle.ink'&&!u.username&&!u.password?u.href:'';}catch(e){return '';}}};
+(function(shared){'use strict';var context=shared.FilmPlugins.context(),window={URL:shared.URL,CatalogUtils:shared.CatalogUtils,CryptoJS:shared.CryptoJS,SourceProgress:shared.SourceProgress,ChainNetwork:{createClient:function(){return context.createClient({platformText:!!(shared.PackageFetchTransport&&shared.PackageFetchTransport.supported())});}}};window.FilmizleParser={base:'https://filmizle.ink',safe:function(value){try{var u=new shared.URL(value);return u.origin==='https://filmizle.ink'&&!u.username&&!u.password?u.href:'';}catch(e){return '';}}};
 (function(root){'use strict';function fail(stage,message){var e=new Error(message);e.stage=stage;return e;}
  function settings(body) {
   var m = /\bbePlayer\s*\(\s*'([^']{1,512})'\s*,\s*'([^']{1,1048576})'/.exec(body);
@@ -151,6 +151,8 @@ root.Hotstream={settings:settings,frames:frames,moviePages:moviePages};})(window
                     throw fail('manifest', 'HLS manifesti yerine farklı bir yanıt alındı.');
                   sources.push({
                     id: option.sourceId,
+                    loaderId: shared.PackageFetchTransport && shared.PackageFetchTransport.supported() ? 'platform-playlist' : '',
+                    playbackRequirements: { customLoader: !!(shared.PackageFetchTransport && shared.PackageFetchTransport.supported()), requiredHeaders: [] },
                     label: option.label,
                     sourcePageUrl: entry.pageUrl,
                     packageKey: context.key,

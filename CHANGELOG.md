@@ -1,3 +1,18 @@
+## Eklenti güncellemeleri — 18 Kasım 2026
+
+| Paketler | Değişiklik |
+|---|---|
+| P010 1.0.1, P011 1.0.1 | Katalog isteklerinin TV tarayıcısıyla uyumluluğu iyileştirildi. |
+| R001 1.0.4, R010 1.0.1, R011 1.0.1, R012 1.0.1 | Bazı içerikler açılırken kullanılan bağlantı ve kaynak okuma yolları güncellendi. R010’da eski bir oynatıcı yanıtı biçimi de düzeltildi. |
+| R003 1.0.1, R004 1.0.1, R007 1.0.2, R008 1.0.2 | Yeni Tizen sürümlerinde video listelerini alma uyumluluğu iyileştirildi. R007’de büyük parçalı bir kaynak için özel boyut izni eklendi. |
+| R006 1.0.2 | Bir kaynak zaman aşımına uğradığında önceden bulunan seçenekler korunuyor. Eksik medya sunucusu izni eklendi. |
+| R013 1.0.1 | Değişen medya sunucularının izinleri güncellendi, yedek sunucuya geçiş iyileştirildi ve kapanan kaynaklar listeden çıkarıldı. |
+| R014 1.0.1 | Kaynak tarama durumunun ekrana doğru iletilmesi düzeltildi. |
+
+Güncel depo adresi **filmmerkezi-repository.json**. Uygulama eklentilerin WGT ve çekirdek gereksinimlerini denetler.
+
+**SDK 2.0.2:** Video CDN izinleri tek dosyada tutuluyor. Yeni çözümleyiciler kullandıkları kaynak grubunu seçebiliyor.
+
 ## R001 1.0.3 / R008 1.0.1 — 16 Kasım 2026
 
 - **R001 1.0.3:** Close kaynaklarında HTML verisine bağlı anahtar biçimleri ve Rapidrame'in kaynak alanındaki yeni literal çağrı biçimi desteklendi. Site betikleri çalıştırılmaz; ilgisiz/yanıltıcı veriler kaynak sayılmaz.

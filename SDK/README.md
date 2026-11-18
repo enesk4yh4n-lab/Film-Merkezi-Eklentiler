@@ -35,7 +35,7 @@ Manifest ve depo biçimi v2'dir. Site `home/list/search/detail`, `cards/next` ve
 
 Ortak kimlikler: `new`, `most-viewed`, `genre:action`, `genre:science-fiction`, `genre:comedy`, `genre:romance`. Diğer kimliklerde paket etiketi gösterilir. Bu kabiliyeti kullanan paketin minimum çekirdek sürümü 2.1.5 olmalıdır. Bu çalışma mevcut site paketlerini güncellemez.
 
-GitHub keşfi için README'de `film-merkezi` ve `filmmerkezi201-repository.json` bulunmalıdır. Keşif yayıncıya özel değildir; sonuç güven onayı veya otomatik kurulum sayılmaz. İşaret kullanmayan depo HTTPS adresiyle eklenebilir.
+GitHub keşfi için README'de `film-merkezi` ve `filmmerkezi-repository.json` bulunmalıdır. Keşif yayıncıya özel değildir; sonuç güven onayı veya otomatik kurulum sayılmaz. İşaret kullanmayan depo HTTPS adresiyle eklenebilir.
 
 ## Yayın ve güven
 
@@ -45,11 +45,13 @@ Site kaydı isteğe bağlı `catalogSections: ['animation', 'drama-short']` kabi
 
 Kart/detail üzerinde doğrulanmış `catalogSection`, `genres`, `identityCategories`, `catalogCategories` veya dizi için `productionCountries` kullanılabilir. Bölüm seçimi `type`, içerik kimliği ve bölüm sırasını değiştirmez. `drama-short` Kore/Asya ve kısa bölümlü dizilerdir; genel Dram türü değildir. Kategorisi öğrenilen kayıt normal Film/Dizi görünümünden ayrılır. Başlıktan veya kısa toplam süreden kategori tahmini yapılmaz. Ayrı liste sunmayan bir sitede önceden öğrenilmiş kayıtlar ek ağ isteği olmadan gösterilebilir.
 
-Paketleme `filmmerkezi201-repository.json`, `.sig`, imzalı manifestler ve dosya özetlerini üretir. README'ye keşif işareti eklenir; alt klasöre yayın için `--github-root <depo-kökü>` kullanın. Komut GitHub'a yükleme yapmaz.
+Paketleme `filmmerkezi-repository.json`, `.sig`, imzalı manifestler ve dosya özetlerini üretir. README'ye keşif işareti eklenir; alt klasöre yayın için `--github-root <depo-kökü>` kullanın. Komut GitHub'a yükleme yapmaz.
 
 Kullanıcı **Güncelleme Merkezi → Eklenti depoları** üzerinden HTTPS adresini ekler veya GitHub'da arar. Hazır/resmî depo yoktur. Site seçildiğinde çözümleyiciler kurulum özetinde gösterilir. Kullanıcı eklemedikçe başka depo aranmaz/eklenmez.
 
 Yalnız gereken HTTPS kökenlerini `origins` alanında bildirin. TLS, imza ve ağ izinleri korunur. Paket 4 MiB, dosya 1 MiB, toplam eklenti alanı 8 MiB ve toplam 128 köken sınırı vardır. Runtime ES5 olmalıdır. Yayımlanan sürümler değişmezdir; değişiklik için sürüm artırın.
+
+Video CDN izinleri, tek çözümleyicinin kullandığı gruplar dahil, ortak bir JSON dosyasında tutulabilir. Çözümleyicinin `addon.json` dosyasında `cdnRegistry` bu dosyanın göreli yolunu, `origins` içindeki `@cdn/rapidrame` gibi bir değer de gereken grubu belirtir. Grup, HTTPS kökenlerinden oluşan bir dizidir. SDK paketleme sırasında yalnız seçilen grupları diğer izinlerle birleştirip paketin `network-policy.txt` dosyasını imzalar. Site ve katalog kökenleri normal `origins` girdileri olarak kalır. Bir grubun izinleri değişirse onu kullanan yayımlanmış paketler yeni sürüm numarasıyla üretilir.
 
 Eklentiler JavaScript sandbox'ı değildir; uygulama yetkileriyle çalışırlar. İmza içerik lisansı veya zararsızlık garantisi değildir. Platform metin taşımalarında yönlendirme görünürlüğü native TLS yolundan daha sınırlıdır. Ayrıntılı sözleşme kaynak dağıtımındaki `docs/MODULER_EKLENTI_2.0.0.md` belgesindedir.
 

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "apiVersion": 2,
+  "type": "site",
+  "dependencies": [
+    {
+      "publisher": "247fdf077b7d36c0d2ab3a909024308abda39adf9f5b34f1b66b5fe55cdf6ac4",
+      "id": "r011",
+      "minVersion": "1.0.1",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "minCoreVersion": "2.1.10",
+  "id": "p011",
+  "name": "P011",
+  "version": "1.0.1",
+  "minAppVersion": "2.0.2",
+  "site": {
+    "id": "p011",
+    "prefix": "p011:",
+    "name": "P011",
+    "base": "https://www.fullhdfilmizlesene.now"
+  },
+  "modules": [
+    "site.js"
+  ],
+  "networkPolicy": {
+    "file": "network-policy.txt",
+    "signature": "network-policy.signature.txt"
+  },
+  "files": [
+    {
+      "path": "site.js",
+      "size": 2070,
+      "sha256": "1613f8f09e68888234bdfecff9e0569491530956df0483b0437fe44bc610e442"
+    },
+    {
+      "path": "LICENSE.txt",
+      "size": 1145,
+      "sha256": "40f60e3521ed9bd2a2a49a97431cf87dc607db9b186728d24d9dcea11000eda8"
+    },
+    {
+      "path": "network-policy.txt",
+      "size": 58,
+      "sha256": "65eaf302f68aca48b1950cd41eb07ba384dfe9616718702ec68c6b2ccbc58c01"
+    },
+    {
+      "path": "network-policy.signature.txt",
+      "size": 345,
+      "sha256": "bc6c61a9e8959ef5a9650e3c92e5db523dd12467d2e762469d363e3d2e1d75bc"
+    }
+  ]
+}

@@ -882,7 +882,7 @@ module.exports = {
 
 return module.exports;} )();
 
-context.registerResolver({create:function(ctx){var client=ctx.createClient(),embedClient=ctx.createClient({platformText:true}),generation=0;return {
+context.registerResolver({create:function(ctx){var identity={userAgent:'Mozilla/5.0 (SMART-TV; LINUX; Tizen 3.0) AppleWebKit/538.1 (KHTML, like Gecko) Version/3.0 TV Safari/538.1'},client=ctx.createClient(identity),embedClient=ctx.createClient(identity),generation=0;return {
  cancel:function(){generation++;client.cancel();embedClient.cancel();},
  resolve:function(input,deadline){var token=generation;
   function check(){if(token!==generation){var e=new Error('Cancelled');e.cancelled=true;throw e;}if(Date.now()>=deadline)throw new Error('Resolver deadline');}

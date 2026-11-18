@@ -1,9 +1,9 @@
 {
   "id": "r010",
   "name": "R010",
-  "version": "1.0.0",
-  "minAppVersion": "2.0.1",
-  "minCoreVersion": "2.1.8",
+  "version": "1.0.1",
+  "minAppVersion": "2.0.2",
+  "minCoreVersion": "2.1.10",
   "type": "resolver",
   "description": "Package-owned media and subtitle adapter",
   "dependencies": [],
@@ -14,11 +14,12 @@
     "resolver.js",
     "LICENSE.txt"
   ],
+  "cdnRegistry": "../cdn-izinleri.json",
   "origins": [
     "https://filmmakinesi.to",
     "https://closeload.filmmakinesi.to",
     "https://rapid.filmmakinesi.to",
-    "https://hls{n}.playmix.uno",
-    "https://s{n}.rapidrame.com"
+    "@cdn/close-hls",
+    "@cdn/rapidrame"
   ]
 }

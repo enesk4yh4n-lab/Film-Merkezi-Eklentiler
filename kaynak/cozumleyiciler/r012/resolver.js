@@ -249,7 +249,7 @@
     if (!result) throw fail('decode', 'Aktif JW kaynak verisi bulunamadı.');
     return result;
   }
-  function Resolver() { this.text = context.createClient({ platformText: true }); this.media = context.createClient(); this.sessions = []; this.generation = 0; }
+  function Resolver() { this.text = context.createClient({ platformText: false, userAgent: 'Mozilla/5.0 (SMART-TV; LINUX; Tizen 3.0) AppleWebKit/538.1 (KHTML, like Gecko) Version/3.0 TV Safari/538.1' }); this.media = context.createClient(); this.sessions = []; this.generation = 0; }
   Resolver.prototype.cancel = function () { this.generation++; this.text.cancel(); this.media.cancel(); this.sessions.splice(0).forEach(function (s) { s.destroy(); }); };
   Resolver.prototype.resolve = function (content, deadline, notify, hints) {
     this.cancel();

@@ -1,0 +1,129 @@
+{
+  "atom-media": [
+    "https://tv.rapidvid.org",
+    "https://s{n}.imgz.me",
+    "https://s41.imgcdn4936.shop",
+    "https://s2.images9202.shop",
+    "https://s2.cdnimage4487.shop"
+  ],
+  "ciner": ["https://vmcdn.ciner.com.tr"],
+  "close-balance": ["https://balancehls{n}.playmix.uno"],
+  "close-cdnimages": [
+    "https://*.cdnimages{n}.cyou",
+    "https://*.cdnimages{n}.shop",
+    "https://srv10.cdnimages1845.cyou",
+    "https://srv10.cdnimages2328.cyou",
+    "https://srv10.cdnimages304.cyou",
+    "https://srv10.cdnimages3124.cyou"
+  ],
+  "close-hls": ["https://hls{n}.playmix.uno"],
+  "google-video": ["https://*.googlevideo.com"],
+  "hotstream": [
+    "https://hotstream.club",
+    "https://seyret2.store",
+    "https://seyret8.top",
+    "https://seyret2.top",
+    "https://seyret3.top",
+    "https://seyret4.top",
+    "https://seyret5.top",
+    "https://seyret6.top",
+    "https://seyret7.top",
+    "https://seyret9.top",
+    "https://seyret10.top",
+    "https://seyret1.store",
+    "https://seyret4.store",
+    "https://seyret5.store",
+    "https://seyret3.store",
+    "https://seyret6.store",
+    "https://seyret7.store"
+  ],
+  "ksd": [
+    "https://ksdpictures.site",
+    "https://yabancidizim.com",
+    "https://pictures.spordunyasi.site",
+    "https://pictures.izmirgezisi.site"
+  ],
+  "now-ercdn": [
+    "https://tdywsbbzdx.erbvr.com",
+    "https://tdywsbbzdx.fdc.ercdn.net"
+  ],
+  "ok-media": [
+    "https://vd{n}.okcdn.ru",
+    "https://ok6-31.vkuser.net"
+  ],
+  "pilavyer-media": [
+    "https://pilavyer1.top",
+    "https://pilavyer2.top",
+    "https://pilavyer3.top",
+    "https://pilavyer4.top",
+    "https://pilavyer5.top",
+    "https://pilavyer6.top"
+  ],
+  "pilavyer-play-numbered": ["https://play{n}.pilavyerplay.top"],
+  "pilavyer-play2": ["https://play2.pilavyerplay.top"],
+  "pilavyer-primary": ["https://pilavyerplay.top"],
+  "playturka": [
+    "https://p.playturka.space",
+    "https://n.vidproxy-{n}.site",
+    "https://n.thorcdn.site",
+    "https://n.{n}turk.store",
+    "https://n.{n}turk.space",
+    "https://n.sharemedia.space",
+    "https://n.sharemedia.site",
+    "https://n.mediaturka.sbs",
+    "https://n.1071play.sbs",
+    "https://n.meyascope.sbs",
+    "https://n.1071.site",
+    "https://n.1071media.sbs"
+  ],
+  "puhu-numbered": ["https://puhu-p{n}.mncdn.com"],
+  "puhu-p3": ["https://puhu-p3.mncdn.com"],
+  "rapidrame": ["https://s{n}.rapidrame.com"],
+  "rtuk": ["https://rtuk-p.mncdn.com"],
+  "star-mncdn": [
+    "https://startv-p3.mncdn.com",
+    "https://startv-p2.mncdn.com"
+  ],
+  "streambox": ["https://streambox.xyz"],
+  "streambox-numbered": [
+    "https://streambox1.xyz",
+    "https://streambox3.xyz",
+    "https://streambox4.xyz",
+    "https://streambox5.xyz",
+    "https://streambox6.xyz",
+    "https://streambox7.xyz",
+    "https://streambox8.xyz",
+    "https://streambox9.xyz",
+    "https://streambox10.xyz",
+    "https://streambox11.xyz",
+    "https://streambox12.xyz",
+    "https://streambox13.xyz",
+    "https://streambox14.xyz",
+    "https://streambox15.xyz",
+    "https://streambox16.xyz",
+    "https://streambox17.xyz",
+    "https://streambox18.xyz",
+    "https://streambox19.xyz",
+    "https://streambox20.xyz"
+  ],
+  "streambox-numbered-pattern": ["https://streambox{n}.xyz"],
+  "tabii-playlist": ["https://eu1.tabii.com"],
+  "tabii-video": ["https://cms-tabii-public-video.tabii.com"],
+  "twitter-video": ["https://video.twimg.com"],
+  "vidara-s10": [
+    "https://s10-s501740.97bf1.com",
+    "https://s10-5042yyg.s1q2105.com"
+  ],
+  "vidara-s11": ["https://s11-s1001604.97bf1.com"],
+  "vidmoly-media": ["https://*.vmpx.online"],
+  "vixolity-media": [
+    "https://ha.vixolity.com",
+    "https://hs1.nodedatastream.top",
+    "https://speedtest.storagegridlink.top",
+    "https://hs1.storagegridlink.top",
+    "https://speedtest.nodedatastream.top"
+  ],
+  "yandex-download": ["https://downloader.disk.yandex.com.tr"],
+  "yandex-download-ru": ["https://downloader.disk.yandex.ru"],
+  "yandex-storage": ["https://mds.storage.yandex.net"]
+}

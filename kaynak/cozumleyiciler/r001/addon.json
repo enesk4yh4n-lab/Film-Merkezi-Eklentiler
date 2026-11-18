@@ -3,9 +3,9 @@
   "name": "R001",
   "description": "Media source resolver for P001",
   "type": "resolver",
-  "version": "1.0.3",
-  "minAppVersion": "2.0.0",
-  "minCoreVersion": "2.0.0",
+  "version": "1.0.4",
+  "minAppVersion": "2.0.2",
+  "minCoreVersion": "2.1.10",
   "dependencies": [],
   "modules": [
     "resolver.js"
@@ -14,16 +14,12 @@
     "resolver.js",
     "LICENSE.txt"
   ],
+  "cdnRegistry": "../cdn-izinleri.json",
   "origins": [
     "https://www.hdfilmcehennemi.nl",
     "https://hdfilmcehennemi.mobi",
-    "https://*.cdnimages{n}.cyou",
-    "https://*.cdnimages{n}.shop",
-    "https://srv10.cdnimages1845.cyou",
-    "https://srv10.cdnimages2328.cyou",
-    "https://srv10.cdnimages304.cyou",
-    "https://srv10.cdnimages3124.cyou",
-    "https://balancehls{n}.playmix.uno",
-    "https://s{n}.rapidrame.com"
+    "@cdn/close-cdnimages",
+    "@cdn/close-balance",
+    "@cdn/rapidrame"
   ]
 }

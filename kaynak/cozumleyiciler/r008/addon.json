@@ -2,9 +2,9 @@
   "id": "r008",
   "name": "R008",
   "type": "resolver",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "minAppVersion": "2.0.1",
-  "minCoreVersion": "2.1.8",
+  "minCoreVersion": "2.1.10",
   "description": "Active player and HLS media adapter",
   "dependencies": [],
   "modules": [
@@ -14,15 +14,11 @@
     "resolver.js",
     "LICENSE.txt"
   ],
+  "cdnRegistry": "../cdn-izinleri.json",
   "origins": [
     "https://www.dizigom.news",
-    "https://pilavyerplay.top",
-    "https://play2.pilavyerplay.top",
-    "https://pilavyer1.top",
-    "https://pilavyer2.top",
-    "https://pilavyer3.top",
-    "https://pilavyer4.top",
-    "https://pilavyer5.top",
-    "https://pilavyer6.top"
+    "@cdn/pilavyer-primary",
+    "@cdn/pilavyer-play2",
+    "@cdn/pilavyer-media"
   ]
 }

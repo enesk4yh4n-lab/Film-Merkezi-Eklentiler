@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 2,
+  "apiVersion": 2,
+  "type": "resolver",
+  "dependencies": [],
+  "minCoreVersion": "2.1.10",
+  "id": "r004",
+  "name": "R004",
+  "version": "1.0.1",
+  "minAppVersion": "2.0.1",
+  "modules": [
+    "platform-playlist.js",
+    "resolver.js"
+  ],
+  "networkPolicy": {
+    "file": "network-policy.txt",
+    "signature": "network-policy.signature.txt"
+  },
+  "files": [
+    {
+      "path": "platform-playlist.js",
+      "size": 1934,
+      "sha256": "ae235bd78414ee96b11636cafa0c911c307df69f2897b1ccf9c5f84cb1bde803"
+    },
+    {
+      "path": "resolver.js",
+      "size": 11312,
+      "sha256": "50d614e3394b0bb8d5795b42a2e4b7911d5937be43f199da482bbff6bf23ea99"
+    },
+    {
+      "path": "LICENSE.txt",
+      "size": 1145,
+      "sha256": "40f60e3521ed9bd2a2a49a97431cf87dc607db9b186728d24d9dcea11000eda8"
+    },
+    {
+      "path": "network-policy.txt",
+      "size": 402,
+      "sha256": "67b72540559b7e3a18406ab4328443290e6eb52742ec090300bd350c50415190"
+    },
+    {
+      "path": "network-policy.signature.txt",
+      "size": 345,
+      "sha256": "5e333e76d9bb6c9a5d8ce9c549a49a7f982569c039fcb4eb16a07132ab7c3c20"
+    }
+  ]
+}

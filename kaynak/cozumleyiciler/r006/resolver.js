@@ -253,6 +253,22 @@
     function publish() {
       if (progress) progress.publish(sources, options);
     }
+    function complete() {
+      if (token !== self.generation || !sources.length) check();
+      if (self.now() >= deadline) options.forEach(function (option) {
+        if (option.status === 'pending') { option.status = 'error'; option.stage = 'timeout'; option.detail = 'Kaynak hazırlama süresi doldu.'; }
+      });
+      sources.sort(function (a, b) {
+        return a.languagePriority - b.languagePriority || a.order - b.order;
+      });
+      sources.options = options;
+      if (!sources.length) {
+        var e = last || fail('decode', 'Oynatılabilir DDizi kaynağı bulunamadı.');
+        e.sourceOptions = options;
+        throw e;
+      }
+      return sources;
+    }
     if (!P.episodeUrl(content.pageUrl))
       return Promise.reject(fail('page', 'Geçersiz DDizi bölüm sayfası.'));
     if (self.now() >= deadline)
@@ -270,6 +286,7 @@
       var client = (root.DdiziNetwork || root.ChainNetwork).createClient({
         destination: 'downloads',
         deadline: deadline,
+        platformText: !!(shared.PackageFetchTransport && shared.PackageFetchTransport.supported()),
       });
       if (progress && progress.client) client = progress.client(client, check, deadline);
       self.clients.push(client);
@@ -484,18 +501,9 @@
         }
         return worker();
       })
-      .then(function () {
-        check();
-        sources.sort(function (a, b) {
-          return a.languagePriority - b.languagePriority || a.order - b.order;
-        });
-        sources.options = options;
-        if (!sources.length) {
-          var e = last || fail('decode', 'Oynatılabilir DDizi kaynağı bulunamadı.');
-          e.sourceOptions = options;
-          throw e;
-        }
-        return sources;
+      .then(complete, function (e) {
+        if (token === self.generation && e.stage === 'timeout' && sources.length) return complete();
+        throw e;
       });
   };
   root.DdiziSourceResolver = Resolver;

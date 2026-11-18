@@ -1,4 +1,4 @@
-(function(shared){'use strict';var context=shared.FilmPlugins.context(),window={URL:shared.URL,atob:function(value){return shared.atob(value);},CryptoJS:shared.CryptoJS,CatalogUtils:shared.CatalogUtils,CatalogClient:shared.CatalogClient,CatalogSearch:shared.CatalogSearch,CatalogSiteKit:shared.CatalogSiteKit,ContentIdentity:shared.ContentIdentity,PlayerCore:shared.PlayerCore,SourceProgress:shared.SourceProgress,ChainNetwork:{createClient:function(options){var local={};Object.keys(options||{}).forEach(function(k){local[k]=options[k];});local.platformText=true;return context.createClient(local);}}};
+(function(shared){'use strict';var context=shared.FilmPlugins.context(),window={URL:shared.URL,atob:function(value){return shared.atob(value);},CryptoJS:shared.CryptoJS,CatalogUtils:shared.CatalogUtils,CatalogClient:shared.CatalogClient,CatalogSearch:shared.CatalogSearch,CatalogSiteKit:shared.CatalogSiteKit,ContentIdentity:shared.ContentIdentity,PlayerCore:shared.PlayerCore,SourceProgress:shared.SourceProgress,ChainNetwork:{createClient:function(options){var local={};Object.keys(options||{}).forEach(function(k){local[k]=options[k];});local.platformText=false;local.userAgent='Mozilla/5.0 (SMART-TV; LINUX; Tizen 3.0) AppleWebKit/538.1 (KHTML, like Gecko) Version/3.0 TV Safari/538.1';return context.createClient(local);}}};
 /* Generated data-only MIT media decoder; canonical source (outside WGT): kaynak/p001/decoder/player.js. */
 (function(root){var module={exports:{}};
 /*
@@ -1227,7 +1227,7 @@ root.LiteralMediaDecoder=module.exports;})(window);
   var doc=D.doc(body),mount=v.m&&doc.getElementById(v.m),url=D.publicUrl(v.cm,page);if(!mount||!url||!v.i)throw D.fail('decode','Atom H.264 medya veya oynatıcı kimliği eşleşmiyor.');
   var result={url:url,type:'hls',subtitles:[]};(Array.isArray(v.ct)?v.ct:[]).forEach(function(t,i){var u=D.publicUrl(t.file,page);if(u&&/^(?:captions|subtitles)$/.test(t.kind||''))result.subtitles.push({id:'atom-sub-'+i,url:u,label:root.CatalogUtils.clean(t.label)||'Altyazı',language:t.language||t.srclang||'',format:'vtt'});});return result;
  }
- root.FullHDFilmizleseneDecoder={alternatives:alternatives,settings:settings,resolve:function(e,get){return get(e.url,'https://www.fullhdfilmizlesene.now/','embed').then(function(r){var v=settings(r.body,e.url);v.referer=e.url;return v;});}};
+ root.FullHDFilmizleseneDecoder={alternatives:alternatives,settings:settings,resolve:function(e,get){return get(e.url,'https://www.fullhdfilmizlesene.now/','embed').then(function(r){var v=settings(r.body,e.url);v.referer=e.url;if(/\bTizen (?:3|10)(?:\.|\b)/i.test(shared.navigator&&shared.navigator.userAgent||''))v.preferredEngine='avplay';return v;});}};
 })(window);
 
 (function(root){'use strict';root.FullHDFilmizleseneSourceResolver=root.WebPlayerData.createResolver(root.FullHDFilmizleseneParser,root.FullHDFilmizleseneDecoder);})(window);

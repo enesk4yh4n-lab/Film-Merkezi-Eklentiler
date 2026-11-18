@@ -14,11 +14,12 @@
     "resolver.js",
     "LICENSE.txt"
   ],
+  "cdnRegistry": "../cdn-izinleri.json",
   "origins": [
     "https://puhutv.com",
     "https://dygvideo.dygdigital.com",
-    "https://puhu-p3.mncdn.com",
-    "https://rtuk-p.mncdn.com",
+    "@cdn/puhu-p3",
+    "@cdn/rtuk",
     "https://img-puhutv.mncdn.com"
   ]
 }
