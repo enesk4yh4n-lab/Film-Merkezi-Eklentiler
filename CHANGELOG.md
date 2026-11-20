@@ -1,3 +1,10 @@
+## R006 1.0.4 — 20 Kasım 2026
+
+- Tizen 3.0’da bazı altyazılı MP4 videoların oynatılması iyileştirildi.
+- Tizen 3.0’da ayrı ses izi olan ilgili yayınlar otomatik olarak en fazla 720p ile başlıyor. Elle kalite seçimi kullanılabilir.
+
+Güncellemeyi **WGT 2.0.3 / çekirdek 2.1.15** ile Güncelleme Merkezi’nden alabilirsiniz.
+
 ## Eklenti güncellemeleri — 20 Kasım 2026
 
 | Paketler | Değişiklik |

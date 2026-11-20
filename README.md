@@ -4,7 +4,7 @@ Kullanıcının seçerek kurduğu site ve çözümleyici paketleri. Depo eklemek
 
 ## Son güncelleme
 
-**20 Kasım 2026** · 14 eklentide video açılışı, motor seçimi ve bağlantı iyileştirmeleri yayımlandı. [Ayrıntılı sürüm notları](CHANGELOG.md).
+**20 Kasım 2026 · R006 1.0.4** · Tizen 3.0’da bazı altyazılı videoların açılışı ve ayrı ses izli yayınların otomatik kalite seçimi iyileştirildi. [Ayrıntılı sürüm notları](CHANGELOG.md).
 
 | Site | Sürüm | Çözümleyici | Sürüm |
 |---|---|---|---|
@@ -13,7 +13,7 @@ Kullanıcının seçerek kurduğu site ve çözümleyici paketleri. Depo eklemek
 | P003 | 1.0.1 | R003 | 1.0.2 |
 | P004 | 1.0.3 | R004 | 1.0.2 |
 | P005 | 1.0.1 | R005 | 1.0.1 |
-| P006 | 1.0.0 | R006 | 1.0.3 |
+| P006 | 1.0.0 | R006 | 1.0.4 |
 | P007 | 1.0.2 | R007 | 1.0.3 |
 | P008 | 1.0.0 | R008 | 1.0.3 |
 | P009 | 1.0.0 | R009 | 1.0.1 |

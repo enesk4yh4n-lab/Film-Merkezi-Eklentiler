@@ -3,7 +3,7 @@
   "id": "film-merkezi-eklentiler",
   "name": "Film Merkezi Eklentiler",
   "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5asyOWYkiWXZNeUMmYocbH2+VxPU+BkA/Yk22PhuRpWMo/h1nw/LfWL7ZrPcxo8loJ2VPwbeo05KAtE1H1LUieNRHgMMBMwJaeuV2JvyS8+JNMqrGDhkywDMNNZT4H32uOpQlfZmkNf+tE5EKfFKBNuj5dwlPN0E5/y1B0230WlcIb6JsE40ZmZqzfSuGtprwrNSc0Mx4MQhD56NBmQZUyfrUCYuh27x0ozzUjNLx3JJKpXeS2xWuZv69gFjO+R/Pkl1su0B/cgF2vPqMPKqMWTDUU0SHkUk320Xdv7YbMbAyKkuOYPAi7wZzCVZggU6NBr9nMwhcjWZeUWyFyy/2wIDAQAB",
-  "revision": 145,
+  "revision": 147,
   "plugins": [
     {
       "id": "r002",
@@ -295,10 +295,10 @@
       "id": "r006",
       "type": "resolver",
       "name": "R006",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "description": "Multiple media sources and language alternatives for P006",
-      "manifest": "packages/r006/1.0.3/manifest.json",
-      "manifestSha256": "e8c47f806625d872a253483ab6c70c0eb2b783dd493309734cc771a94d022d13",
+      "manifest": "packages/r006/1.0.4/manifest.json",
+      "manifestSha256": "5dcd116202ccb01fc37186e0cbb81ced0b95260b4695d8bd302f2a42856f835f",
       "minAppVersion": "2.0.1",
       "minCoreVersion": "2.1.15"
     },
@@ -600,6 +600,17 @@
       "manifestSha256": "4433bbb07931245213dc2402366b91f7aeaa3166debd18c4a7518a457bea6611",
       "minAppVersion": "2.0.1",
       "minCoreVersion": "2.1.10"
+    },
+    {
+      "id": "r006",
+      "type": "resolver",
+      "name": "R006",
+      "version": "1.0.3",
+      "description": "Multiple media sources and language alternatives for P006",
+      "manifest": "packages/r006/1.0.3/manifest.json",
+      "manifestSha256": "e8c47f806625d872a253483ab6c70c0eb2b783dd493309734cc771a94d022d13",
+      "minAppVersion": "2.0.1",
+      "minCoreVersion": "2.1.15"
     }
   ]
 }

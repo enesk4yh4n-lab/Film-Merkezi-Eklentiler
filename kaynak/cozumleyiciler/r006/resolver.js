@@ -1,6 +1,6 @@
 /* R006: package-owned ES5 media decoder; no remote script execution. */
 (function(shared){'use strict';var context=shared.FilmPlugins.context(),window={URL:shared.URL,CatalogUtils:shared.CatalogUtils,PlayerCore:shared.PlayerCore,InertPlayerData:shared.InertPlayerData,SourceProgress:shared.SourceProgress,ChainNetwork:{createClient:function(o){return context.createClient(o);}}};window.DdiziParser={base:'https://www.ddizi.tel',episodeUrl:function(value){try{var u=new shared.URL(value);return u.origin==='https://www.ddizi.tel'&&!u.search&&!u.hash&&/^\/izle\/\d+\/[a-z0-9.-]+\.htm(?:\/[1-9]\d*)?$/.test(u.pathname)?u.href:'';}catch(e){return '';}}};
-var useYandexRange = !!shared.MediaSource && /\bTizen (?:4\.0|[56]\.[05])(?:[; )]|$)/i.test(shared.navigator && shared.navigator.userAgent || '');
+var useYandexRange = !!shared.MediaSource && /\bTizen (?:[34]\.0|[56]\.[05])(?:[; )]|$)/i.test(shared.navigator && shared.navigator.userAgent || '');
 /* BEGIN generated MP4 range loader */
 /* Bounded progressive MP4 -> fragmented MP4. No decoding or transcoding. */
 (function (root) {
@@ -632,7 +632,7 @@ var useYandexRange = !!shared.MediaSource && /\bTizen (?:4\.0|[56]\.[05])(?:[; )
                           prefersAvPlay = (/\bTizen 7\.0(?:[; )]|$)/i.test(platform) &&
                             (mediaOrigin === 'https://eu1.tabii.com' || isTwitterVideo)) ||
                             (/\bTizen 8\.0(?:[; )]|$)/i.test(platform) && isTwitterVideo && hasSeparateAudio),
-                          needsAutoCap = /\bTizen (?:8|9)(?:\.|\b)/i.test(platform) &&
+                          needsAutoCap = /\bTizen (?:3\.0(?:[; )]|$)|[89](?:\.|\b))/i.test(platform) &&
                             isTwitterVideo && hasSeparateAudio;
                         sources.push({
                           id: option.sourceId,
