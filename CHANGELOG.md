@@ -1,3 +1,9 @@
+## R007 1.0.4 — 20 Kasım 2026
+
+- Tizen 8.0’da bazı yayınların başladıktan kısa süre sonra takılması giderildi. Uygulama bu yayınlar için oynatma motorunu otomatik seçer.
+
+Güncellemeyi **WGT 2.0.3 / çekirdek 2.1.15** ile Güncelleme Merkezi’nden alabilirsiniz.
+
 ## R006 1.0.4 — 20 Kasım 2026
 
 - Tizen 3.0’da bazı altyazılı MP4 videoların oynatılması iyileştirildi.
