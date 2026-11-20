@@ -69,8 +69,11 @@ root.Hotstream={settings:settings,frames:frames,moviePages:moviePages};})(window
       sources = [],
       options = [],
       lastError,
+      modernTransport = !!(shared.PackageFetchTransport && shared.PackageFetchTransport.supported()),
+      preferDirect = !modernTransport && /\bTizen 7\.0(?:[; )]|$)/i.test(shared.navigator && shared.navigator.userAgent || ''),
       progress = root.SourceProgress && new root.SourceProgress(onProgress, hints),
-      network = self.filmizleNetwork || (self.filmizleNetwork = root.ChainNetwork.createClient());
+      baseNetwork = self.filmizleNetwork || (self.filmizleNetwork = root.ChainNetwork.createClient()),
+      network = baseNetwork;
     function check() {
       if (token !== self.generation) {
         var e = fail('cancel', 'İptal edildi');
@@ -80,9 +83,11 @@ root.Hotstream={settings:settings,frames:frames,moviePages:moviePages};})(window
       if (self.now() >= deadline) throw fail('timeout', 'Kaynak hazırlama süresi doldu.');
     }
     if (progress && progress.client) network = progress.client(network, check, deadline);
-    function get(url, ref, stage) {
+    function get(url, ref, stage, timeout) {
       check();
-      return network.get(url, ref, { 'User-Agent': 'Mozilla/5.0' }, {deadline:deadline,timeoutMs:Math.min(30000,Math.max(1,deadline-self.now()))}).then(
+      var end = timeout ? Math.min(deadline, self.now() + timeout) : deadline;
+      var client = timeout && progress && progress.client ? progress.client(baseNetwork, check, end) : network;
+      return client.get(url, ref, { 'User-Agent': 'Mozilla/5.0' }, {deadline:end,timeoutMs:Math.min(timeout || 30000,Math.max(1,end-self.now()))}).then(
         function (r) {
           check();
           return r;
@@ -93,6 +98,17 @@ root.Hotstream={settings:settings,frames:frames,moviePages:moviePages};})(window
           throw e;
         }
       );
+    }
+    function directPlaylist(manifest, address, ref) {
+      if (!preferDirect || deadline - self.now() < 6000 || /^#EXT-X-(?:MEDIA|SESSION-KEY):/m.test(manifest.body)) return '';
+      var entries = manifest.body.match(/^#EXT-X-STREAM-INF:/gm);
+      if (!entries || entries.length !== 1) return '';
+      var match = /^#EXT-X-STREAM-INF:[^\r\n]*\bRESOLUTION=\d+x480\b[^\r\n]*\r?\n([^#\s][^\r\n]*)/m.exec(manifest.body);
+      var direct = match && root.CatalogUtils.url(match[1].trim(), manifest.url || address);
+      if (!direct || !/^https:\/\/hotstream\.club\//.test(direct) || !shared.PackageNetwork.allows(context.key, direct)) return '';
+      return get(direct, ref, 'variant', 5000).then(function (playlist) {
+        return /^\s*#EXTM3U/.test(playlist.body) && /^#EXTINF:/m.test(playlist.body) && !/^#EXT-X-KEY:(?!METHOD=NONE(?:,|\s|$))/m.test(playlist.body) ? direct : '';
+      }, function () { check(); return ''; });
     }
     if (!root.FilmizleParser.safe(content.pageUrl))
       return Promise.reject(fail('page', 'Geçersiz içerik sayfası.'));
@@ -149,25 +165,30 @@ root.Hotstream={settings:settings,frames:frames,moviePages:moviePages};})(window
                 return get(data.url, url, 'manifest').then(function (manifest) {
                   if (!/^\s*#EXTM3U/.test(manifest.body))
                     throw fail('manifest', 'HLS manifesti yerine farklı bir yanıt alındı.');
-                  sources.push({
-                    id: option.sourceId,
-                    loaderId: shared.PackageFetchTransport && shared.PackageFetchTransport.supported() ? 'platform-playlist' : '',
-                    playbackRequirements: { customLoader: !!(shared.PackageFetchTransport && shared.PackageFetchTransport.supported()), requiredHeaders: [] },
-                    label: option.label,
-                    sourcePageUrl: entry.pageUrl,
-                    packageKey: context.key,
-                    url: data.url,
-                    referer: url,
-                    userAgent: 'Mozilla/5.0',
-                    type: 'hls',
-                    status: 'ready',
-                    transport: /^XHR/.test(manifest.method) ? 'xhr' : 'native',
-                    seekMode: 'media-event',
-                    subtitles: [],
+                  return Promise.resolve(directPlaylist(manifest, data.url, url)).then(function (direct) {
+                    check();
+                    sources.push({
+                      id: option.sourceId,
+                      loaderId: modernTransport ? 'platform-playlist' : '',
+                      playbackRequirements: { customLoader: modernTransport, requiredHeaders: [] },
+                      label: option.label,
+                      sourcePageUrl: entry.pageUrl,
+                      packageKey: context.key,
+                      url: data.url,
+                      avplayUrl: direct || undefined,
+                      preferredEngine: direct ? 'avplay' : undefined,
+                      referer: url,
+                      userAgent: 'Mozilla/5.0',
+                      type: 'hls',
+                      status: 'ready',
+                      transport: /^XHR/.test(manifest.method) ? 'xhr' : 'native',
+                      seekMode: 'media-event',
+                      subtitles: [],
+                    });
+                    option.status = 'ready';
+                    option.detail = 'HLS erişimi doğrulandı';
+                    publish();
                   });
-                  option.status = 'ready';
-                  option.detail = 'HLS erişimi doğrulandı';
-                  publish();
                 });
               })
               .catch(function (e) {

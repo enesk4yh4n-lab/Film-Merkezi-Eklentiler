@@ -148,6 +148,7 @@
         return get(media, embed, 'manifest', function (r) {
           if (!/^\s*#EXTM3U/.test(r.body))
             throw fail('manifest', 'Geçerli HLS manifesti alınamadı.');
+          var nativeBackward = /\bTizen 7\.0(?:[; )]|$)/i.test(shared.navigator && shared.navigator.userAgent || '');
           return [
             {
               id: 'hdfilmdelisi-vixolity',
@@ -159,7 +160,9 @@
               type: 'hls',
               status: 'ready',
               transport: 'native',
-              packageKey: context.key, preferredEngine: 'html5',
+              packageKey: context.key,
+              preferredEngine: nativeBackward ? 'avplay' : 'html5',
+              avplayBackwardSeek: nativeBackward ? 'relative' : undefined,
               seekMode: 'media-event',
               subtitles: [],
             },

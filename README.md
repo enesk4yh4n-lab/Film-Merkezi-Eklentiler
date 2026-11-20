@@ -4,24 +4,24 @@ Kullanıcının seçerek kurduğu site ve çözümleyici paketleri. Depo eklemek
 
 ## Son güncelleme
 
-**18 Kasım 2026:** 13 eklentide katalog erişimi, video çözümleme ve bağlantı iyileştirmeleri yayımlandı. [Ayrıntılı sürüm notları](CHANGELOG.md).
+**20 Kasım 2026** · 14 eklentide video açılışı, motor seçimi ve bağlantı iyileştirmeleri yayımlandı. [Ayrıntılı sürüm notları](CHANGELOG.md).
 
 | Site | Sürüm | Çözümleyici | Sürüm |
 |---|---|---|---|
-| P001 | 2.0.7 | R001 | 1.0.4 |
-| P002 | 2.0.2 | R002 | 1.0.5 |
-| P003 | 1.0.1 | R003 | 1.0.1 |
-| P004 | 1.0.3 | R004 | 1.0.1 |
-| P005 | 1.0.1 | R005 | 1.0.0 |
-| P006 | 1.0.0 | R006 | 1.0.2 |
-| P007 | 1.0.2 | R007 | 1.0.2 |
-| P008 | 1.0.0 | R008 | 1.0.2 |
-| P009 | 1.0.0 | R009 | 1.0.0 |
+| P001 | 2.0.8 | R001 | 1.0.5 |
+| P002 | 2.0.2 | R002 | 1.0.6 |
+| P003 | 1.0.1 | R003 | 1.0.2 |
+| P004 | 1.0.3 | R004 | 1.0.2 |
+| P005 | 1.0.1 | R005 | 1.0.1 |
+| P006 | 1.0.0 | R006 | 1.0.3 |
+| P007 | 1.0.2 | R007 | 1.0.3 |
+| P008 | 1.0.0 | R008 | 1.0.3 |
+| P009 | 1.0.0 | R009 | 1.0.1 |
 | P010 | 1.0.1 | R010 | 1.0.1 |
-| P011 | 1.0.1 | R011 | 1.0.1 |
-| P012 | 1.0.0 | R012 | 1.0.1 |
-| P013 | 1.0.0 | R013 | 1.0.1 |
-| P014 | 1.0.0 | R014 | 1.0.1 |
+| P011 | 1.0.1 | R011 | 1.0.2 |
+| P012 | 1.0.0 | R012 | 1.0.2 |
+| P013 | 1.0.0 | R013 | 1.0.2 |
+| P014 | 1.0.0 | R014 | 1.0.2 |
 
 Etkin paketlerin toplam ağ izin bütçesi mevcut WGT kapasitesiyle sınırlıdır; bütün paketleri aynı anda kurmak mümkün olmayabilir. İstediğiniz siteleri seçerek kurun.
 

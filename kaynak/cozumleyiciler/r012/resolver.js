@@ -1,4 +1,4 @@
-(function(shared){'use strict';var context=shared.FilmPlugins.context(),window={URL:shared.URL,CatalogUtils:shared.CatalogUtils,PlayerCore:shared.PlayerCore,SitePayload:shared.SitePayload,InertPlayerData:shared.InertPlayerData,SourceProgress:shared.SourceProgress,PackageMediaLoader:shared.PackageMediaLoader};
+(function(shared){'use strict';var context=shared.FilmPlugins.context(),window={URL:shared.URL,CatalogUtils:shared.CatalogUtils,PlayerCore:shared.PlayerCore,SitePayload:shared.SitePayload,InertPlayerData:shared.InertPlayerData,SourceProgress:shared.SourceProgress,PackageMediaLoader:shared.PackageMediaLoader,navigator:shared.navigator,nativeAvPlay:!!(shared.webapis&&shared.webapis.avplay)};
 /* Bounded progressive MP4 -> fragmented MP4. No decoding or transcoding. */
 (function (root) {
   'use strict';
@@ -221,6 +221,19 @@
     if (host === 'vmcdn.ciner.com.tr') return 'Ciner';
     return 'JW';
   }
+  function nativeForTizen7() {
+    return root.nativeAvPlay && /\bTizen 7\.0(?:[; )]|$)/i.test(root.navigator && root.navigator.userAgent || '');
+  }
+  function nativeMp4(data) {
+    return nativeForTizen7() && /^(?:Yandex|Ciner|Google Video)$/.test(data.family) && family(data.url) === data.family;
+  }
+  function nativeHls(data) {
+    if (data.type !== 'hls' || !nativeForTizen7()) return false;
+    var origin = new root.URL(data.url).origin;
+    return data.family === 'Twitter' && origin === 'https://video.twimg.com' ||
+      data.family === 'Tabii' && origin === 'https://eu1.tabii.com' ||
+      data.family === 'Puhu CDN' && origin === 'https://puhu-p2.mncdn.com';
+  }
   function decode(body, page) {
     var doc = I.doc(body), blocks = [body].concat(I.unpack(body)), result = null;
     if (!doc.querySelector('#player')) throw fail('embed', 'Etkin oynatıcı alanı bulunamadı.');
@@ -275,8 +288,20 @@
       }, function (e) { release(); throw e; }).then(function (v) { return v; }, function (e) { release(); throw e; });
     }
     function publish(data, option, subtitles) {
-      check(); var source = { id: option.sourceId, label: option.label, url: data.url, type: data.type, referer: data.referer, packageKey: context.key, preferredEngine: data.type === 'mp4' ? 'avplay' : 'html5', subtitles: subtitles || [], height: data.height || 0 };
-      if (data.type === 'mp4') { source.mp4Verified = false; source.mp4ContainerVerified = true; source.engineSupport = { html5: 'candidate', avplay: 'unsupported' }; source.seekMode = 'media-event'; if (!root.P012MP4) throw fail('unsupported', 'Paketin MP4 parça yükleyicisi bulunamadı.'); root.P012MP4.prepare(source); }
+      check(); var source = { id: option.sourceId, label: option.label, url: data.url, type: data.type, referer: data.referer, packageKey: context.key, preferredEngine: data.type === 'mp4' || nativeHls(data) ? 'avplay' : 'html5', subtitles: subtitles || [], height: data.height || 0 };
+      if (data.hlsWebAudio) source.hlsWebAudio = true;
+      if (data.type === 'mp4') {
+        source.mp4Verified = false;
+        source.mp4ContainerVerified = true;
+        // Tizen 7's HTML5 pipeline rejects AAC in fMP4. AVPlay can open these verified, direct MP4 URLs.
+        if (nativeMp4(data)) source.engineSupport = { html5: 'unsupported', avplay: 'candidate' };
+        else {
+          source.engineSupport = { html5: 'candidate', avplay: 'unsupported' };
+          source.seekMode = 'media-event';
+          if (!root.P012MP4) throw fail('unsupported', 'Paketin MP4 parça yükleyicisi bulunamadı.');
+          root.P012MP4.prepare(source);
+        }
+      }
       sources.push(source); option.status = 'ready'; option.stage = ''; option.detail = data.type === 'mp4' ? 'MP4 Range ve başlangıç verisi doğrulandı' : 'HLS doğrulandı';
       if (progress) progress.publish(sources, options); else if (notify) { sources.options = options; notify(sources); }
     }
@@ -296,6 +321,8 @@
                   var variants = [], lines = body.split(/\r?\n/);
                   lines.forEach(function (line, i) { if (/^#EXT-X-STREAM-INF:/.test(line)) for (var n = i + 1; n < lines.length; n++) if (lines[n].trim() && lines[n].charAt(0) !== '#') { variants.push(I.publicUrl(lines[n].trim(), data.url)); break; } });
                   if (variants.length === 1 && !/^#EXT-X-MEDIA:/m.test(body)) { if (!variants[0]) throw fail('manifest', 'Alt playlist adresi geçersiz.'); data.url = variants[0]; }
+                  data.hlsWebAudio = data.family === 'Streambox' && new root.URL(data.url).origin === 'https://streambox.xyz' &&
+                    !/^#EXT-X-MEDIA:/m.test(body) && (variants.length === 1 || !variants.length && /^#EXTINF:/m.test(body));
                   return data;
                 });
                 return work.then(function (ready) { publish(ready, option, decoded.subtitles); }).catch(function (e) { check(); last = e; option.status = 'error'; option.stage = e.stage || 'network'; option.detail = root.PlayerCore.safeMessage(e.message); });

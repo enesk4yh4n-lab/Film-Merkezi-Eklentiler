@@ -1,7 +1,7 @@
 {
   "id": "r011",
   "name": "R011",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "minAppVersion": "2.0.2",
   "minCoreVersion": "2.1.10",
   "type": "resolver",

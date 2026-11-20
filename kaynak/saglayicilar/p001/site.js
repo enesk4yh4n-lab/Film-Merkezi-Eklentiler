@@ -373,6 +373,7 @@ function load(n){n=n.replace('./','');if(cache[n])return cache[n].exports;var m=
       options = [],
       provisional = 0,
       lastError = null,
+      nativeEpisode = content.type === 'episode' && /\bTizen 7\.0(?:[; )]|$)/i.test(shared.navigator && shared.navigator.userAgent || ''),
       progress = root.SourceProgress && new root.SourceProgress(onProgress, hints);
     function failure(stage, message) {
       var e = new Error(message);
@@ -389,9 +390,9 @@ function load(n){n=n.replace('./','');if(cache[n])return cache[n].exports;var m=
     }
     var network =
       progress && progress.client ? progress.client(self.network, check, deadline) : self.network;
-    function get(url, ref, stage) {
+    function get(url, ref, stage, includeMediaIdentity) {
       check();
-      return (stage === 'manifest' ? self.decoder.resolve({ operation: 'request', url: url, referer: ref }, deadline) : network.get(url, ref, stage === 'alternative' ? { 'Content-Type': 'application/json', 'X-Requested-With': 'fetch' } : undefined)).then(
+      return (stage === 'manifest' ? self.decoder.resolve({ operation: 'request', url: url, referer: ref, includeMediaIdentity: !!includeMediaIdentity }, deadline) : network.get(url, ref, stage === 'alternative' ? { 'Content-Type': 'application/json', 'X-Requested-With': 'fetch' } : undefined)).then(
         function (r) {
           check();
           return r;
@@ -471,9 +472,15 @@ function load(n){n=n.replace('./','');if(cache[n])return cache[n].exports;var m=
         publish();
         return Promise.resolve();
       }
-      return get(source.url, source.referer, 'manifest')
+      var useMediaIdentity = nativeEpisode && /^(?:Close|Rapidrame)(?: \d+)?$/i.test(source.label);
+      return get(source.url, source.referer, 'manifest', useMediaIdentity)
         .then(function (r) {
           source.playlist = /^\s*#EXTM3U/.test(r.body);
+          if (source.playlist && useMediaIdentity && r.mediaUserAgent) {
+            source.userAgent = r.mediaUserAgent;
+            source.playbackRequirements = { requiredHeaders: ['User-Agent'] };
+            source.preferredEngine = 'avplay';
+          }
           source.transport = /^XHR/.test(r.method) ? 'xhr' : 'native';
           source.status = source.playlist ? 'ready' : 'invalid';
           option.status = source.playlist ? 'ready' : 'error';

@@ -1,3 +1,15 @@
+## Eklenti güncellemeleri — 20 Kasım 2026
+
+| Paketler | Değişiklik |
+|---|---|
+| P001 2.0.8, R001 1.0.5 | Tizen 7’de iki bölüm kaynağının AVPlay ile açılması iyileştirildi. |
+| R002 1.0.6, R003 1.0.2, R004 1.0.2 | Tizen 7’de bazı yayınların açılışı düzeltildi. R003’e eksik medya sunucusu izni eklendi. |
+| R005 1.0.1, R009 1.0.1, R011 1.0.2, R014 1.0.2 | Kaynağa ve Tizen sürümüne göre motor seçimi iyileştirildi. R009’da geri sarma, R011’de sunucu izni düzeltildi. |
+| R006 1.0.3, R007 1.0.3, R008 1.0.3, R012 1.0.2 | Kaynağa göre video parçalarının yüklenmesi, motor seçimi ve ayrı ses izi desteği iyileştirildi. |
+| R013 1.0.2 | Kaynak tarama bildirimi düzeltildi. Erişimi kapanan bir kaynak kaldırıldı. |
+
+Güncellemeler için **WGT 2.0.3 / çekirdek 2.1.15** kullanabilirsiniz. Uygulama, kurulu sürüme uygun paketleri seçer.
+
 ## Eklenti güncellemeleri — 18 Kasım 2026
 
 | Paketler | Değişiklik |

@@ -9,6 +9,15 @@
     try { p = JSON.parse(m[1]); } catch (e) { throw new Error('P002: izleme sayfası okunamadı.'); }
     return p.props && p.props.pageProps || {};
   }
+  function nativeRendition(body, address) {
+    var lines = body.split(/\r?\n/);
+    for (var i = 0; i + 1 < lines.length; i++) {
+      var next = lines[i + 1].trim();
+      if (!/^#EXT-X-STREAM-INF:/.test(lines[i]) || !/\bRESOLUTION=\d+x480\b/.test(lines[i]) || !next || next.charAt(0) === '#') continue;
+      try { return new root.URL(next, address).href; } catch (ignore) { return ''; }
+    }
+    return '';
+  }
   context.registerResolver({ create: function (ctx) {
     var client = ctx.createClient(), generation = 0;
     return {
@@ -16,8 +25,8 @@
       resolve: function (input, deadline, notify) {
         var token = generation, asset;
         function check() { if (token !== generation) { var e = new Error('İptal edildi.'); e.cancelled = true; throw e; } if (Date.now() >= deadline) throw new Error('P002: kaynak çözümleme süresi doldu.'); }
-        function get(address, json) {
-          check(); return client.get(address, BASE + '/', {}, { deadline: deadline, timeoutMs: 15000 }).then(function (r) { check(); if (!json) return r; try { return JSON.parse(r.body); } catch (e) { throw new Error('P002: yayın bilgisi okunamadı.'); } });
+        function get(address, json, timeout) {
+          check(); return client.get(address, BASE + '/', {}, { deadline: deadline, timeoutMs: timeout || 15000 }).then(function (r) { check(); if (!json) return r; try { return JSON.parse(r.body); } catch (e) { throw new Error('P002: yayın bilgisi okunamadı.'); } });
         }
         var address = page(input.watchPageUrl || input.pageUrl);
         if (!address) return Promise.reject(new Error('P002: izleme bağlantısı geçersiz.'));
@@ -45,11 +54,19 @@
           return get(media).then(function (r) {
             if (!/^\s*#EXTM3U/.test(r.body)) throw new Error('P002: medya yanıtı bir HLS listesi değil.');
             if (/KEYFORMAT\s*=\s*"[^"]*(?:widevine|playready)|METHOD=SAMPLE-AES/i.test(r.body)) throw new Error('P002: bu yayın DRM destekli bir oynatıcı gerektiriyor.');
-            // Use the normal HLS/HTML5 route. Emulator-specific native playback
-            // must not override the working pipeline on physical Tizen 3 TVs.
             var source = { id: 'r002-hls', label: 'Puhutv', type: 'hls', url: media, referer: BASE + '/', packageKey: ctx.key, status: 'ready', playlist: true, transport: 'native', subtitles: [] };
             (d.tracks || []).forEach(function (t) { if (t && /^https:\/\//i.test(t.file || t.url || t.src || '') && /^(subtitles|captions)$/i.test(t.kind || '')) source.subtitles.push({ id: 'r002-sub-' + source.subtitles.length, url: t.file || t.url || t.src, label: t.label || t.language || '', lang: t.srclang || t.language || '' }); });
-            check(); var result = [source]; if (notify) notify(result); return result;
+            function ready() { check(); var result = [source]; if (notify) notify(result); return result; }
+            var ua = root.navigator && root.navigator.userAgent || '';
+            var direct = /\bTizen 7\.0(?:[; )]|$)/i.test(ua) ? nativeRendition(r.body, r.url || media) : '';
+            if (!direct || /^#EXT-X-SESSION-KEY:/m.test(r.body) || !root.PackageNetwork.allows(ctx.key, direct) || deadline - Date.now() < 6000) return ready();
+            return get(direct, false, 5000).then(function (playlist) {
+              if (/^\s*#EXTM3U/.test(playlist.body) && /^#EXTINF:/m.test(playlist.body) && !/^#EXT-X-KEY:(?!METHOD=NONE(?:,|\s|$))/m.test(playlist.body)) {
+                source.avplayUrl = direct;
+                source.preferredEngine = 'avplay';
+              }
+              return ready();
+            }, ready);
           });
         });
       }

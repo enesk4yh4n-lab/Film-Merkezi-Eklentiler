@@ -1,9 +1,9 @@
 {
   "id": "p001",
   "name": "P001",
-  "description": "Catalog categories, quick filters and addon-owned search suggestions; requires R001 and core 2.1.8",
-  "version": "2.0.7",
-  "minAppVersion": "2.0.1",
+  "description": "Catalog categories, quick filters, addon-owned suggestions and Tizen 7 episode playback",
+  "version": "2.0.8",
+  "minAppVersion": "2.0.2",
   "site": {
     "id": "hdf",
     "prefix": "hdf:",
@@ -22,12 +22,12 @@
     "https://hdfilmcehennemi.mobi"
   ],
   "type": "site",
-  "minCoreVersion": "2.1.8",
+  "minCoreVersion": "2.1.10",
   "dependencies": [
     {
       "publisher": "PUBLISHER_FINGERPRINT",
       "id": "r001",
-      "minVersion": "1.0.1",
+      "minVersion": "1.0.5",
       "maxVersion": "2.0.0"
     }
   ]

@@ -80,6 +80,7 @@ function createP005Data(root) {
 
 /* Canonical R005 resolver body; public player configuration is read as data. */
 var D = createP005Data(root), BASE = D.base, publicParameter = '';
+var prefersAvPlay = /\bTizen (?:6\.[05]|7\.0)(?:[; )]|$)/i.test(root.navigator && root.navigator.userAgent || '');
 context.registerResolver({ create: function () {
   var client = context.createClient(), generation = 0;
   return {
@@ -112,6 +113,7 @@ context.registerResolver({ create: function () {
           if (!/^\s*#EXTM3U/.test(body)) throw D.fail('Medya yanıtı HLS değil.');
           if (/METHOD=SAMPLE-AES|KEYFORMAT\s*=\s*"[^"]*(widevine|playready)/i.test(body)) throw D.fail('Bu bölüm DRM destekli oynatıcı gerektiriyor.');
           check(); var result = [{ id: 'r005-hls', label: 'P005 · Tam bölüm', type: 'hls', url: media.href, referer: address, packageKey: context.key, status: 'ready', playlist: true, transport: 'native', subtitles: [] }];
+          if (prefersAvPlay) result[0].preferredEngine = 'avplay';
           if (notify) notify(result); return result;
         });
       });

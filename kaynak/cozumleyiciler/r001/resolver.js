@@ -888,7 +888,11 @@ context.registerResolver({create:function(ctx){var identity={userAgent:'Mozilla/
   function check(){if(token!==generation){var e=new Error('Cancelled');e.cancelled=true;throw e;}if(Date.now()>=deadline)throw new Error('Resolver deadline');}
   check();
   return (typeof input.body==='string'?Promise.resolve({body:input.body}):(input.operation==='extract'?embedClient:client).get(input.url,input.referer||'',{}, {deadline:deadline})).then(function(r){
-   check();if(input.operation==='request')return r;
+   check();if(input.operation==='request'){
+    if(input.includeMediaIdentity!==true)return r;
+    var response={};Object.keys(r).forEach(function(key){response[key]=r[key];});
+    response.mediaUserAgent=identity.userAgent;return response;
+   }
    return decoder.extractPlayer(r.body,input.url);
   });
  }

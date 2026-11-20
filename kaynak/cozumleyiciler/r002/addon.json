@@ -3,9 +3,9 @@
   "name": "R002",
   "description": "Public watch-asset resolver for P002",
   "type": "resolver",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "minAppVersion": "2.0.0",
-  "minCoreVersion": "2.0.0",
+  "minCoreVersion": "2.1.15",
   "dependencies": [],
   "modules": [
     "resolver.js"

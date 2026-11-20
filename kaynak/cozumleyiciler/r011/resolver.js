@@ -1227,7 +1227,19 @@ root.LiteralMediaDecoder=module.exports;})(window);
   var doc=D.doc(body),mount=v.m&&doc.getElementById(v.m),url=D.publicUrl(v.cm,page);if(!mount||!url||!v.i)throw D.fail('decode','Atom H.264 medya veya oynatıcı kimliği eşleşmiyor.');
   var result={url:url,type:'hls',subtitles:[]};(Array.isArray(v.ct)?v.ct:[]).forEach(function(t,i){var u=D.publicUrl(t.file,page);if(u&&/^(?:captions|subtitles)$/.test(t.kind||''))result.subtitles.push({id:'atom-sub-'+i,url:u,label:root.CatalogUtils.clean(t.label)||'Altyazı',language:t.language||t.srclang||'',format:'vtt'});});return result;
  }
- root.FullHDFilmizleseneDecoder={alternatives:alternatives,settings:settings,resolve:function(e,get){return get(e.url,'https://www.fullhdfilmizlesene.now/','embed').then(function(r){var v=settings(r.body,e.url);v.referer=e.url;if(/\bTizen (?:3|10)(?:\.|\b)/i.test(shared.navigator&&shared.navigator.userAgent||''))v.preferredEngine='avplay';return v;});}};
+ root.FullHDFilmizleseneDecoder={
+  alternatives:alternatives,
+  settings:settings,
+  resolve:function(entry,get){
+   return get(entry.url,'https://www.fullhdfilmizlesene.now/','embed').then(function(response){
+    var source=settings(response.body,entry.url);
+    var userAgent=shared.navigator&&shared.navigator.userAgent||'';
+    source.referer=entry.url;
+    if(/\bTizen (?:(?:3|7|8|9|10)(?:\.|\b)|(?:5\.5|6\.[05])(?:[; )]|$))/i.test(userAgent)) source.preferredEngine='avplay';
+    return source;
+   });
+  }
+ };
 })(window);
 
 (function(root){'use strict';root.FullHDFilmizleseneSourceResolver=root.WebPlayerData.createResolver(root.FullHDFilmizleseneParser,root.FullHDFilmizleseneDecoder);})(window);

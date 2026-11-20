@@ -3,7 +3,7 @@
   "name": "R005",
   "description": "Public full-episode HLS resolver for P005",
   "type": "resolver",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minAppVersion": "2.0.0",
   "minCoreVersion": "2.0.0",
   "dependencies": [],
@@ -14,12 +14,12 @@
     "resolver.js",
     "LICENSE.txt"
   ],
-  "cdnRegistry": "../cdn-izinleri.json",
   "origins": [
     "https://www.startv.com.tr",
     "https://player-assets.dygdigital.com",
     "https://dygvideo.dygdigital.com",
     "@cdn/star-mncdn",
     "@cdn/rtuk"
-  ]
+  ],
+  "cdnRegistry": "../cdn-izinleri.json"
 }

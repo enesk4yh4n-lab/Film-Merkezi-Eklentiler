@@ -2,7 +2,7 @@
   "id": "r014",
   "name": "R014",
   "type": "resolver",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "minAppVersion": "2.0.1",
   "minCoreVersion": "2.1.8",
   "description": "Package-scoped active media adapter",

@@ -1,9 +1,9 @@
 {
   "id": "r007",
   "name": "R007",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "minAppVersion": "2.0.1",
-  "minCoreVersion": "2.1.10",
+  "minCoreVersion": "2.1.15",
   "type": "resolver",
   "description": "Active player metadata, HLS, audio and subtitle adapter",
   "dependencies": [],
