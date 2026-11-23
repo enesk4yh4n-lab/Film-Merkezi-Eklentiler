@@ -3,16 +3,16 @@
   "id": "film-merkezi-eklentiler",
   "name": "Film Merkezi Eklentiler",
   "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5asyOWYkiWXZNeUMmYocbH2+VxPU+BkA/Yk22PhuRpWMo/h1nw/LfWL7ZrPcxo8loJ2VPwbeo05KAtE1H1LUieNRHgMMBMwJaeuV2JvyS8+JNMqrGDhkywDMNNZT4H32uOpQlfZmkNf+tE5EKfFKBNuj5dwlPN0E5/y1B0230WlcIb6JsE40ZmZqzfSuGtprwrNSc0Mx4MQhD56NBmQZUyfrUCYuh27x0ozzUjNLx3JJKpXeS2xWuZv69gFjO+R/Pkl1su0B/cgF2vPqMPKqMWTDUU0SHkUk320Xdv7YbMbAyKkuOYPAi7wZzCVZggU6NBr9nMwhcjWZeUWyFyy/2wIDAQAB",
-  "revision": 150,
+  "revision": 157,
   "plugins": [
     {
       "id": "r002",
       "type": "resolver",
       "name": "R002",
-      "version": "1.0.6",
+      "version": "1.0.7",
       "description": "Public watch-asset resolver for P002",
-      "manifest": "packages/r002/1.0.6/manifest.json",
-      "manifestSha256": "0944ea8594c4174b9c0ed6bc398c887c2d042cc3afd386ce3dbc3f60c52ac517",
+      "manifest": "packages/r002/1.0.7/manifest.json",
+      "manifestSha256": "b0904f56386b1687b340f24da52a0a432e2b7f0f6e267560a8c2923a98cfd966",
       "minAppVersion": "2.0.1",
       "minCoreVersion": "2.1.15"
     },
@@ -141,10 +141,10 @@
       "id": "p012",
       "type": "site",
       "name": "P012",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Series catalog, search and actual ordered episodes",
-      "manifest": "packages/p012/1.0.0/manifest.json",
-      "manifestSha256": "68edd2e8aa42f22312bebeecdcac9f5326a029dc4d3d370cf32f7b67021c4fe7",
+      "manifest": "packages/p012/1.0.1/manifest.json",
+      "manifestSha256": "0e0aaf9ae731a6f99ca6e0b9ad4e0ba1d612836abb13eb755fb268ff17416b4a",
       "minAppVersion": "2.0.1",
       "minCoreVersion": "2.1.8"
     },
@@ -185,10 +185,10 @@
       "id": "r007",
       "type": "resolver",
       "name": "R007",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "description": "Active player metadata, HLS, audio and subtitle adapter",
-      "manifest": "packages/r007/1.0.5/manifest.json",
-      "manifestSha256": "d3496808cb25f215f4e64b11e1390f9bb0531399090ce33471cca7451659975b",
+      "manifest": "packages/r007/1.0.6/manifest.json",
+      "manifestSha256": "816ea70313457c59a810dec42c15037d4ed3f4999f23a011cd645ff56fd53486",
       "minAppVersion": "2.0.1",
       "minCoreVersion": "2.1.15"
     },
@@ -600,6 +600,39 @@
       "manifestSha256": "78cd8cf9f0c2469a403c9d8cb36303d0a6138444850783d29004aa0e3de60bfa",
       "minAppVersion": "2.0.1",
       "minCoreVersion": "2.1.15"
+    },
+    {
+      "id": "r002",
+      "type": "resolver",
+      "name": "R002",
+      "version": "1.0.6",
+      "description": "Public watch-asset resolver for P002",
+      "manifest": "packages/r002/1.0.6/manifest.json",
+      "manifestSha256": "0944ea8594c4174b9c0ed6bc398c887c2d042cc3afd386ce3dbc3f60c52ac517",
+      "minAppVersion": "2.0.1",
+      "minCoreVersion": "2.1.15"
+    },
+    {
+      "id": "r007",
+      "type": "resolver",
+      "name": "R007",
+      "version": "1.0.5",
+      "description": "Active player metadata, HLS, audio and subtitle adapter",
+      "manifest": "packages/r007/1.0.5/manifest.json",
+      "manifestSha256": "d3496808cb25f215f4e64b11e1390f9bb0531399090ce33471cca7451659975b",
+      "minAppVersion": "2.0.1",
+      "minCoreVersion": "2.1.15"
+    },
+    {
+      "id": "p012",
+      "type": "site",
+      "name": "P012",
+      "version": "1.0.0",
+      "description": "Series catalog, search and actual ordered episodes",
+      "manifest": "packages/p012/1.0.0/manifest.json",
+      "manifestSha256": "68edd2e8aa42f22312bebeecdcac9f5326a029dc4d3d370cf32f7b67021c4fe7",
+      "minAppVersion": "2.0.1",
+      "minCoreVersion": "2.1.8"
     }
   ]
 }

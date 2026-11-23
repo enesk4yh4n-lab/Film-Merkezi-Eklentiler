@@ -3,7 +3,7 @@
   "name": "R002",
   "description": "Public watch-asset resolver for P002",
   "type": "resolver",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "minAppVersion": "2.0.0",
   "minCoreVersion": "2.1.15",
   "dependencies": [],
@@ -19,6 +19,7 @@
     "https://puhutv.com",
     "https://dygvideo.dygdigital.com",
     "@cdn/puhu-p3",
+    "@cdn/puhu-4k",
     "@cdn/rtuk",
     "https://img-puhutv.mncdn.com"
   ]

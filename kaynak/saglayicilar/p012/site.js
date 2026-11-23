@@ -4,7 +4,13 @@
  'use strict';var U=root.CatalogUtils,c={id:'p012',name:'P012',base:'https://www.trdiziizle.tv',series:/^\/diziler\/[^/]+\/?$/,episode:/^\/[^/]+-\d+-bolum[^/]*\/?$/,searchPath:'/?s=',cards:'.listepisodes',searchCards:'.listepisodes',searchRoot:'#content',title:'[id="dizi-ismi"]',image:'a > img',boundEpisodeContainer:true,episodeLinks:'.custom-scrollbar .bolumust a[href]',episodeFeed:true,parentLinks:'.breadcrumb a, .breadcrumbs a, a[rel="category tag"]'},a=root.SitePayload.adapter(c),P=a.parser;
  function title(value){return U.clean(value).replace(/\s*\|\s*Trdiziizle\s*$/i,'').replace(/(?:\s+(?:son\s+b[oö]l[uü]m|izle|hd))+$/i,'');}
  function key(value){return title(value).replace(/İ/g,'i').replace(/I/g,'ı').toLowerCase();}
- function list(body,page){return U.withEnvelope(body,function(){var result=P.list(body,page),doc=U.envelope(body).doc,names={},labels={},seen={},cards=[];
+ function list(body,page){return U.withEnvelope(body,function(){var doc=U.envelope(body).doc,search=new root.URL(page).search,empty,heading;
+  if(/^\?s=/.test(search)){
+   empty=doc.querySelector(c.searchRoot+' .incontent');
+   heading=empty&&empty.querySelector('h1,h2,h3,h4');
+   if(heading&&/^üzgünüz, kriterlerinize uygun bölüm yok\.?$/i.test(U.clean(heading.textContent))&&!doc.querySelector(c.searchRoot+' '+c.searchCards))return {cards:[],next:null};
+  }
+  var result=P.list(body,page),names={},labels={},seen={},cards=[];
   Array.prototype.forEach.call(doc.querySelectorAll('a[href*="/diziler/"]'),function(n){var url=P.safe(n.getAttribute('href'),page),k='$'+key(n.getAttribute('title')||n.textContent);if(!url||!c.series.test(new root.URL(url).pathname)||k==='$')return;if(!names[k])names[k]={url:url};else if(names[k].url!==url)names[k].ambiguous=true;});
   Array.prototype.forEach.call(doc.querySelectorAll(c.cards),function(n){var link=n.querySelector('a[href]'),url=P.safe(link&&link.getAttribute('href'),page),label=n.querySelector('[id="dizi-ismi"]');if(url&&label)labels['$'+url]=title(label.textContent);});
   result.cards.forEach(function(row){var label=labels['$'+row.pageUrl],entry=label&&names['$'+key(label)],id=row.contentId;if(row.type==='episode'&&label){var actual=row.pageUrl,stem=/^\/(.+?)-(?:\d+-sezon-)?\d+-bolum(?:-|\/|$)/.exec(new root.URL(actual).pathname);if(entry&&!entry.ambiguous){row.pageUrl=entry.url;row.seriesPageUrl=entry.url;id=P.id(entry.url);}else if(stem)id=c.id+':series-feed:'+stem[1];else label='';if(label){row.type='series';row.title=label;row.rawTitle=label;row.contentId=id;row.aggregateSeries=true;row.latestEpisodePageUrl=actual;}}if(!seen['$'+id]){seen['$'+id]=true;cards.push(row);}});result.cards=cards;

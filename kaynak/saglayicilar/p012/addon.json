@@ -2,7 +2,7 @@
   "id": "p012",
   "name": "P012",
   "type": "site",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minAppVersion": "2.0.1",
   "minCoreVersion": "2.1.8",
   "description": "Series catalog, search and actual ordered episodes",

@@ -1,3 +1,9 @@
+## Eklenti güncellemeleri — 24 Kasım 2026
+
+- **R002 1.0.7:** Bazı bölümlerin yeni yayın sunucusu imzalı izin listesine eklendi.
+- **R007 1.0.6:** Tizen 6.0’da büyük video parçaları aynı oynatma oturumunda yeniden kullanılıyor. Geri sarma için gereksiz yeniden indirme azaltıldı.
+- **P012 1.0.1:** Sağlayıcının geçerli boş arama yanıtı, katalog hatası yerine boş sonuç olarak işleniyor.
+
 ## R007 1.0.4 — 20 Kasım 2026
 
 - Tizen 8.0’da bazı yayınların başladıktan kısa süre sonra takılması giderildi. Uygulama bu yayınlar için oynatma motorunu otomatik seçer.
