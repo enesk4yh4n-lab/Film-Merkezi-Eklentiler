@@ -3,7 +3,7 @@
   "id": "film-merkezi-eklentiler",
   "name": "Film Merkezi Eklentiler",
   "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5asyOWYkiWXZNeUMmYocbH2+VxPU+BkA/Yk22PhuRpWMo/h1nw/LfWL7ZrPcxo8loJ2VPwbeo05KAtE1H1LUieNRHgMMBMwJaeuV2JvyS8+JNMqrGDhkywDMNNZT4H32uOpQlfZmkNf+tE5EKfFKBNuj5dwlPN0E5/y1B0230WlcIb6JsE40ZmZqzfSuGtprwrNSc0Mx4MQhD56NBmQZUyfrUCYuh27x0ozzUjNLx3JJKpXeS2xWuZv69gFjO+R/Pkl1su0B/cgF2vPqMPKqMWTDUU0SHkUk320Xdv7YbMbAyKkuOYPAi7wZzCVZggU6NBr9nMwhcjWZeUWyFyy/2wIDAQAB",
-  "revision": 158,
+  "revision": 159,
   "plugins": [
     {
       "id": "r002",
@@ -246,6 +246,28 @@
       "manifestSha256": "4c9560e538c74495d2f501faaa9a5ef2c0f26f26ba4761e3499c7ac1eedc07db",
       "minAppVersion": "2.0.2",
       "minCoreVersion": "2.1.10"
+    },
+    {
+      "id": "r013",
+      "type": "resolver",
+      "name": "R013",
+      "version": "1.0.3",
+      "description": "Package-scoped active media adapter",
+      "manifest": "packages/r013/1.0.3/manifest.json",
+      "manifestSha256": "2bcc6f5975c95865fcafdf348972ea7c4cc31a0ed45342a4a7e361d4a8a690bc",
+      "minAppVersion": "2.0.2",
+      "minCoreVersion": "2.1.10"
+    },
+    {
+      "id": "p013",
+      "type": "site",
+      "name": "P013",
+      "version": "1.0.1",
+      "description": "Catalog, search, genuine detail and episodes",
+      "manifest": "packages/p013/1.0.1/manifest.json",
+      "manifestSha256": "6fd40bcf4e9c49a19201e240776607c347d6e37f69372fecbac671e08a27b1a1",
+      "minAppVersion": "2.0.1",
+      "minCoreVersion": "2.1.8"
     }
   ],
   "alternatives": [

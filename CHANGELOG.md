@@ -1,3 +1,7 @@
+## P013 1.0.1 / R013 1.0.3 — 25 Kasım 2026
+
+- P013 yeni adresiyle yeniden yayında. Eski içerik bağlantıları aynı kayıt kimliğiyle yeni adrese yönlendiriliyor.
+
 ## 25 Kasım 2026 · Depo revizyonu 158
 
 - P001 ve P010 ile çözümleyicileri R001 ve R010 yayından kaldırıldı. Bu değişiklik cihazda kurulu paketleri otomatik olarak kaldırmaz.

@@ -4,7 +4,7 @@ Kullanıcının seçerek kurduğu site ve çözümleyici paketleri. Depo eklemek
 
 ## Son güncelleme
 
-**25 Kasım 2026** · P001 ve P010 yayından kaldırıldı. [Ayrıntılı sürüm notları](CHANGELOG.md).
+**25 Kasım 2026** · P013 yeni adresiyle yeniden yayımlandı. [Ayrıntılı sürüm notları](CHANGELOG.md).
 
 | Site | Sürüm | Çözümleyici | Sürüm |
 |---|---|---|---|
@@ -18,6 +18,7 @@ Kullanıcının seçerek kurduğu site ve çözümleyici paketleri. Depo eklemek
 | P009 | 1.0.0 | R009 | 1.0.1 |
 | P011 | 1.0.1 | R011 | 1.0.2 |
 | P012 | 1.0.1 | R012 | 1.0.2 |
+| P013 | 1.0.1 | R013 | 1.0.3 |
 | P014 | 1.0.0 | R014 | 1.0.2 |
 
 Etkin paketlerin toplam ağ izin bütçesi mevcut WGT kapasitesiyle sınırlıdır; bütün paketleri aynı anda kurmak mümkün olmayabilir. İstediğiniz siteleri seçerek kurun.
