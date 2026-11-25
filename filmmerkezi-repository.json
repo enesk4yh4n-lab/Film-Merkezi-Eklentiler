@@ -3,7 +3,7 @@
   "id": "film-merkezi-eklentiler",
   "name": "Film Merkezi Eklentiler",
   "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5asyOWYkiWXZNeUMmYocbH2+VxPU+BkA/Yk22PhuRpWMo/h1nw/LfWL7ZrPcxo8loJ2VPwbeo05KAtE1H1LUieNRHgMMBMwJaeuV2JvyS8+JNMqrGDhkywDMNNZT4H32uOpQlfZmkNf+tE5EKfFKBNuj5dwlPN0E5/y1B0230WlcIb6JsE40ZmZqzfSuGtprwrNSc0Mx4MQhD56NBmQZUyfrUCYuh27x0ozzUjNLx3JJKpXeS2xWuZv69gFjO+R/Pkl1su0B/cgF2vPqMPKqMWTDUU0SHkUk320Xdv7YbMbAyKkuOYPAi7wZzCVZggU6NBr9nMwhcjWZeUWyFyy/2wIDAQAB",
-  "revision": 157,
+  "revision": 158,
   "plugins": [
     {
       "id": "r002",
@@ -92,17 +92,6 @@
       "manifestSha256": "869500ac8a4917541393d7f0f250373400c5d277ba786236bdba673f7f8d76e1",
       "minAppVersion": "2.0.1",
       "minCoreVersion": "2.1.8"
-    },
-    {
-      "id": "p001",
-      "type": "site",
-      "name": "P001",
-      "version": "2.0.8",
-      "description": "Catalog categories, quick filters, addon-owned suggestions and Tizen 7 episode playback",
-      "manifest": "packages/p001/2.0.8/manifest.json",
-      "manifestSha256": "5b5c5340539c381b1eefe386c50fb633e8008d48123df09be252009e6ba2fba6",
-      "minAppVersion": "2.0.2",
-      "minCoreVersion": "2.1.10"
     },
     {
       "id": "p008",
@@ -215,28 +204,6 @@
       "minCoreVersion": "2.1.8"
     },
     {
-      "id": "r010",
-      "type": "resolver",
-      "name": "R010",
-      "version": "1.0.1",
-      "description": "Package-owned media and subtitle adapter",
-      "manifest": "packages/r010/1.0.1/manifest.json",
-      "manifestSha256": "f50c26e5c8c72f24199d78aab957a8899319d9744305a1e07b20d6cb9cddf8ac",
-      "minAppVersion": "2.0.2",
-      "minCoreVersion": "2.1.10"
-    },
-    {
-      "id": "p010",
-      "type": "site",
-      "name": "P010",
-      "version": "1.0.1",
-      "description": "Film catalog adapter",
-      "manifest": "packages/p010/1.0.1/manifest.json",
-      "manifestSha256": "fd616a0a90e3dacafeb02e9f0edc07cd32c9acdb2dfc1a9afee9919e686f084c",
-      "minAppVersion": "2.0.2",
-      "minCoreVersion": "2.1.10"
-    },
-    {
       "id": "p011",
       "type": "site",
       "name": "P011",
@@ -244,17 +211,6 @@
       "description": "Film catalog adapter",
       "manifest": "packages/p011/1.0.1/manifest.json",
       "manifestSha256": "c583b7302ac997f68648065ff5570382b011308dcf509aee049d57741aabcf32",
-      "minAppVersion": "2.0.2",
-      "minCoreVersion": "2.1.10"
-    },
-    {
-      "id": "r001",
-      "type": "resolver",
-      "name": "R001",
-      "version": "1.0.5",
-      "description": "Media source resolver for P001",
-      "manifest": "packages/r001/1.0.5/manifest.json",
-      "manifestSha256": "588a76b09bd1a909837586f367bfdf6ab9e534f49c2f6cfb07a2942cca5070ee",
       "minAppVersion": "2.0.2",
       "minCoreVersion": "2.1.10"
     },
@@ -293,17 +249,6 @@
     }
   ],
   "alternatives": [
-    {
-      "id": "r001",
-      "type": "resolver",
-      "name": "R001",
-      "version": "1.0.2",
-      "description": "Media source resolver for P001",
-      "manifest": "packages/r001/1.0.2/manifest.json",
-      "manifestSha256": "8ff2b4bcfd6016183c67f938828d011a37435c4f66f7c98b8daf785220db8636",
-      "minAppVersion": "2.0.0",
-      "minCoreVersion": "2.0.0"
-    },
     {
       "id": "r003",
       "type": "resolver",
@@ -356,28 +301,6 @@
       "description": "Active player and HLS media adapter",
       "manifest": "packages/r008/1.0.0/manifest.json",
       "manifestSha256": "e498bf86a6a2b401c29e426eac75f6d0b4b648d0e83083c06aa14cdd77fd34e1",
-      "minAppVersion": "2.0.1",
-      "minCoreVersion": "2.1.8"
-    },
-    {
-      "id": "r010",
-      "type": "resolver",
-      "name": "R010",
-      "version": "1.0.0",
-      "description": "Package-owned media and subtitle adapter",
-      "manifest": "packages/r010/1.0.0/manifest.json",
-      "manifestSha256": "9ab3463a691512a7618d7be8365285e6ff9e1db7cde722513b40f2561bc1e0a7",
-      "minAppVersion": "2.0.1",
-      "minCoreVersion": "2.1.8"
-    },
-    {
-      "id": "p010",
-      "type": "site",
-      "name": "P010",
-      "version": "1.0.0",
-      "description": "Film catalog adapter",
-      "manifest": "packages/p010/1.0.0/manifest.json",
-      "manifestSha256": "5726f78869ec6d00587be73cb9dba2d149723ed7019f3fb8fc844962ef5bc163",
       "minAppVersion": "2.0.1",
       "minCoreVersion": "2.1.8"
     },
@@ -534,28 +457,6 @@
       "manifestSha256": "7556d25b664b8760a0833094620922b15cb764acaf2d36768445fe1564836f72",
       "minAppVersion": "2.0.1",
       "minCoreVersion": "2.1.10"
-    },
-    {
-      "id": "r001",
-      "type": "resolver",
-      "name": "R001",
-      "version": "1.0.4",
-      "description": "Media source resolver for P001",
-      "manifest": "packages/r001/1.0.4/manifest.json",
-      "manifestSha256": "b8c25fa80343aae239c3350b0c33459d934944d7b76b3e76856af99b8576ceff",
-      "minAppVersion": "2.0.2",
-      "minCoreVersion": "2.1.10"
-    },
-    {
-      "id": "p001",
-      "type": "site",
-      "name": "P001",
-      "version": "2.0.7",
-      "description": "Catalog categories, quick filters and addon-owned search suggestions; requires R001 and core 2.1.8",
-      "manifest": "packages/p001/2.0.7/manifest.json",
-      "manifestSha256": "bc15728bd611ce341406476fa04858de0549456a6382d4c77e8023275556238a",
-      "minAppVersion": "2.0.1",
-      "minCoreVersion": "2.1.8"
     },
     {
       "id": "r008",

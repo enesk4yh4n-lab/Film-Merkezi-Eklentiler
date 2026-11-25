@@ -1,3 +1,7 @@
+## 25 Kasım 2026 · Depo revizyonu 158
+
+- P001 ve P010 ile çözümleyicileri R001 ve R010 yayından kaldırıldı. Bu değişiklik cihazda kurulu paketleri otomatik olarak kaldırmaz.
+
 ## Eklenti güncellemeleri — 24 Kasım 2026
 
 - **R002 1.0.7:** Bazı bölümlerin yeni yayın sunucusu imzalı izin listesine eklendi.
