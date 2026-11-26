@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 2,
+  "apiVersion": 2,
+  "type": "resolver",
+  "dependencies": [],
+  "minCoreVersion": "2.1.10",
+  "id": "r015",
+  "name": "R015",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.2",
+  "modules": [
+    "okru-loader.js",
+    "resolver.js"
+  ],
+  "networkPolicy": {
+    "file": "network-policy.txt",
+    "signature": "network-policy.signature.txt"
+  },
+  "files": [
+    {
+      "path": "okru-loader.js",
+      "size": 3705,
+      "sha256": "b34b4a85eb765908087d15e158f45b059399c128e342badabffa566ef0542c96"
+    },
+    {
+      "path": "resolver.js",
+      "size": 14260,
+      "sha256": "ecd6e12251f848da7b29f5ac9afb70c3ee8f92d5968cf039021b72dc6d76df27"
+    },
+    {
+      "path": "LICENSE.txt",
+      "size": 1145,
+      "sha256": "40f60e3521ed9bd2a2a49a97431cf87dc607db9b186728d24d9dcea11000eda8"
+    },
+    {
+      "path": "network-policy.txt",
+      "size": 300,
+      "sha256": "ed0568dae91115c10456a78437fb9197a5be2a9cc4ba8cd1a12aaee514e3bbb6"
+    },
+    {
+      "path": "network-policy.signature.txt",
+      "size": 345,
+      "sha256": "6aff3da4c54351ff8a705a565b8c80088f38ffd52a8ecfbfb31779301b78b34b"
+    }
+  ]
+}

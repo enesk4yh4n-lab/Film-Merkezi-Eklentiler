@@ -1,0 +1,34 @@
+{
+  "id": "r015",
+  "name": "R015",
+  "type": "resolver",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.2",
+  "minCoreVersion": "2.1.10",
+  "description": "Film source menu, embed and media adapters",
+  "dependencies": [],
+  "modules": [
+    "okru-loader.js",
+    "resolver.js"
+  ],
+  "files": [
+    "okru-loader.js",
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "cdnRegistry": "../cdn-izinleri.json",
+  "origins": [
+    "https://www.filmifullizle.news",
+    "https://ok.ru",
+    "@cdn/ok-media",
+    "https://vidmoly.me",
+    "https://vidmoly.biz",
+    "https://vidmoly.org",
+    "https://vidmoly.to",
+    "https://vidmoly.net",
+    "https://srt.vidmoly.me",
+    "@cdn/vidmoly-media",
+    "https://my.mail.ru",
+    "https://*.my.mail.ru"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "p015",
+  "name": "P015",
+  "type": "site",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.8",
+  "description": "Movie catalog, search, filters and details",
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r015",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.filmifullizle.news"
+  ],
+  "site": {
+    "id": "p015",
+    "name": "P015",
+    "base": "https://www.filmifullizle.news",
+    "prefix": "p015:"
+  }
+}

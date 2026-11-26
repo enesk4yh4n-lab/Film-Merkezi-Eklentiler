@@ -1,0 +1,34 @@
+{
+  "id": "p016",
+  "name": "P016",
+  "type": "site",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.8",
+  "description": "Movie catalog, search, filters and details",
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r016",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.nadirfilm.com",
+    "https://image.tmdb.org"
+  ],
+  "site": {
+    "id": "p016",
+    "name": "P016",
+    "base": "https://www.nadirfilm.com",
+    "prefix": "p016:"
+  }
+}

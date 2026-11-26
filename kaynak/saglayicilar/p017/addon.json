@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.15",
+  "id": "p017",
+  "name": "P017",
+  "type": "site",
+  "description": "Official film and series catalog with seasons and episodes",
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r017",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.avsarfilm.com.tr",
+    "https://i.ytimg.com"
+  ],
+  "site": {
+    "id": "p017",
+    "name": "P017",
+    "base": "https://www.avsarfilm.com.tr",
+    "prefix": "p017:"
+  }
+}

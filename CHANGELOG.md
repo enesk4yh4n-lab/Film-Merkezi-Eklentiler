@@ -1,5 +1,11 @@
 ## Eklenti güncellemeleri · 26 Kasım 2026
 
+- **P015 / R015 1.0.0:** Film kataloğu, arama ve Moly, OK.ru, Mail.ru kaynakları.
+- **P016 / R016 1.0.0:** Film kataloğu, arama ve Tizen 3’te doğrulanan OK.ru, Vidmoly ve Dzen kaynakları.
+- **P017 / R017 1.0.0:** Film ve dizi kataloğu, sezon ve bölüm listeleri. YouTube üzerinden bir film ve bir bölüm Tizen 3’te sınandı.
+
+## Eklenti güncellemeleri · 26 Kasım 2026
+
 - **P013 1.0.2:** Eserin kategori bilgisi, çekirdeğin yetişkin içerik filtresine aktarılır. Filtre için çekirdek 2.1.18 gerekir.
 - **P019 / R019 1.0.0:** Film ve dizi kataloğu, arama ve sezon/bölüm listeleri eklendi. VIP ve Moly kaynakları Tizen 3 emülatöründe denendi. Liste ilk sayfayı gösterir.
 

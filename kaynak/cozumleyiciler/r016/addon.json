@@ -1,0 +1,32 @@
+{
+  "id": "r016",
+  "name": "R016",
+  "type": "resolver",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.2",
+  "minCoreVersion": "2.1.10",
+  "description": "Film source menu, embed and media adapters",
+  "dependencies": [],
+  "modules": [
+    "okru-loader.js",
+    "resolver.js"
+  ],
+  "files": [
+    "okru-loader.js",
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "cdnRegistry": "../cdn-izinleri.json",
+  "origins": [
+    "https://www.nadirfilm.com",
+    "https://player.nadirfilm.com",
+    "https://ok.ru",
+    "@cdn/ok-media",
+    "https://dzen.ru",
+    "https://vidmoly.biz",
+    "https://vidmoly.me",
+    "https://srt.vidmoly.me",
+    "@cdn/vidmoly-media",
+    "https://*.vmnow.online"
+  ]
+}

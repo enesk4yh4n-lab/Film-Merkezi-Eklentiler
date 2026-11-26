@@ -3,7 +3,7 @@
   "id": "film-merkezi-eklentiler",
   "name": "Film Merkezi Eklentiler",
   "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5asyOWYkiWXZNeUMmYocbH2+VxPU+BkA/Yk22PhuRpWMo/h1nw/LfWL7ZrPcxo8loJ2VPwbeo05KAtE1H1LUieNRHgMMBMwJaeuV2JvyS8+JNMqrGDhkywDMNNZT4H32uOpQlfZmkNf+tE5EKfFKBNuj5dwlPN0E5/y1B0230WlcIb6JsE40ZmZqzfSuGtprwrNSc0Mx4MQhD56NBmQZUyfrUCYuh27x0ozzUjNLx3JJKpXeS2xWuZv69gFjO+R/Pkl1su0B/cgF2vPqMPKqMWTDUU0SHkUk320Xdv7YbMbAyKkuOYPAi7wZzCVZggU6NBr9nMwhcjWZeUWyFyy/2wIDAQAB",
-  "revision": 160,
+  "revision": 161,
   "plugins": [
     {
       "id": "r002",
@@ -290,6 +290,72 @@
       "manifestSha256": "bc3b6600faa887b85a077ec82f0e28eeb61d3fbb6e6efae101b7bd8538200e01",
       "minAppVersion": "2.0.3",
       "minCoreVersion": "2.1.10"
+    },
+    {
+      "id": "r015",
+      "type": "resolver",
+      "name": "R015",
+      "version": "1.0.0",
+      "description": "Film source menu, embed and media adapters",
+      "manifest": "packages/r015/1.0.0/manifest.json",
+      "manifestSha256": "3185f6aeced91bf1c627de8db3b1ea608dc8f712bf7bc2c7f7c552454374d38b",
+      "minAppVersion": "2.0.2",
+      "minCoreVersion": "2.1.10"
+    },
+    {
+      "id": "p015",
+      "type": "site",
+      "name": "P015",
+      "version": "1.0.0",
+      "description": "Movie catalog, search, filters and details",
+      "manifest": "packages/p015/1.0.0/manifest.json",
+      "manifestSha256": "402733950d7fa455e648abdbe6141b2d1624581ebc742e8b3f7ddeb31f970896",
+      "minAppVersion": "2.0.1",
+      "minCoreVersion": "2.1.8"
+    },
+    {
+      "id": "r016",
+      "type": "resolver",
+      "name": "R016",
+      "version": "1.0.0",
+      "description": "Film source menu, embed and media adapters",
+      "manifest": "packages/r016/1.0.0/manifest.json",
+      "manifestSha256": "b5c0962114cbcfd8084a53270be1b9115a107280fc357d1f8ae47502d3a8d9bb",
+      "minAppVersion": "2.0.2",
+      "minCoreVersion": "2.1.10"
+    },
+    {
+      "id": "p016",
+      "type": "site",
+      "name": "P016",
+      "version": "1.0.0",
+      "description": "Movie catalog, search, filters and details",
+      "manifest": "packages/p016/1.0.0/manifest.json",
+      "manifestSha256": "9ef983b09f4818b89f5491fa4b6e0aaf9bd769165214d0f9e58ed08b0587f4bc",
+      "minAppVersion": "2.0.1",
+      "minCoreVersion": "2.1.8"
+    },
+    {
+      "id": "r017",
+      "type": "resolver",
+      "name": "R017",
+      "version": "1.0.0",
+      "description": "Official film and episode player",
+      "manifest": "packages/r017/1.0.0/manifest.json",
+      "manifestSha256": "435743709ec81eb169279de37fba7df0fcfab1e78acf17bfac95744d346ce6d8",
+      "minAppVersion": "2.0.1",
+      "minCoreVersion": "2.1.15"
+    },
+    {
+      "id": "p017",
+      "type": "site",
+      "name": "P017",
+      "version": "1.0.0",
+      "description": "Official film and series catalog with seasons and episodes",
+      "manifest": "packages/p017/1.0.0/manifest.json",
+      "manifestSha256": "a02dcd5d9d9718f8c44688741d586fdec89661e1e0b47f57c5d840a7286997cb",
+      "minAppVersion": "2.0.1",
+      "minCoreVersion": "2.1.15"
     }
   ],
   "alternatives": [

@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.15",
+  "id": "r017",
+  "name": "R017",
+  "type": "resolver",
+  "description": "Official film and episode player",
+  "modules": [
+    "resolver.js"
+  ],
+  "files": [
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.avsarfilm.com.tr",
+    "https://www.youtube.com",
+    "@cdn/google-video"
+  ],
+  "cdnRegistry": "../cdn-izinleri.json"
+}

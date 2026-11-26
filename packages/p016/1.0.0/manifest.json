@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "apiVersion": 2,
+  "type": "site",
+  "dependencies": [
+    {
+      "publisher": "247fdf077b7d36c0d2ab3a909024308abda39adf9f5b34f1b66b5fe55cdf6ac4",
+      "id": "r016",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "minCoreVersion": "2.1.8",
+  "id": "p016",
+  "name": "P016",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "site": {
+    "id": "p016",
+    "name": "P016",
+    "base": "https://www.nadirfilm.com",
+    "prefix": "p016:"
+  },
+  "modules": [
+    "site.js"
+  ],
+  "networkPolicy": {
+    "file": "network-policy.txt",
+    "signature": "network-policy.signature.txt"
+  },
+  "files": [
+    {
+      "path": "site.js",
+      "size": 3410,
+      "sha256": "d76ab3db58f975fd8cb20df4f756579632f729c05439275e3742ad90d1c94c9f"
+    },
+    {
+      "path": "LICENSE.txt",
+      "size": 1145,
+      "sha256": "40f60e3521ed9bd2a2a49a97431cf87dc607db9b186728d24d9dcea11000eda8"
+    },
+    {
+      "path": "network-policy.txt",
+      "size": 72,
+      "sha256": "0341639b8360cff3c516a3d56a70d4e623340bd85866425fce2a4b5feb3aa704"
+    },
+    {
+      "path": "network-policy.signature.txt",
+      "size": 345,
+      "sha256": "00458713b383e23e4e4247c82a27da86bbf24f315ae00a262ce4866e8a080635"
+    }
+  ]
+}
