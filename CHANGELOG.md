@@ -1,3 +1,8 @@
+## Eklenti güncellemeleri · 26 Kasım 2026
+
+- **P013 1.0.2:** Eserin kategori bilgisi, çekirdeğin yetişkin içerik filtresine aktarılır. Filtre için çekirdek 2.1.18 gerekir.
+- **P019 / R019 1.0.0:** Film ve dizi kataloğu, arama ve sezon/bölüm listeleri eklendi. VIP ve Moly kaynakları Tizen 3 emülatöründe denendi. Liste ilk sayfayı gösterir.
+
 ## P013 1.0.1 / R013 1.0.3 — 25 Kasım 2026
 
 - P013 yeni adresiyle yeniden yayında. Eski içerik bağlantıları aynı kayıt kimliğiyle yeni adrese yönlendiriliyor.

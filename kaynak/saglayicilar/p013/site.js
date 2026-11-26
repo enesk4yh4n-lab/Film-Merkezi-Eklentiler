@@ -1,4 +1,4 @@
-(function(shared){'use strict';var context=shared.FilmPlugins.context(),window={URL:shared.URL,CatalogUtils:shared.CatalogUtils,CatalogClient:shared.CatalogClient,CatalogSearchCursor:shared.CatalogSearchCursor,ContentIdentity:shared.ContentIdentity,PlayerCore:shared.PlayerCore,InertPlayerData:shared.InertPlayerData,SourceProgress:shared.SourceProgress,PackageMediaLoader:shared.PackageMediaLoader,atob:function(s){return shared.atob(s);}};
+(function(shared){'use strict';var context=shared.FilmPlugins.context(),window={URL:shared.URL,CatalogUtils:shared.CatalogUtils,CatalogClient:shared.CatalogClient,CatalogSearchCursor:shared.CatalogSearchCursor,ContentIdentity:shared.ContentIdentity,ContentSafety:shared.ContentSafety,PlayerCore:shared.PlayerCore,InertPlayerData:shared.InertPlayerData,SourceProgress:shared.SourceProgress,PackageMediaLoader:shared.PackageMediaLoader,atob:function(s){return shared.atob(s);}};
 window.PackageSiteConfig={"id":"p013","platformText":false,"base":"https://filmizlebabam.click","movie":"^/[a-z0-9-]+/?$","series":"^/dizi/[a-z0-9-]+/?$","episode":"^/bolum/[a-z0-9-]+/?$","cards":"a.group.block","rating":".badge-rating","language":".badge-language","movieList":"/film-izle/","seriesList":"/yabanci-dizi-izle/","animation":["/film-izle/?tur=animasyon","/animes"],"search":"/ara?q=","sort":"sirala","genre":"tur","newest":"yeni"};["movie","series","episode"].forEach(function(k){if(window.PackageSiteConfig[k])window.PackageSiteConfig[k]=new RegExp(window.PackageSiteConfig[k]);});
 /* Shared build input, privately scoped to one site package. */
 (function(root){
@@ -10,18 +10,75 @@ window.PackageSiteConfig={"id":"p013","platformText":false,"base":"https://filmi
  function text(n,sel){var x=sel?n.querySelector(sel):n;return clean(x&&x.textContent);}
  function types(query){return !query||!query.type||query.type==='all'?null:query.type;}
  function allowed(url){var u=safe(url);if(!u)return '';var p=new root.URL(u);if(p.search&& !/^(?:\?(?:page|q|sezon|tur|sirala|sort|category|year|imdb|platform|ulke|yil|type)=[^#]*)$/.test(p.search))return '';return u;}
- function cards(body,page){return U.withEnvelope(body,function(){var d=U.envelope(body).doc,scope=d.querySelector('main');if(!scope)throw Error(c.id+': katalog alanı bulunamadı.');var out=[],seen={};Array.prototype.forEach.call(scope.querySelectorAll(c.cards),function(n){var a=n.tagName==='A'?n:n.querySelector('a[href]'),url=safe(a&&a.getAttribute('href'),page),type=kind(url),img=n.querySelector('img'),title=text(n,'h3')||text(n,'h2')||text(n,'.line-clamp-2');if(!url||!type||type==='episode'||!img||!title||seen[id(url)])return;var poster=U.url(img.getAttribute('data-catalog-src')||img.getAttribute('data-src')||img.getAttribute('src'),page),year=/\b((?:19|20)\d{2})\b/.exec(c.id==='p013'?text(n,'p'):text(n,'.overlay')||text(n)),rating=Number(text(n,c.rating));var card={contentId:id(url),providerId:c.id,siteId:c.id,pageUrl:url,type:type,title:title,rawTitle:title,poster:poster,year:year?Number(year[1]):null,imdb:rating>0&&rating<=10?rating:null,language:text(n,c.language)};if(c.id==='p014'){card.genres=[text(n,'.text-accent.uppercase.italic')].filter(Boolean);}if(/(?:badge-anime|badge-animation)/.test(n.innerHTML)||card.genres&&card.genres.some(function(g){return /^animasyon$/i.test(g);}))card.catalogSection='animation';seen[card.contentId]=true;out.push(card);});return out;});}
+ function safetyLabels(scope,page,detail){
+  var result=[];
+  Array.prototype.forEach.call(scope.querySelectorAll('[itemprop="genre"], a[rel~="tag"], a.rounded-badge[href], [data-content-rating], [data-genre]'),function(n){
+   var area=n.closest&&n.closest('aside,nav,footer,article,.recommendations,.related');
+   if(area&&area!==scope&&scope.contains(area))return;
+   var href=n.getAttribute('href'),url=href&&safe(href,page);
+   if(href&&(!url||!/^\/(?:tur|kategori|etiket)\//.test(new root.URL(url).pathname)))return;
+   if(!detail&&n.classList.contains('rounded-badge')&&!href)return;
+   var value=clean(n.getAttribute('data-genre')||n.textContent);
+   if(value&&value.length<=70)result.push(value);
+  });
+  return result;
+ }
+ function tagSafety(card) {
+  if (classified[card.contentId]) card.contentSafety={adult:true};
+  else if (root.ContentSafety) card.contentSafety=root.ContentSafety.mark(card);
+ }
+ function cards(body,page){return U.withEnvelope(body,function(){var d=U.envelope(body).doc,scope=d.querySelector('main');if(!scope)throw Error(c.id+': katalog alanı bulunamadı.');var out=[],seen={};Array.prototype.forEach.call(scope.querySelectorAll(c.cards),function(n){var a=n.tagName==='A'?n:n.querySelector('a[href]'),url=safe(a&&a.getAttribute('href'),page),type=kind(url),img=n.querySelector('img'),title=text(n,'h3')||text(n,'h2')||text(n,'.line-clamp-2');if(!url||!type||type==='episode'||!img||!title||seen[id(url)])return;var poster=U.url(img.getAttribute('data-catalog-src')||img.getAttribute('data-src')||img.getAttribute('src'),page),year=/\b((?:19|20)\d{2})\b/.exec(c.id==='p013'?text(n,'p'):text(n,'.overlay')||text(n)),rating=Number(text(n,c.rating));var card={contentId:id(url),providerId:c.id,siteId:c.id,pageUrl:url,type:type,title:title,rawTitle:title,poster:poster,year:year?Number(year[1]):null,imdb:rating>0&&rating<=10?rating:null,language:text(n,c.language)};card.tags=safetyLabels(n,page,false);tagSafety(card);if(c.id==='p014'){card.genres=[text(n,'.text-accent.uppercase.italic')].filter(Boolean);}if(/(?:badge-anime|badge-animation)/.test(n.innerHTML)||card.genres&&card.genres.some(function(g){return /^animasyon$/i.test(g);}))card.catalogSection='animation';seen[card.contentId]=true;out.push(card);});return out;});}
  function list(body,page){return U.withEnvelope(body,function(){var d=U.envelope(body).doc,values=cards(body,page),next=null;Array.prototype.some.call(d.querySelectorAll('a[rel~="next"],link[rel="next"]'),function(n){var u=allowed(U.url(n.getAttribute('href'),page));if(u&&u!==page&&new root.URL(u).pathname===new root.URL(page).pathname){next={url:u,from:page};return true;}return false;});var main=d.querySelector('main');if(!main)throw Error(c.id+': katalog okunamadı.');if(!values.length&&!/sonuç[^.]{0,100}(?:bulunamad|yok)|bulunamadı|no results/i.test(text(main)))throw Error(c.id+': geçerli katalog kaydı bulunamadı.');return {cards:values,next:next};});}
  function schema(body,page){var env=U.envelope(body),out=[];function walk(v,depth){if(!v||typeof v!=='object'||depth>8)return;if(/^(Movie|TVSeries|TVEpisode)$/.test(v['@type'])){var url=safe(v.url||v['@id'],page);if(!url||new root.URL(url).pathname===new root.URL(page).pathname)out.push(v);}if(Array.isArray(v))v.forEach(function(s){walk(s,depth+1);});else if(v['@graph'])walk(v['@graph'],depth+1);}env.schema.forEach(function(v){walk(v,0);});return out[0]||{};}
- function detail(body,card){return U.withEnvelope(body,function(){var page=safe(card.pageUrl),d=U.envelope(body).doc,s=schema(body,page),main=d.querySelector('main'),type=kind(page),title=clean(s.name)||text(main||d,'h1');if(!page||!main||!type||!title)throw Error(c.id+': içerik detayı bulunamadı.');var poster=typeof s.image==='string'?s.image:s.image&&s.image.url,desc=d.querySelector('meta[property="og:description"]'),year=/\b((?:19|20)\d{2})\b/.exec(String(s.datePublished||s.startDate||s.releaseDate||''));var r={contentId:id(page),providerId:c.id,siteId:c.id,pageUrl:page,type:type,title:title,rawTitle:title,originalTitle:clean(s.alternateName),poster:U.url(poster,page)||card.poster||'',description:clean(s.description)||clean(desc&&desc.content),year:year?Number(year[1]):card.year||null,imdb:Number(s.aggregateRating&&s.aggregateRating.ratingValue)||null,genres:Array.isArray(s.genre)?s.genre:typeof s.genre==='string'?s.genre.split(','):[],cast:[],seasons:[],episodes:[],sources:[],subtitles:[],language:card.language||''};(Array.isArray(s.actor)?s.actor:[]).slice(0,80).forEach(function(a){if(a&&a.name)r.cast.push({name:clean(a.name)});});if(r.genres.some(function(g){return /^(animasyon|anime|animation)$/i.test(clean(g));}))r.catalogSection='animation';
+ function detail(body,card){return U.withEnvelope(body,function(){var page=safe(card.pageUrl),d=U.envelope(body).doc,s=schema(body,page),main=d.querySelector('main'),type=kind(page),title=clean(s.name)||text(main||d,'h1');if(!page||!main||!type||!title)throw Error(c.id+': içerik detayı bulunamadı.');var poster=typeof s.image==='string'?s.image:s.image&&s.image.url,desc=d.querySelector('meta[property="og:description"]'),year=/\b((?:19|20)\d{2})\b/.exec(String(s.datePublished||s.startDate||s.releaseDate||''));var r={contentId:id(page),providerId:c.id,siteId:c.id,pageUrl:page,type:type,title:title,rawTitle:title,originalTitle:clean(s.alternateName),poster:U.url(poster,page)||card.poster||'',description:clean(s.description)||clean(desc&&desc.content),year:year?Number(year[1]):card.year||null,imdb:Number(s.aggregateRating&&s.aggregateRating.ratingValue)||null,genres:Array.isArray(s.genre)?s.genre:typeof s.genre==='string'?s.genre.split(','):[],cast:[],seasons:[],episodes:[],sources:[],subtitles:[],language:card.language||''};r.tags=safetyLabels(main,page,true);var own=safe(s.url||s['@id'],page);if(own&&new root.URL(own).pathname===new root.URL(page).pathname&&s.adult===true)r.adult=true;tagSafety(r);(Array.isArray(s.actor)?s.actor:[]).slice(0,80).forEach(function(a){if(a&&a.name)r.cast.push({name:clean(a.name)});});if(r.genres.some(function(g){return /^(animasyon|anime|animation)$/i.test(clean(g));}))r.catalogSection='animation';
  var parent='';Array.prototype.forEach.call(main.querySelectorAll('a[href]'),function(a){var u=safe(a.getAttribute('href'),page);if(u&&kind(u)==='series'&&(text(a)===title||new root.URL(page).pathname.indexOf('/bolum/'+new root.URL(u).pathname.split('/')[2]+'-')===0))parent=u;});
  if(type==='episode'){r.seriesPageUrl=parent;var no=/-(\d+)-sezon-(\d+)-bolum\/?$/.exec(new root.URL(page).pathname);if(no)r.episode={seriesId:id(parent),season:Number(no[1]),number:Number(no[2])};}
  if(type==='series'){var slug=new root.URL(page).pathname.split('/')[2],seen={};r.episodePages=[];Array.prototype.forEach.call(main.querySelectorAll('a[href]'),function(a){var u=safe(a.getAttribute('href'),page);if(!u)return;var p=new root.URL(u);if(p.pathname===new root.URL(page).pathname&&/^\?sezon=\d+$/.test(p.search)&&u!==page&&r.episodePages.indexOf(u)<0)r.episodePages.push(u);if(kind(u)!=='episode'||p.search)return;var no=new RegExp('^/bolum/'+slug+'(?:-[a-z0-9]+)*'+'-(\\d+)-sezon-(\\d+)-bolum/?$').exec(p.pathname);if(!no)return;var season=Number(no[1]),number=Number(no[2]),key=season+':'+number;if(!season||!number||seen[key])return;seen[key]=true;if(r.seasons.indexOf(season)<0)r.seasons.push(season);r.episodes.push({contentId:id(u),providerId:c.id,siteId:c.id,type:'episode',title:title+' · '+season+'×'+number,pageUrl:u,seriesPageUrl:page,seriesTitle:title,poster:r.poster,year:r.year,episode:{seriesId:r.contentId,season:season,number:number},sources:[],subtitles:[]});});r.episodes.sort(function(a,b){return a.episode.season-b.episode.season||a.episode.number-b.episode.number;});r.seasons.sort(function(a,b){return a-b;});}
  return root.ContentIdentity?root.ContentIdentity.attachDetail(r,root.ContentIdentity.fromPage(body,page)):r;
  });}
+ var classified=Object.create(null), classificationUntil=0;
+ function categorySafety(body,page){
+  return U.withEnvelope(body,function(){
+   var doc=U.envelope(body).doc,main=doc.querySelector('main'),canonical=doc.querySelector('meta[property="og:url"]');
+   if(!main||text(main,'h1').toLowerCase()!=='erotik filmler'||!canonical||safe(canonical.getAttribute('content'),page)!==page)
+    throw Error('Unverified content safety category');
+   var ids=Object.create(null);
+   Array.prototype.forEach.call(main.querySelectorAll(c.cards),function(node){
+    var url=safe(node.getAttribute('href'),page);
+    if(kind(url)==='movie'&&node.querySelector('img')&&!node.closest('aside,nav,footer,.recommendations,.related'))ids[id(url)]=true;
+   });
+   return {ids:Object.keys(ids).slice(0,500)};
+  });
+ }
  function Provider(cache){root.CatalogClient.call(this,cache,context.createClient({platformText:!!c.platformText}),{base:base});}
  Provider.prototype=Object.create(root.CatalogClient.prototype);Provider.prototype.constructor=Provider;
- Provider.prototype.fetch=function(url,parse,force,scope){url=allowed(url);if(!url)return Promise.reject(Error(c.id+': site dışı/geçersiz katalog isteği.'));return this.request(url,null,parse,force,c.id+'-v2-'+scope);};
+ Provider.prototype.fetch=function(url,parse,force,scope){url=allowed(url);if(!url)return Promise.reject(Error(c.id+': site dışı/geçersiz katalog isteği.'));var self=this, generation=this.generation;
+  var classification=root.ContentSafety&&root.ContentSafety.enabled()&&classificationUntil<=Date.now()
+   ? this.classification() : Promise.resolve();
+  return classification.then(function(){
+   if(generation!==self.generation)throw Error('Cancelled');
+   return self.request(url,null,parse,force,c.id+'-v3-'+scope).then(function(value){
+    var copy=root.PlayerCore.copy(value);
+    [copy.cards,copy.movies,copy.series].forEach(function(rows){if(rows)rows.forEach(tagSafety);});
+    if(copy.hero)tagSafety(copy.hero);
+    if(copy.contentId)tagSafety(copy);
+    return copy;
+   });
+  });};
+ Provider.prototype.classification=function(){
+  var self=this, generation=this.generation, page=base+'/kategori/erotik-filmler/';
+  if(this.classificationJob&&this.classificationJob.generation===generation)return this.classificationJob.promise;
+  var job={generation:generation};
+  job.promise=this.request(page,null,function(b){return categorySafety(b,page);},false,c.id+'-safety-category').then(function(data){
+   if(generation!==self.generation)return;
+   var next=Object.create(null);
+   data.ids.forEach(function(value){next[value]=true;});classified=next;
+   classificationUntil=Date.now()+15*60000;
+  },function(){if(generation===self.generation)classificationUntil=Date.now()+60000;});
+  job.promise=job.promise.then(function(){if(self.classificationJob===job)self.classificationJob=null;});
+  this.classificationJob=job;
+  return job.promise;
+ };
  Provider.prototype.home=function(force){return this.fetch(base+'/',function(b){var rows=cards(b,base+'/');return {hero:rows[0]||null,movies:rows.filter(function(x){return x.type==='movie';}),series:rows.filter(function(x){return x.type==='series';})};},force,'home');};
  Provider.prototype.sectionList=function(query,next,force){var self=this,token=this.generation,state=next&&next.kind==='animation'?next:{kind:'animation',cursors:c.animation.map(function(p){return {url:base+p};})},result={cards:[],next:null},round=state.cursors.slice(0,next?1:2),remaining=state.cursors.slice(round.length),chain=Promise.resolve();round.forEach(function(cursor){chain=chain.then(function(){if(token!==self.generation)throw Error('İptal edildi.');return self.fetch(cursor.url,function(b){return list(b,cursor.url);},force,'animation').then(function(v){v.cards.forEach(function(card){card.catalogSection='animation';});result.cards=result.cards.concat(v.cards);if(v.next)remaining.push(v.next);});});});return chain.then(function(){var seen={};result.cards=result.cards.filter(function(c){if(seen[c.contentId])return false;seen[c.contentId]=true;return true;});result.next=remaining.length?{kind:'animation',cursors:remaining}:null;return result;});};
  Provider.prototype.list=function(query,next,force){query=query||{};if(query.section==='animation')return this.sectionList(query,next,force);if(query.type==='series'&&!c.series)return Promise.resolve({cards:[],next:null});var type=types(query),url=next&&next.url||base+(type==='series'?c.seriesList:c.movieList),section=query.section;if(section)return Promise.resolve({cards:[],next:null});if(!next){var filters=query.filters||{};if(c.id==='p014'&&filters.genre){url=safe(filters.genre,base+'/');if(!url||!/^\/tur\//.test(new root.URL(url).pathname))return Promise.reject(Error('Geçersiz tür bağlantısı.'));}else if(filters.genre)url+=(url.indexOf('?')>=0?'&':'?')+c.genre+'='+encodeURIComponent(filters.genre);if(query.order||filters.order)url+=(url.indexOf('?')>=0?'&':'?')+c.sort+'='+encodeURIComponent(query.order||filters.order);}if(query.url)url=query.url;return this.fetch(url,function(b){var r=list(b,url);if(section)r.cards.forEach(function(x){x.catalogSection='animation';});return r;},force,'list');};

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "id": "p019",
+  "name": "P019",
+  "type": "site",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.3",
+  "minCoreVersion": "2.1.10",
+  "description": "Film and series catalog, search and episodes",
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.hdfilmcehennemi2.biz",
+    "https://image.tmdb.org"
+  ],
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r019",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "site": {
+    "id": "p019",
+    "name": "P019",
+    "base": "https://www.hdfilmcehennemi2.biz",
+    "prefix": "p019:"
+  }
+}

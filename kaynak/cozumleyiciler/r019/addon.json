@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "id": "r019",
+  "name": "R019",
+  "type": "resolver",
+  "version": "1.0.0",
+  "minAppVersion": "2.0.3",
+  "minCoreVersion": "2.1.10",
+  "description": "VIP and Moly media adapters",
+  "modules": [
+    "resolver.js"
+  ],
+  "files": [
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://www.hdfilmcehennemi2.biz",
+    "https://vidload.top",
+    "https://*.haccodavayup.shop",
+    "https://*.pictureupfans.site",
+    "https://vidmoly.net",
+    "https://vidmoly.biz",
+    "https://vidmoly.me",
+    "https://srt.vidmoly.me",
+    "https://*.upvm.online",
+    "https://*.vmpx.online",
+    "https://*.vmnow.online"
+  ]
+}

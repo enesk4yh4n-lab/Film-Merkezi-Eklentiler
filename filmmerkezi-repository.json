@@ -3,7 +3,7 @@
   "id": "film-merkezi-eklentiler",
   "name": "Film Merkezi Eklentiler",
   "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5asyOWYkiWXZNeUMmYocbH2+VxPU+BkA/Yk22PhuRpWMo/h1nw/LfWL7ZrPcxo8loJ2VPwbeo05KAtE1H1LUieNRHgMMBMwJaeuV2JvyS8+JNMqrGDhkywDMNNZT4H32uOpQlfZmkNf+tE5EKfFKBNuj5dwlPN0E5/y1B0230WlcIb6JsE40ZmZqzfSuGtprwrNSc0Mx4MQhD56NBmQZUyfrUCYuh27x0ozzUjNLx3JJKpXeS2xWuZv69gFjO+R/Pkl1su0B/cgF2vPqMPKqMWTDUU0SHkUk320Xdv7YbMbAyKkuOYPAi7wZzCVZggU6NBr9nMwhcjWZeUWyFyy/2wIDAQAB",
-  "revision": 159,
+  "revision": 160,
   "plugins": [
     {
       "id": "r002",
@@ -262,12 +262,34 @@
       "id": "p013",
       "type": "site",
       "name": "P013",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Catalog, search, genuine detail and episodes",
-      "manifest": "packages/p013/1.0.1/manifest.json",
-      "manifestSha256": "6fd40bcf4e9c49a19201e240776607c347d6e37f69372fecbac671e08a27b1a1",
+      "manifest": "packages/p013/1.0.2/manifest.json",
+      "manifestSha256": "f61d799b81462ca448fba97f0ec3789d4b3f760486f7afdfe9647cdfc3e8faab",
       "minAppVersion": "2.0.1",
       "minCoreVersion": "2.1.8"
+    },
+    {
+      "id": "p019",
+      "type": "site",
+      "name": "P019",
+      "version": "1.0.0",
+      "description": "Film and series catalog, search and episodes",
+      "manifest": "packages/p019/1.0.0/manifest.json",
+      "manifestSha256": "b463333006a69013f562e4c574960182447b64ebc0b2df9e0faf9d8685fc8c52",
+      "minAppVersion": "2.0.3",
+      "minCoreVersion": "2.1.10"
+    },
+    {
+      "id": "r019",
+      "type": "resolver",
+      "name": "R019",
+      "version": "1.0.0",
+      "description": "VIP and Moly media adapters",
+      "manifest": "packages/r019/1.0.0/manifest.json",
+      "manifestSha256": "bc3b6600faa887b85a077ec82f0e28eeb61d3fbb6e6efae101b7bd8538200e01",
+      "minAppVersion": "2.0.3",
+      "minCoreVersion": "2.1.10"
     }
   ],
   "alternatives": [
@@ -554,6 +576,17 @@
       "description": "Series catalog, search and actual ordered episodes",
       "manifest": "packages/p012/1.0.0/manifest.json",
       "manifestSha256": "68edd2e8aa42f22312bebeecdcac9f5326a029dc4d3d370cf32f7b67021c4fe7",
+      "minAppVersion": "2.0.1",
+      "minCoreVersion": "2.1.8"
+    },
+    {
+      "id": "p013",
+      "type": "site",
+      "name": "P013",
+      "version": "1.0.1",
+      "description": "Catalog, search, genuine detail and episodes",
+      "manifest": "packages/p013/1.0.1/manifest.json",
+      "manifestSha256": "6fd40bcf4e9c49a19201e240776607c347d6e37f69372fecbac671e08a27b1a1",
       "minAppVersion": "2.0.1",
       "minCoreVersion": "2.1.8"
     }
