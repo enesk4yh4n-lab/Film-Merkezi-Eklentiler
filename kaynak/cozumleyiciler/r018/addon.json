@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.10",
+  "id": "r018",
+  "name": "R018",
+  "type": "resolver",
+  "description": "Film HLS proxy and series PlayerJS adapter",
+  "modules": [
+    "resolver.js"
+  ],
+  "files": [
+    "resolver.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://liderfilmizle.vip",
+    "https://play.liderfilm.cc",
+    "https://x.ag2m5.cfd",
+    "https://qp21.uk-traffic-076.com",
+    "https://img.cdn77s.com"
+  ]
+}

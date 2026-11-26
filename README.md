@@ -4,7 +4,8 @@ Kullanıcının seçerek kurduğu site ve çözümleyici paketleri. Depo eklemek
 
 ## Son güncelleme
 
-**25 Kasım 2026** · P013 yeni adresiyle yeniden yayımlandı. [Ayrıntılı sürüm notları](CHANGELOG.md).
+**26 Kasım 2026** · P018 / R018 1.0.0 eklendi. Film kaynağı Tizen 3’te doğrulandı. Dizi oynatması açık. [Ayrıntılı sürüm notları](CHANGELOG.md).
+
 
 | Site | Sürüm | Çözümleyici | Sürüm |
 |---|---|---|---|
@@ -20,6 +21,7 @@ Kullanıcının seçerek kurduğu site ve çözümleyici paketleri. Depo eklemek
 | P012 | 1.0.1 | R012 | 1.0.2 |
 | P013 | 1.0.1 | R013 | 1.0.3 |
 | P014 | 1.0.0 | R014 | 1.0.2 |
+| P018 | 1.0.0 | R018 | 1.0.0 |
 
 Etkin paketlerin toplam ağ izin bütçesi mevcut WGT kapasitesiyle sınırlıdır; bütün paketleri aynı anda kurmak mümkün olmayabilir. İstediğiniz siteleri seçerek kurun.
 
@@ -40,3 +42,11 @@ P002/R002 ana uygulama deposunda da aynı kimlikle sunulur; bir kez kurmanız ye
 [Geliştirme kılavuzu](SDK/README.md) · [SDK ZIP](Film-Merkezi-SDK-2.0.2.zip) · [SHA-256](SDK-SHA256SUMS.txt)
 
 Video CDN izinleri [tek dosyada](kaynak/cozumleyiciler/cdn-izinleri.json) tutulur. Çözümleyiciler gereken kaynak gruplarını seçebilir. Çekirdek güncellemeleri ana uygulama deposundadır.
+
+<!-- film-merkezi-discovery:start -->
+## Film Merkezi repository
+
+Repository index: `filmmerkezi-repository.json`. Find this repository in Film Merkezi using its name or GitHub username, or add its HTTPS address.
+
+<!-- film-merkezi-repository: filmmerkezi-repository.json -->
+<!-- film-merkezi-discovery:end -->

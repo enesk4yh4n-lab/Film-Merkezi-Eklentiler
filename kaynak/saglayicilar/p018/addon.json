@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "minAppVersion": "2.0.1",
+  "minCoreVersion": "2.1.10",
+  "id": "p018",
+  "name": "P018",
+  "type": "site",
+  "description": "Film and series catalog with source-backed seasons",
+  "dependencies": [
+    {
+      "publisher": "PUBLISHER_FINGERPRINT",
+      "id": "r018",
+      "minVersion": "1.0.0",
+      "maxVersion": "2.0.0"
+    }
+  ],
+  "modules": [
+    "site.js"
+  ],
+  "files": [
+    "site.js",
+    "LICENSE.txt"
+  ],
+  "origins": [
+    "https://liderfilmizle.vip",
+    "https://image.tmdb.org"
+  ],
+  "site": {
+    "id": "p018",
+    "name": "P018",
+    "base": "https://liderfilmizle.vip",
+    "prefix": "p018:"
+  }
+}

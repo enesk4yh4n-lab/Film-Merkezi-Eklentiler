@@ -3,7 +3,7 @@
   "id": "film-merkezi-eklentiler",
   "name": "Film Merkezi Eklentiler",
   "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5asyOWYkiWXZNeUMmYocbH2+VxPU+BkA/Yk22PhuRpWMo/h1nw/LfWL7ZrPcxo8loJ2VPwbeo05KAtE1H1LUieNRHgMMBMwJaeuV2JvyS8+JNMqrGDhkywDMNNZT4H32uOpQlfZmkNf+tE5EKfFKBNuj5dwlPN0E5/y1B0230WlcIb6JsE40ZmZqzfSuGtprwrNSc0Mx4MQhD56NBmQZUyfrUCYuh27x0ozzUjNLx3JJKpXeS2xWuZv69gFjO+R/Pkl1su0B/cgF2vPqMPKqMWTDUU0SHkUk320Xdv7YbMbAyKkuOYPAi7wZzCVZggU6NBr9nMwhcjWZeUWyFyy/2wIDAQAB",
-  "revision": 161,
+  "revision": 163,
   "plugins": [
     {
       "id": "r002",
@@ -356,6 +356,28 @@
       "manifestSha256": "a02dcd5d9d9718f8c44688741d586fdec89661e1e0b47f57c5d840a7286997cb",
       "minAppVersion": "2.0.1",
       "minCoreVersion": "2.1.15"
+    },
+    {
+      "id": "r018",
+      "type": "resolver",
+      "name": "R018",
+      "version": "1.0.0",
+      "description": "Film HLS proxy and series PlayerJS adapter",
+      "manifest": "packages/r018/1.0.0/manifest.json",
+      "manifestSha256": "32044cb177638c5563c224927c82cbb229931370f78e5709a016bf44c0c60753",
+      "minAppVersion": "2.0.1",
+      "minCoreVersion": "2.1.10"
+    },
+    {
+      "id": "p018",
+      "type": "site",
+      "name": "P018",
+      "version": "1.0.0",
+      "description": "Film and series catalog with source-backed seasons",
+      "manifest": "packages/p018/1.0.0/manifest.json",
+      "manifestSha256": "7b8e7190a46215abf028800c3043b49fcfd5bda709adb90837edfb2ae8840345",
+      "minAppVersion": "2.0.1",
+      "minCoreVersion": "2.1.10"
     }
   ],
   "alternatives": [

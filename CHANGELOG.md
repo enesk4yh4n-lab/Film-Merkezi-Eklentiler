@@ -1,3 +1,9 @@
+## P018 / R018 1.0.0 · 26 Kasım 2026
+
+- Film ve dizi kataloğu, arama, sezon ve bölüm listeleri eklendi.
+- Film HLS kaynağı Tizen 3 emülatöründe oynatıldı. Dizi kaynağı, Tizen 3’te yayın adresi dönmeden reddediliyor. Dizi oynatma kabulü açık.
+- Oynatıcıdan gelen geçersiz yanıtlar ve erişim retleri ayrı bildirilir.
+
 ## Eklenti güncellemeleri · 26 Kasım 2026
 
 - **P015 / R015 1.0.0:** Film kataloğu, arama ve Moly, OK.ru, Mail.ru kaynakları.
